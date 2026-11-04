@@ -48,6 +48,8 @@ status = "offen"
 
 [[szene]]
 name = "Hook: Panik vor dem Kontoauszug"
+# Platzhalter bis der Flow-Clip in medien/ liegt – dann diese Zeile löschen
+medien = "referenz/stick-figure-screaming-at-statement-1d7b7bb3.jpg"
 teil = "hook"
 bild = '''Extreme close-up of Brokey's face filling the frame, a very long bank statement paper covered only in wavy scribble lines unrolls in front of him down to the floor, gold coins flying out of his wallet'''
 bild_de = "Nahaufnahme: Brokey schreit, endloser Kontoauszug rollt sich aus, Münzen fliegen aus dem Portemonnaie"
@@ -60,6 +62,8 @@ einblendtext = "ca. 600 € im Jahr. Für NICHTS."
 
 [[szene]]
 name = "Setup: Brokey und seine Abos"
+# Platzhalter bis der Flow-Clip in medien/ liegt – dann diese Zeile löschen
+medien = "referenz/brokey-abos.jpg"
 teil = "setup"
 bild = '''Brokey sits on a brown sofa, five subscription cards float in an arc around his head, each card shows only one simple icon (play button, music note, cloud, dumbbell, game controller)'''
 bild_de = "Brokey auf dem Sofa, fünf Abo-Karten mit Symbolen schweben um seinen Kopf (wie referenz/brokey-abos.jpg)"
@@ -71,6 +75,8 @@ einblendtext = "je ca. 10 €"
 
 [[szene]]
 name = "Der Haken: das Geld schleicht raus"
+# Platzhalter bis der Flow-Clip in medien/ liegt – dann diese Zeile löschen
+medien = "referenz/octopus-wrapping-tentacles-aroun-c0cebb06.jpg"
 teil = "geschichte"
 bild = '''A big doodled octopus made of subscription cards (simple icons: play button, music note, cloud, dumbbell, game controller) wraps its tentacles around Brokey's wallet and pulls out gold coins one by one, calendar pages fly through the air, Brokey sits on the sofa unaware'''
 bild_de = "Abo-Krake klaut Münzen aus dem Portemonnaie, Kalenderblätter fliegen, Brokey merkt nichts"
@@ -83,6 +89,8 @@ einblendtext = "jeden Monat"
 
 [[szene]]
 name = "Die Rechnung"
+# Platzhalter bis der Flow-Clip in medien/ liegt – dann diese Zeile löschen
+medien = "referenz/brokey-holding-large-receipt-84321a9b.jpg"
 teil = "rechnung"
 bild = '''Brokey looks up at a gigantic receipt covered only in wavy scribble lines, a small pile of gold coins at its foot'''
 bild_de = "Winziger Brokey vor einer riesigen Rechnung"
@@ -94,6 +102,8 @@ einblendtext = "5 × ca. 10 € = 50 €/Monat · × 12 = ca. 600 €/Jahr (Beis
 
 [[szene]]
 name = "Lerneffekt: drei Abos durchstreichen"
+# Platzhalter bis der Flow-Clip in medien/ liegt – dann diese Zeile löschen
+medien = "referenz/person-crossing-out-cards-033dc785.jpg"
 teil = "lerneffekt"
 bild = '''Brokey with a lightbulb above his head draws a thick marker line through three crossed-out subscription cards (simple icons only), tiny confetti made of marker dots'''
 bild_de = "Brokey mit Glühbirne streicht drei Abo-Karten durch, Marker-Konfetti"
@@ -105,6 +115,8 @@ einblendtext = "1× im Monat: Kontoauszug checken"
 
 [[szene]]
 name = "Punchline: neues Abo"
+# Platzhalter bis der Flow-Clip in medien/ liegt – dann diese Zeile löschen
+medien = "referenz/brokey-opens-empty-wallet-4966730b.jpg"
 teil = "punchline"
 bild = '''Brokey sits on the sofa holding one brand-new shiny subscription card with a simple star icon, his empty brown wallet lies open on his lap'''
 bild_de = "Brokey hält stolz ein neues Abo, das Portemonnaie ist leer"
@@ -117,6 +129,8 @@ einblendtext = ""
 
 [[szene]]
 name = "Outro"
+# Platzhalter bis der Flow-Clip in medien/ liegt – dann diese Zeile löschen
+medien = "referenz/stick-figure-staring-at-coin-968d5b33.jpg"
 teil = "outro"
 bild = '''Brokey waves tiredly toward the viewer, one gold coin falls at his feet and rolls off'''
 bild_de = "Brokey winkt müde, eine Münze rollt davon"

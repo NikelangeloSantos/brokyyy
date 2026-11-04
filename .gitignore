@@ -15,6 +15,7 @@ venv/
 *.wav
 *.mp3
 ausgabe/
+export/
 
 # Betriebssystem
 .DS_Store

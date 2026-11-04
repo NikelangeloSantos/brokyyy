@@ -32,7 +32,7 @@ from brokey import ROOT, Mappe, zeit_srt  # noqa: E402
 B, H = 1080, 1920
 FPS = 30
 STOPMOTION_FPS = 10
-PAUSE_NACH_SZENE = 0.35  # Sekunden Luft nach dem Sprechertext
+PAUSE_NACH_SZENE = 0.15  # Sekunden Luft nach dem Sprechertext (kurz = schnelleres Tempo)
 WOERTER_PRO_UNTERTITEL = 5
 CLIP_SFX_LAUTSTAERKE = 0.35  # Soundeffekte aus Flow-Clips leise unter die Stimme
 # Schnelle Schnitte: jede Szene wird in kurze Einstellungen mit wechselndem Ausschnitt zerlegt
@@ -261,7 +261,8 @@ def schneide(ordner: Path, nur_pruefen: bool = False) -> Path | None:
         print("  brenne Untertitel und Einblendungen ein ...")
         ffmpeg("-i", str(tmp / "roh.mp4"), "-vf", f"ass={tmp / 'text.ass'}",
                "-c:v", "libx264", "-preset", "medium", "-crf", "19", "-pix_fmt", "yuv420p",
-               "-c:a", "copy", "-movflags", "+faststart", str(ziel))
+               "-af", "loudnorm=I=-14:TP=-1.5:LRA=11", "-c:a", "aac", "-b:a", "192k", "-ar", "48000",
+               "-movflags", "+faststart", str(ziel))
         (export / "untertitel-final.srt").write_text("\n".join(srt), encoding="utf-8")
     print(f"Fertig: {ziel.relative_to(ROOT)} ({dauer(ziel):.1f} s)")
     if not all(p["stimme"] for p in plan) and not gesamt_vo:

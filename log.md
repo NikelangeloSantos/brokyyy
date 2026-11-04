@@ -8,3 +8,4 @@
 | 2026-11-04 | Auf 35-50 s umgestellt, schnelle Schnitte (Hook 0,6 s), Abo-Chaos auf 111 Wörter gekürzt | – | Testschnitt 47 s, noch ohne Stimme |
 | 2026-11-04 | Vertonung mit Leander (eleven_multilingual_v2, speed 1.05), 651 Zeichen | – | 49 s mit Stimme, Szenenlängen folgen der Sprechdauer, Lautheit auf -14 LUFS normalisiert. API-Schlüssel hat kein voices_read (Stimmenliste nicht lesbar), TTS geht |
 | 2026-11-04 | Bibliothek + eingang/ + Katalog (30 Bilder beschrieben), mehrere Medien pro Szene mit harten Schnitten | – | Abo-Chaos 49 s mit Schnellschnitt aus 3 Bildern im Hook. Offen: Test, dass Clips beim Wiederauftauchen weiterlaufen (mit echten Clips prüfen) |
+| 2026-11-04 | 35 neue Medien (18 Clips, 17 Bilder) einsortiert und beschrieben; Abo-Chaos mit Clips neu geschnitten | – | Clips nur 360x640 -> werden hochskaliert (Lanczos + Schärfen), höhere Auflösung aus Flow wäre besser. Außerhalb des Hooks laufen mehrere Medien jetzt nacheinander |

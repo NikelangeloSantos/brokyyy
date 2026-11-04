@@ -169,7 +169,9 @@ def baue_einstellung(medium: Path, d: float, ziel: Path, *, start: float = 0.0, 
     gross_b, gross_h = int(B * 1.5), int(H * 1.5)  # Reserve, damit Ausschnitte scharf bleiben
     if ist_clip(medium):
         eingabe = ["-ss", f"{start:.3f}", "-i", str(medium)]
-        v = (f"[0:v]fps={FPS},scale={gross_b}:{gross_h}:force_original_aspect_ratio=increase,crop={gross_b}:{gross_h},"
+        # kleine Clips (z. B. 360x640) mit Lanczos hochskalieren und leicht nachschärfen
+        v = (f"[0:v]fps={FPS},scale={gross_b}:{gross_h}:force_original_aspect_ratio=increase:flags=lanczos,"
+             f"crop={gross_b}:{gross_h},unsharp=5:5:0.6,"
              f"tpad=stop_mode=clone:stop_duration={d + 1:.2f},trim=duration={d:.3f},setpts=PTS-STARTPTS,")
         if zoom_tempo:
             z, x, y = zoom_ausdruck(zoom_tempo, FPS)
@@ -203,13 +205,17 @@ def einstellungen_planen(medien: list[Path], d: float, tempo: float, hook: bool)
 
     - 1 Standbild: wechselnde Ausschnitte im Tempo (sonst wirkt es tot)
     - 1 Clip: läuft durch, ohne Zoom; nur im Hook schnelle Ausschnittwechsel
-    - mehrere Medien: harte Schnitte zwischen ihnen im Tempo, Clips laufen weiter statt neu zu starten
+    - mehrere Medien im Hook: harte Schnitte zwischen ihnen im Tempo, Clips laufen weiter statt neu zu starten
+    - mehrere Medien sonst: nacheinander, jedes bekommt seinen Anteil der Szene
     """
     if len(medien) == 1:
         m = medien[0]
         if ist_clip(m) and not hook:
             return [(m, d, 0.0, None, (1.0, 0.5))]
         return [(m, d, 0.0, tempo, (1.0, 0.5))]
+    if not hook:  # ausserhalb des Hooks: Medien nacheinander, damit die Mini-Geschichte lesbar bleibt
+        anteil = d / len(medien)
+        return [(m, anteil, 0.0, None if ist_clip(m) else tempo, (1.0, 0.5)) for m in medien]
     n = max(len(medien), round(d / tempo))
     laenge = d / n
     clip_pos = {m: 0.0 for m in medien}

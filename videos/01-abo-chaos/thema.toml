@@ -49,7 +49,7 @@ status = "offen"
 [[szene]]
 name = "Hook: Panik vor dem Kontoauszug"
 # Platzhalter aus der Bibliothek, bis eigene Clips da sind (mehrere = schnelle Schnitte)
-medien = ["bibliothek/bilder/stick-figure-screaming-at-statement-1d7b7bb3.jpg", "bibliothek/bilder/brokey-holding-large-receipt-84321a9b.jpg", "bibliothek/bilder/brokey-opens-empty-wallet-4966730b.jpg"]
+medien = ["bibliothek/clips/monster-inhales-coins-from-brokey-7ddbae20.mp4", "bibliothek/bilder/stick-figure-screaming-at-statement-1d7b7bb3.jpg", "bibliothek/clips/animated-character-survives-wave-17c9171a.mp4"]
 teil = "hook"
 bild = '''Extreme close-up of Brokey's face filling the frame, a very long bank statement paper covered only in wavy scribble lines unrolls in front of him down to the floor, gold coins flying out of his wallet'''
 bild_de = "Nahaufnahme: Brokey schreit, endloser Kontoauszug rollt sich aus, Münzen fliegen aus dem Portemonnaie"
@@ -76,7 +76,7 @@ einblendtext = "je ca. 10 €"
 [[szene]]
 name = "Der Haken: das Geld schleicht raus"
 # Platzhalter aus der Bibliothek, bis eigene Clips da sind (mehrere = schnelle Schnitte)
-medien = ["bibliothek/bilder/octopus-wrapping-tentacles-aroun-c0cebb06.jpg", "bibliothek/bilder/brokey-relaxing-on-sofa-b44493b7.jpg"]
+medien = ["bibliothek/bilder/octopus-wrapping-tentacles-aroun-c0cebb06.jpg", "bibliothek/clips/monster-eats-coins-and-burps-f86e1184.mp4"]
 teil = "geschichte"
 bild = '''A big doodled octopus made of subscription cards (simple icons: play button, music note, cloud, dumbbell, game controller) wraps its tentacles around Brokey's wallet and pulls out gold coins one by one, calendar pages fly through the air, Brokey sits on the sofa unaware'''
 bild_de = "Abo-Krake klaut Münzen aus dem Portemonnaie, Kalenderblätter fliegen, Brokey merkt nichts"
@@ -90,7 +90,7 @@ einblendtext = "jeden Monat"
 [[szene]]
 name = "Die Rechnung"
 # Platzhalter aus der Bibliothek, bis eigene Clips da sind (mehrere = schnelle Schnitte)
-medien = "bibliothek/bilder/brokey-holding-large-receipt-84321a9b.jpg"
+medien = ["bibliothek/clips/brokey-balances-scale-with-coins-b3835dbf.mp4", "bibliothek/bilder/brokey-holding-large-receipt-84321a9b.jpg"]
 teil = "rechnung"
 bild = '''Brokey looks up at a gigantic receipt covered only in wavy scribble lines, a small pile of gold coins at its foot'''
 bild_de = "Winziger Brokey vor einer riesigen Rechnung"
@@ -103,7 +103,7 @@ einblendtext = "5 × ca. 10 € = 50 €/Monat · × 12 = ca. 600 €/Jahr (Beis
 [[szene]]
 name = "Lerneffekt: drei Abos durchstreichen"
 # Platzhalter aus der Bibliothek, bis eigene Clips da sind (mehrere = schnelle Schnitte)
-medien = "bibliothek/bilder/person-crossing-out-cards-033dc785.jpg"
+medien = ["bibliothek/clips/brokey-catches-coin-thief-200fcf91.mp4", "bibliothek/clips/character-cuts-tentacles-with-sc-ca1c3058.mp4"]
 teil = "lerneffekt"
 bild = '''Brokey with a lightbulb above his head draws a thick marker line through three crossed-out subscription cards (simple icons only), tiny confetti made of marker dots'''
 bild_de = "Brokey mit Glühbirne streicht drei Abo-Karten durch, Marker-Konfetti"
@@ -116,7 +116,7 @@ einblendtext = "1× im Monat: Kontoauszug checken"
 [[szene]]
 name = "Punchline: neues Abo"
 # Platzhalter aus der Bibliothek, bis eigene Clips da sind (mehrere = schnelle Schnitte)
-medien = "bibliothek/bilder/brokey-opens-empty-wallet-4966730b.jpg"
+medien = ["bibliothek/clips/character-snaps-from-hypnotic-state-57b1a298.mp4"]
 teil = "punchline"
 bild = '''Brokey sits on the sofa holding one brand-new shiny subscription card with a simple star icon, his empty brown wallet lies open on his lap'''
 bild_de = "Brokey hält stolz ein neues Abo, das Portemonnaie ist leer"
@@ -130,7 +130,7 @@ einblendtext = ""
 [[szene]]
 name = "Outro"
 # Platzhalter aus der Bibliothek, bis eigene Clips da sind (mehrere = schnelle Schnitte)
-medien = "bibliothek/bilder/stick-figure-staring-at-coin-968d5b33.jpg"
+medien = ["bibliothek/clips/brokey-relaxing-on-beach-chair-d3d4ab96.mp4"]
 teil = "outro"
 bild = '''Brokey waves tiredly toward the viewer, one gold coin falls at his feet and rolls off'''
 bild_de = "Brokey winkt müde, eine Münze rollt davon"

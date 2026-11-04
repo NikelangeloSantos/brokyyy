@@ -130,3 +130,151 @@ tags = ["onlineshopping", "impulskauf", "pakete", "nachts", "selbstsicher"]
 beschreibung = "Links ruhiger Brokey mit grauer Mütze und Münzturm, rechts chaotischer Brokey mit Einkaufstüten"
 tags = ["vergleich", "sparer_vs_spender", "sparen", "shopping"]
 hinweis = "Evtl. Schrift auf den Tüten ('SALE')"
+
+["clips/animated-character-survives-wave-17c9171a.mp4"]
+beschreibung = "Brokey paddelt auf einer Münze durch eine riesige Welle aus Geldscheinen und Rechnungen, verliert am Ende die Mütze (Glatze, Schwimmweste)"
+tags = ["rechnungen", "schulden", "welle", "ueberfordert", "panik", "hook"]
+hinweis = "Grüne Dollar-artige Geldscheine; Brokey kurz ohne Mütze"
+
+["clips/brokey-balances-scale-with-coins-b3835dbf.mp4"]
+beschreibung = "Brokey kratzt sich am Kopf neben einer Waage: Rechnungen auf der einen Seite, ein paar Münzen auf der anderen"
+tags = ["budget", "einnahmen_ausgaben", "waage", "gelangweilt", "setup"]
+
+["clips/brokey-catches-coin-thief-200fcf91.mp4"]
+beschreibung = "Brokey als Detektiv mit Lupe und Kontoauszug entdeckt einen kleinen Münzdieb, der eine Münze klaut"
+tags = ["kontoauszug", "detektiv", "versteckte_kosten", "abo", "lerneffekt"]
+
+["bilder/brokey-holds-golden-slab-d05bbab9.jpg"]
+beschreibung = "Brokey hält einen Goldbarren, daneben ein kleiner Sportwagen (Startbild zum Goldbarren-Clip)"
+tags = ["impulskauf", "verzicht", "entscheidung", "auto"]
+
+["bilder/brokey-holds-picnic-basket-39069ae4.jpg"]
+beschreibung = "Brokey hält einen Korb voller kleiner Firmen-Gebäude und Menschen"
+tags = ["etf", "diversifikation", "korb", "aktien"]
+
+["bilder/brokey-receiving-gold-coins-ca449200.jpg"]
+beschreibung = "Brokey bekommt Münzen aus dem Briefkasten, Formulare fliegen (Startbild Erstattung)"
+tags = ["steuererklaerung", "rueckerstattung", "papierkram", "freude"]
+
+["clips/brokey-relaxing-on-beach-chair-d3d4ab96.mp4"]
+beschreibung = "Brokey mit Sonnenbrille und Drink im Liegestuhl unter Palme, Portemonnaie mit Münzen neben ihm, Meer kommt ins Bild"
+tags = ["urlaub", "entspannt", "ruecklage", "ziel", "outro"]
+
+["bilder/brokey-walking-toward-sale-sign-a8c8b41f.jpg"]
+beschreibung = "Brokey hypnotisiert mit Einkaufsberg auf dem Weg zum Prozent-Schild"
+tags = ["rabatt", "sale", "impulskauf", "hypnose"]
+
+["clips/character-collects-coins-from-ma-7754677b.mp4"]
+beschreibung = "Brokey füllt ein Formular aus, aus dem Briefkasten fallen Münzen, er freut sich (Erstattung)"
+tags = ["steuererklaerung", "rueckerstattung", "papierkram", "erleuchtung"]
+
+["clips/character-crosses-gap-using-coins-0a9c5fbe.mp4"]
+beschreibung = "Brücke über eine Schlucht bricht, Brokey baut sich mit Münzen einen Weg zum Strand auf der anderen Seite"
+tags = ["notgroschen", "ruecklage", "sparen", "ziel", "geschichte"]
+
+["clips/character-crossing-finish-line-s-1389e02e.mp4"]
+beschreibung = "Brokey läuft durchs Ziel, Spar-Thermometer voll, Konfetti, Münzen mit Beinchen jubeln – dann kippt er erschöpft um"
+tags = ["sparziel", "erfolg", "jubel", "punchline"]
+
+["clips/character-cuts-tentacles-with-sc-ca1c3058.mp4"]
+beschreibung = "Brokey schneidet mit einer Riesenschere die Tentakel der Abo-Krake ab und rettet sein Portemonnaie"
+tags = ["abo", "kuendigen", "krake", "lerneffekt", "selbstsicher"]
+
+["clips/character-holding-and-protecting-b0af4af6.mp4"]
+beschreibung = "Brokey hält einen Goldbarren, schaut zu einem Sportwagen, entscheidet sich dann für den Goldbarren"
+tags = ["impulskauf", "verzicht", "entscheidung", "auto", "lerneffekt"]
+
+["clips/character-sipping-drink-during-s-cd3c82ef.mp4"]
+beschreibung = "Brokey sitzt entspannt auf einem Sparschwein mit Schild, trinkt, während aus einer dunklen Wolke Geldscheine regnen"
+tags = ["notgroschen", "ruecklage", "schutz", "krise", "entspannt"]
+
+["clips/character-snaps-from-hypnotic-state-57b1a298.mp4"]
+beschreibung = "Brokey trägt hypnotisiert einen Berg Einkäufe zu einem Prozent-Rabattschild, wacht auf und steht mit leerem Geld da"
+tags = ["rabatt", "sale", "impulskauf", "hypnose", "hoffnung_absturz"]
+
+["clips/character-watering-growing-coin-067ffa1a.mp4"]
+beschreibung = "Brokey gießt ein Münz-Pflänzchen neben einem Kalender, es wird zum großen Münzbaum, Brokey ist plötzlich alt mit Bart"
+tags = ["zinseszins", "langfristig", "zeit", "geduld", "etf"]
+
+["clips/coin-rain-and-two-characters-47d5655a.mp4"]
+beschreibung = "Münzregen: ein Brokey mit Regenschirm bleibt trocken, der andere wird nass und verliert alles"
+tags = ["vergleich", "sparer_vs_spender", "vorsorge", "notgroschen"]
+hinweis = "Zwei Brokeys im Bild"
+
+["bilder/detective-examining-expense-list-de3b99a1.jpg"]
+beschreibung = "Brokey als Detektiv untersucht mit Lupe seinen Kontoauszug, darin ein kleiner Dieb"
+tags = ["kontoauszug", "detektiv", "versteckte_kosten", "abo"]
+
+["bilder/house-swallowing-gold-coins-bfe47357.jpg"]
+beschreibung = "Haus mit Gesicht verschlingt Brokeys Münzen"
+tags = ["miete", "fixkosten", "wohnen"]
+
+["clips/monster-eats-coins-and-burps-f86e1184.mp4"]
+beschreibung = "Ein Haus mit Gesicht frisst Brokeys Münzen und rülpst"
+tags = ["miete", "fixkosten", "wohnen", "resigniert"]
+
+["clips/monster-inhales-coins-from-brokey-7ddbae20.mp4"]
+beschreibung = "Rotes Monster saugt mit der Zunge Münzen aus Brokeys Portemonnaie, Brokey bleibt platt zurück"
+tags = ["inflation", "schulden", "zinsen", "panik", "hook"]
+hinweis = "Großes rotes Monster dominiert das Bild"
+
+["clips/piggy-bank-coins-and-shopping-443f2687.mp4"]
+beschreibung = "Brokey im Liegestuhl, eine Maschine verteilt sein Geld automatisch: Münze ins Sparschwein, Rest in die Einkaufstüte"
+tags = ["dauerauftrag", "automatisch_sparen", "pay_yourself_first", "entspannt", "lerneffekt"]
+
+["bilder/stick-figure-celebrating-victory-693c6205.jpg"]
+beschreibung = "Brokey jubelt auf einem Berg aus Geldscheinen und Rechnungen, Konfetti"
+tags = ["erfolg", "schuldenfrei", "jubel", "ziel"]
+hinweis = "Grüne Dollar-artige Geldscheine"
+
+["bilder/stick-figure-chases-cartoon-train-6ec4188e.jpg"]
+beschreibung = "Brokey rennt mit Portemonnaie einem bunten Raketen-Zug voller jubelnder Leute hinterher"
+tags = ["fomo", "hype", "zu_spaet", "panik"]
+hinweis = "Bunter Zug weicht vom Papier-Look ab"
+
+["bilder/stick-figure-crosses-finish-line-3f83428a.jpg"]
+beschreibung = "Brokey läuft durchs Ziel, Spar-Thermometer voll, Münzen jubeln"
+tags = ["sparziel", "erfolg", "jubel"]
+
+["bilder/stick-figure-defeats-card-octopus-250abd22.jpg"]
+beschreibung = "Brokey hat die Abo-Krake mit der Schere besiegt, hält sein Portemonnaie"
+tags = ["abo", "kuendigen", "krake", "lerneffekt", "selbstsicher"]
+
+["bilder/stick-figure-feeding-monster-wallet-549a3933.jpg"]
+beschreibung = "Rotes Monster schleckt mit der Zunge Münzen aus Brokeys Portemonnaie"
+tags = ["inflation", "schulden", "zinsen", "panik", "hook"]
+
+["clips/stick-figure-holding-paycheck-gr-4f689b84.mp4"]
+beschreibung = "Brokey hält stolz einen riesigen Gehaltsscheck, Greifarme reißen Stücke ab, übrig bleibt ein Krümel"
+tags = ["gehalt", "abzuege", "netto_brutto", "steuern", "hoffnung_absturz"]
+hinweis = "Schrift ('BROKEY') und Dollarzeichen auf dem Scheck"
+
+["bilder/stick-figure-in-rescue-boat-3b501008.jpg"]
+beschreibung = "Brokey paddelt auf einer Münze vor einer Welle aus Geldscheinen und Rechnungen"
+tags = ["rechnungen", "schulden", "welle", "ueberfordert"]
+hinweis = "Grüne Dollar-artige Geldscheine"
+
+["bilder/stick-figure-looking-at-gap-47f0947c.jpg"]
+beschreibung = "Brokey steht vor einer Schlucht mit kaputter Brücke, drüben der Strand"
+tags = ["notgroschen", "ziel", "problem", "setup"]
+
+["bilder/stick-figure-losing-giant-paycheck-a51f9c6a.jpg"]
+beschreibung = "Greifarme reißen Stücke aus Brokeys Gehaltsscheck"
+tags = ["gehalt", "abzuege", "netto_brutto", "steuern", "panik"]
+
+["bilder/stick-figure-relaxing-in-chair-94f3c2b0.jpg"]
+beschreibung = "Brokey im Liegestuhl, Maschine verteilt Geld in Sparschwein (Startbild Automatisch-Sparen)"
+tags = ["dauerauftrag", "automatisch_sparen", "entspannt"]
+
+["bilder/stick-figure-sitting-on-piggy-62b9218e.jpg"]
+beschreibung = "Brokey auf Sparschwein mit Schild, Geldregen aus Gewitterwolke"
+tags = ["notgroschen", "ruecklage", "schutz", "krise"]
+
+["clips/stick-figure-watering-coin-sapling-88d0a5b5.mp4"]
+beschreibung = "Brokey gießt geduldig ein Münz-Pflänzchen neben einem Kalender, es wächst langsam"
+tags = ["zinseszins", "sparplan", "geduld", "langfristig", "gelangweilt"]
+
+["bilder/stick-figures-in-money-rain-d973c32d.jpg"]
+beschreibung = "Zwei Brokeys im Münzregen: einer mit Schirm, einer nass"
+tags = ["vergleich", "sparer_vs_spender", "vorsorge"]
+hinweis = "Zwei Brokeys im Bild"

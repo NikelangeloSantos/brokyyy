@@ -1,0 +1,103 @@
+# Themen-Datei fuer Video {{NUMMER}}. Ausfuellen, dann:
+#   python3 tools/brokey.py baue videos/{{NUMMER}}-{{SLUG}}
+#
+# Texte fuers Video: Deutsch. Bild-/Video-Prompts (bild, aktion_frei, video_schuss): Englisch.
+# Erlaubte Werte:
+#   teil:    hook, setup, geschichte, rechnung, lerneffekt, punchline, outro
+#   mimik:   gelangweilt, panik, selbstsicher, erleuchtung, resigniert, hoffnung_absturz
+#   booster: siehe bausteine/bausteine.toml [booster] (max. 2 pro Szene)
+#   aktion:  siehe bausteine/bausteine.toml [aktion]  – oder eigene Phasen in aktion_frei
+# Im Bild-Prompt keine Zahlen/Texte, die gehoeren in einblendtext.
+
+[video]
+nummer = "{{NUMMER}}"
+titel = "{{TITEL}}"
+thema = "TODO"
+lerneffekt = "TODO"
+zielgruppe = "breit: Teenager, Azubis, Berufseinsteiger"
+ton = "sarkastisch, dramatisch, leicht uebertrieben"
+disclaimer = "Keine Finanzberatung"
+referenzbild = "TODO"
+caption = "TODO"
+hashtags = ["#finanzen", "#geld"]
+
+# Jede Rechnung wird automatisch nachgerechnet.
+[[rechnung]]
+beschreibung = "TODO"
+ausdruck = "1 * 1"
+ergebnis = 1
+einheit = ""
+hinweis = "Beispielzahlen"
+
+# Behauptungen/Annahmen, die du pruefen musst. status: offen | geprueft
+[[fakt]]
+text = "TODO"
+status = "offen"
+quelle = ""
+
+[[szene]]
+name = "Hook"
+teil = "hook"
+bild = '''TODO english scene description'''
+bild_de = "TODO kurze deutsche Beschreibung"
+mimik = "panik"
+booster = ["bewegungslinien"]
+running_gag = true
+aktion = "panik_zittern"
+sprechertext = '''TODO'''
+einblendtext = "TODO"
+
+[[szene]]
+name = "Setup"
+teil = "setup"
+bild = '''TODO'''
+bild_de = "TODO"
+mimik = "gelangweilt"
+booster = []
+aktion_frei = '''0-3s: TODO. 3-6s: TODO. 6-8s: TODO.'''
+sprechertext = '''TODO'''
+einblendtext = ""
+
+[[szene]]
+name = "Geschichte"
+teil = "geschichte"
+bild = '''TODO'''
+bild_de = "TODO"
+mimik = "selbstsicher"
+booster = []
+aktion = "muenze_flieht"
+sprechertext = '''TODO'''
+einblendtext = ""
+
+[[szene]]
+name = "Rechnung"
+teil = "rechnung"
+bild = '''TODO'''
+bild_de = "TODO"
+mimik = "panik"
+booster = ["groessen_gag"]
+aktion = "aufblasen"
+sprechertext = '''TODO'''
+einblendtext = "TODO (Beispielzahlen)"
+
+[[szene]]
+name = "Lerneffekt"
+teil = "lerneffekt"
+bild = '''TODO'''
+bild_de = "TODO"
+mimik = "erleuchtung"
+booster = []
+aktion = "facepalm"
+sprechertext = '''TODO'''
+einblendtext = "TODO"
+
+[[szene]]
+name = "Outro"
+teil = "outro"
+bild = '''Brokey waves tiredly toward the viewer, one gold coin falls at his feet and rolls off'''
+bild_de = "Brokey winkt müde, eine Münze rollt davon"
+mimik = "resigniert"
+booster = []
+aktion_frei = '''0-3s: Brokey waves tiredly. 3-6s: a gold coin falls at his feet and rolls out of frame. 6-8s: he lowers his hand, deadpan.'''
+sprechertext = '''Keine Finanzberatung. TODO'''
+einblendtext = "Keine Finanzberatung"

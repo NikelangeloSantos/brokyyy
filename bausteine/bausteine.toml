@@ -1,0 +1,64 @@
+# Maschinenlesbare Bausteine fuer die Pipeline.
+# Quelle der Wahrheit ist brokey-prompt-bibliothek.md. Alle Texte hier sind WOERTLICH
+# daraus kopiert. `python3 tools/brokey.py pruefe-bausteine` meldet Abweichungen.
+# Wenn du die Bibliothek aenderst, aendere den Baustein hier mit.
+
+[basis]
+character = '''Brokey: a stick figure with a big round white head, thin black marker limbs, a red knit beanie with a fluffy pom-pom, heavy half-closed tired eyes with dark eye bags, a small flat mouth. Always exactly the same design as the reference image.'''
+style = '''Hand-drawn black marker doodle on a white sheet of paper that fills the entire frame edge to edge, visible paper fibers, fine grain, faint creases, slightly wobbly marker lines, flat red color on the beanie, small flat color accents only where needed (gold for coins, brown for wallet), no table, no paper edges, no hands, aspect ratio 9:16.'''
+avoid = '''Avoid: text, letters, numbers, watermark, logos, brand names, extra characters, hands, realistic style, 3D render, gradients, photo background.'''
+
+[video]
+intro = '''Use the character Brokey from the reference image.'''
+style = '''Stop-motion feel at about 8 to 12 frames per second, hand-drawn line boil effect (lines slightly wobble each frame), the paper background stays perfectly static and fills the entire frame, camera locked flat top-down, no hands, no tools.'''
+sound = '''No speech, no music. Only subtle cartoon sound effects: coin clink, boing, whoosh, paper rustle.'''
+avoid = '''Avoid: text, letters, extra characters, hands, realistic style, 3D.'''
+
+# Mimik-Set (Abschnitt 2). Bei "hoffnung_absturz" wird im Bild der Start verwendet,
+# im Video Start -> Ende.
+[mimik]
+gelangweilt = '''tired half-closed eyes, flat straight mouth, deadpan'''
+panik = '''eyes wide open and bulging, tiny pupils, mouth wide open in a scream, sweat drops flying off his head'''
+selbstsicher = '''smug proud grin, one eyebrow raised, chest puffed out, completely unaware'''
+erleuchtung = '''sudden realization, eyebrows raised high, eyes sparkling, a lightbulb drawn above his head'''
+resigniert = '''looks straight at the viewer, dead-eyed deadpan stare, slow sigh, slumped shoulders'''
+hoffnung_absturz = '''eyes shining with hope, hands clasped, tiny smile'''
+hoffnung_absturz_ende = '''smile collapsing, eyes drained of color, jaw dropping'''
+
+# Humor-Booster (Abschnitt 3). Max. 2 pro Bild, Running Gag zaehlt nicht mit.
+[booster]
+verformung_lang = '''squash and stretch, body stretched extremely tall and thin in panic'''
+verformung_flach = '''body squashed flat like a pancake'''
+bewegungslinien = '''hand-drawn black motion lines, impact stars, speed streaks, sweat drops flying'''
+lebendige_objekte = '''the gold coin has tiny legs and runs away, looking back with a smug face'''
+groessen_gag = '''tiny Brokey standing next to a gigantic receipt that towers over him'''
+absurde_requisite = '''wearing a ridiculously oversized helmet while holding a tiny umbrella'''
+vierte_wand = '''looks straight at the viewer with a deadpan expression, as if asking "really?"'''
+spotlight = '''dramatic marker-drawn spotlight rays pointing at him, like a courtroom drama'''
+rand_kritzeleien = '''small doodled arrows, circles, stars and scribbles around him as if a student drew them in a notebook margin'''
+engel_teufel = '''a tiny doodled devil with horns on one shoulder and a tiny angel with a halo on the other, both arguing'''
+zusammenbruch = '''Brokey melting into a puddle on the paper, only the beanie floating on top'''
+zu_viel = '''way too many coins, shopping bags and cards piled on his head, he is barely visible underneath'''
+running_gag = '''one gold coin flying away in the background'''
+
+# Aktions-Bausteine fuer Video (Abschnitt 5)
+[aktion]
+panik_zittern = '''0-2s: Brokey freezes. 2-5s: he starts shaking uncontrollably, eyes bulging, sweat drops flying outward. 5-8s: he collapses backwards in slow motion.'''
+muenze_flieht = '''0-3s: the gold coin wobbles on the paper. 3-5s: it grows tiny legs and sprints away. 5-8s: Brokey slowly turns his head and watches it go, deadpan.'''
+wallet_schock = '''0-2s: Brokey opens his wallet. 2-4s: a single moth flies out, nothing else. 4-8s: he stares at the viewer, one tear rolls down.'''
+aufblasen = '''0-3s: Brokey's head slowly inflates like a balloon as the bill grows. 3-5s: it hits the paper edge. 5-8s: it deflates with a loud pffff and he lies flat.'''
+facepalm = '''0-2s: Brokey realizes his mistake. 2-3s: slow-motion facepalm. 3-6s: the beanie falls over his eyes. 6-8s: a coin drops onto the ground next to him.'''
+schock_zoom = '''quick punch-in zoom on his face at second 3, then back to normal'''
+aufloesen = '''Brokey melts into a puddle on the paper, only the beanie remains floating on top.'''
+
+# Markennamen, die in Prompts und Texten nicht vorkommen duerfen (erweiterbar).
+[pruefung]
+markennamen = [
+  "Netflix", "Spotify", "Amazon", "Prime", "Disney", "YouTube", "Apple", "iCloud",
+  "Google", "Xbox", "PlayStation", "Nintendo", "McFit", "Paypal", "Klarna",
+  "Sky", "DAZN", "Audible", "Tinder", "Microsoft", "Adobe", "Dropbox",
+  "Sparkasse", "Commerzbank", "Trade Republic", "Scalable", "comdirect", "ING",
+  "Schufa-App", "Vodafone", "Telekom", "O2",
+]
+woerter_min = 140
+woerter_max = 160

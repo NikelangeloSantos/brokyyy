@@ -1,0 +1,21 @@
+# Zugangsdaten niemals committen
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Große Rohdateien / Exporte (bei Bedarf anpassen)
+*.mp4
+*.mov
+*.wav
+*.mp3
+ausgabe/
+
+# Betriebssystem
+.DS_Store
+Thumbs.db

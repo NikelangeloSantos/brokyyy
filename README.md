@@ -1,1 +1,58 @@
-# brokyyy
+# Brokey – Finanzen humorvoll erklärt
+
+Pipeline für TikTok-Videos mit dem Stickman **Brokey**. Aus einer Themen-Datei entsteht pro Video eine Mappe mit Skript, Szenenliste, Bild-/Video-Prompts, Faktencheck, Untertiteln, Voiceover-Text und Veröffentlichungs-Checkliste.
+
+Projektregeln: `CLAUDE.md` · Look und Prompt-Bausteine: `brokey-prompt-bibliothek.md`
+
+## Ordner
+
+```
+CLAUDE.md                     Projektregeln
+brokey-prompt-bibliothek.md   Prompt-Bibliothek (Quelle der Wahrheit für den Look)
+bausteine/bausteine.toml      dieselben Bausteine maschinenlesbar, wörtlich aus der Bibliothek
+referenz/                     Referenz- und Beispielbilder von Brokey
+tools/brokey.py               das Pipeline-Tool
+tools/vorlage-thema.toml      Vorlage für neue Videos
+videos/NN-name/thema.toml     DEINE Eingabe pro Video (Skript, Szenen, Zahlen)
+videos/NN-name/*.md, *.srt    daraus erzeugt
+log.md                        was funktioniert hat, was nicht
+```
+
+Die Bibliothek bleibt die Datei für Menschen. `bausteine.toml` ist die Kopie für das Tool. `pruefe-bausteine` stellt sicher, dass beide identisch bleiben.
+
+## Benutzung
+
+Du brauchst Python 3.11 oder neuer, sonst nichts. Alle Befehle laufen im Repo-Hauptordner.
+
+**Neues Video anlegen:**
+```bash
+python3 tools/brokey.py neu 02 inflation --titel "Inflation frisst dein Geld"
+```
+Danach `videos/02-inflation/thema.toml` ausfüllen: Sprechertext und Einblendtexte auf Deutsch, Bildbeschreibungen auf Englisch, Mimik/Booster/Aktion als Namen aus `bausteine.toml`.
+
+**Mappe bauen:**
+```bash
+python3 tools/brokey.py baue videos/01-abo-chaos
+```
+Erzeugt `skript.md`, `szenen.md`, `prompts.md`, `faktencheck.md`, `untertitel.srt`, `einblendungen.srt`, `voiceover.txt` und `checkliste.md`.
+
+Dabei wird automatisch geprüft:
+- Rechnungen werden nachgerechnet.
+- Markennamen werden gesucht.
+- Der Disclaimer muss im Outro stehen.
+- Der Running Gag muss vorkommen.
+- Die Wortzahl soll bei 140–160 liegen.
+- Der Hook soll höchstens ca. 3 s dauern.
+- Pro Szene sind höchstens 2 Booster erlaubt.
+- Im Bild-Prompt sollen keine Ziffern stehen.
+
+**Bausteine gegen die Bibliothek prüfen:**
+```bash
+python3 tools/brokey.py pruefe-bausteine
+```
+
+## Wichtig
+
+- Zeiten in den SRT-Dateien sind **Schätzungen** (ca. 150 Wörter/Minute). Nach der Vertonung anpassen.
+- Die Pipeline veröffentlicht **nichts**. `checkliste.md` hakst du vor dem Upload selbst ab, inklusive KI-Kennzeichnung nach den aktuellen TikTok-Regeln.
+- API-Schlüssel (z. B. ElevenLabs) gehören nur in `.env`, niemals ins Repo. Vorlage: `.env.example`.

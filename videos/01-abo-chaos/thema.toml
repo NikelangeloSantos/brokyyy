@@ -1,0 +1,127 @@
+# Video 01 – Abo-Chaos. Bauen mit:
+#   python3 tools/brokey.py baue videos/01-abo-chaos
+
+[video]
+nummer = "01"
+titel = "Abo-Chaos"
+thema = "Brokey zahlt ca. 600 € im Jahr für Abos, die er vergessen hat"
+lerneffekt = "Kleine Abos wirken harmlos, summieren sich aber. Einmal im Monat den Kontoauszug prüfen."
+zielgruppe = "breit: Teenager, Azubis, Berufseinsteiger"
+ton = "sarkastisch, dramatisch, leicht übertrieben"
+disclaimer = "Keine Finanzberatung"
+referenzbild = "TODO: offizielles Brokey-Referenzbild aus referenz/ festlegen"
+caption = "Ungefähr 600 € im Jahr. Für nichts. Wann hast du zuletzt deine Abos gecheckt? (Vorschlag)"
+hashtags = ["#finanzen", "#geldsparen", "#abos", "#sparen", "#finanztipps"]
+
+[[rechnung]]
+beschreibung = "5 Abos à ca. 10 € pro Monat"
+ausdruck = "5 * 10"
+ergebnis = 50
+einheit = "€ pro Monat"
+hinweis = "vereinfachte Beispielpreise, im Video als 'ungefähr' gekennzeichnet"
+
+[[rechnung]]
+beschreibung = "50 € pro Monat aufs Jahr"
+ausdruck = "50 * 12"
+ergebnis = 600
+einheit = "€ pro Jahr"
+hinweis = "Beispiel"
+
+[[rechnung]]
+beschreibung = "3 gekündigte Abos à ca. 10 € aufs Jahr"
+ausdruck = "3 * 10 * 12"
+ergebnis = 360
+einheit = "€ pro Jahr gespart"
+hinweis = "Beispiel"
+
+[[fakt]]
+text = "Ist ca. 10 € pro Abo als Beispielpreis glaubwürdig? Im Skript steht bewusst nur 'Fitness' (ein Fitnessstudio kostet meist deutlich mehr als 10 €)."
+status = "offen"
+
+[[fakt]]
+text = "'Abos melden sich nie' ist bewusst übertrieben (manche Anbieter schicken Erinnerungen). Als Gag okay?"
+status = "offen"
+
+[[fakt]]
+text = "'Kündigen' ist nicht immer sofort möglich (Mindestlaufzeit, Kündigungsfrist). Reicht das so, oder kurzer Hinweis im Einblendtext? Rechtliches nicht behaupten."
+status = "offen"
+
+[[szene]]
+name = "Hook: Panik vor dem Kontoauszug"
+teil = "hook"
+bild = '''Extreme close-up of Brokey's face filling the frame, a very long bank statement paper covered only in wavy scribble lines unrolls in front of him down to the floor, gold coins flying out of his wallet'''
+bild_de = "Nahaufnahme: Brokey schreit, endloser Kontoauszug rollt sich aus, Münzen fliegen aus dem Portemonnaie"
+mimik = "panik"
+booster = ["bewegungslinien"]
+running_gag = true
+aktion = "panik_zittern"
+sprechertext = '''Ungefähr 600 Euro im Jahr. Für nichts.'''
+einblendtext = "ca. 600 € im Jahr. Für NICHTS."
+
+[[szene]]
+name = "Setup: Brokey und seine Abos"
+teil = "setup"
+bild = '''Brokey sits on a brown sofa, five subscription cards float in an arc around his head, each card shows only one simple icon (play button, music note, cloud, dumbbell, game controller)'''
+bild_de = "Brokey auf dem Sofa, fünf Abo-Karten mit Symbolen schweben um seinen Kopf (wie referenz/brokey-abos.jpg)"
+mimik = "gelangweilt"
+booster = []
+aktion_frei = '''0-3s: the five cards float gently around his head. 3-6s: each card wobbles once, as if purring. 6-8s: Brokey blinks slowly, deadpan.'''
+sprechertext = '''Das ist Brokey. Brokey hat Abos. Streaming, Musik, Cloud, Fitness und ein Spiel, das er seit März nicht geöffnet hat. Jedes kostet nur ungefähr 10 Euro. Nur. Das Lieblingswort aller Leute mit leerem Konto.'''
+einblendtext = "je ca. 10 €"
+
+[[szene]]
+name = "Der Haken: das Geld schleicht raus"
+teil = "geschichte"
+bild = '''A big doodled octopus made of subscription cards (simple icons: play button, music note, cloud, dumbbell, game controller) wraps its tentacles around Brokey's wallet and pulls out gold coins one by one, calendar pages fly through the air, Brokey sits on the sofa unaware'''
+bild_de = "Abo-Krake klaut Münzen aus dem Portemonnaie, Kalenderblätter fliegen, Brokey merkt nichts"
+mimik = "gelangweilt"
+booster = []
+running_gag = true
+aktion_frei = '''0-3s: a tentacle sneaks into the wallet. 3-6s: gold coins slip out one after another, clink, clink, while calendar pages flip by. 6-8s: Brokey slowly turns his head to the viewer, deadpan.'''
+sprechertext = '''Das Gemeine an Abos: Sie melden sich nie. Jeden Monat schleicht das Geld einfach raus. Leise. Pünktlich. Wie ein Mitbewohner, den du nie siehst, der aber trotzdem deinen Kühlschrank leer räumt.'''
+einblendtext = "jeden Monat"
+
+[[szene]]
+name = "Die Rechnung"
+teil = "rechnung"
+bild = '''Brokey looks up at a gigantic receipt covered only in wavy scribble lines, a small pile of gold coins at its foot'''
+bild_de = "Winziger Brokey vor einer riesigen Rechnung"
+mimik = "panik"
+booster = ["groessen_gag"]
+aktion = "aufblasen"
+sprechertext = '''Rechnen wir mal, mit Beispielpreisen: 5 Abos mal ungefähr 10 Euro sind 50 Euro im Monat. Mal 12: 600 Euro im Jahr. Für Fitness, die Brokey nur von der Abbuchung kennt.'''
+einblendtext = "5 × ca. 10 € = 50 €/Monat · × 12 = ca. 600 €/Jahr (Beispielpreise)"
+
+[[szene]]
+name = "Lerneffekt: drei Abos durchstreichen"
+teil = "lerneffekt"
+bild = '''Brokey with a lightbulb above his head draws a thick marker line through three crossed-out subscription cards (simple icons only), tiny confetti made of marker dots'''
+bild_de = "Brokey mit Glühbirne streicht drei Abo-Karten durch, Marker-Konfetti"
+mimik = "erleuchtung"
+booster = []
+aktion_frei = '''0-2s: a lightbulb pops up above his head. 2-6s: three subscription cards get crossed out one by one with a thick black line, squeak, squeak, squeak. 6-8s: the crossed-out cards crumple and fall, tiny marker-dot confetti.'''
+sprechertext = '''Der Trick ist langweilig, aber er wirkt: Einmal im Monat den Kontoauszug durchgehen. Was du nicht nutzt, kündigen. Brokey streicht drei Abos. Im Beispiel sind das ungefähr 360 Euro im Jahr.'''
+einblendtext = "1× im Monat: Kontoauszug checken"
+
+[[szene]]
+name = "Punchline: neues Abo"
+teil = "punchline"
+bild = '''Brokey sits on the sofa holding one brand-new shiny subscription card with a simple star icon, his empty brown wallet lies open on his lap'''
+bild_de = "Brokey hält stolz ein neues Abo, das Portemonnaie ist leer"
+mimik = "resigniert"
+booster = ["vierte_wand"]
+running_gag = true
+aktion = "muenze_flieht"
+sprechertext = '''Und schließt vom Gesparten sofort ein neues ab. Wir arbeiten dran.'''
+einblendtext = ""
+
+[[szene]]
+name = "Outro"
+teil = "outro"
+bild = '''Brokey waves tiredly toward the viewer, one gold coin falls at his feet and rolls off'''
+bild_de = "Brokey winkt müde, eine Münze rollt davon"
+mimik = "resigniert"
+booster = []
+aktion_frei = '''0-3s: Brokey waves tiredly. 3-6s: a gold coin falls at his feet, clink, and rolls out of frame. 6-8s: he lowers his hand, deadpan.'''
+sprechertext = '''Keine Finanzberatung. Nur ein Typ mit Mütze und sehr leerem Portemonnaie.'''
+einblendtext = "Keine Finanzberatung · Preise sind Beispiele"

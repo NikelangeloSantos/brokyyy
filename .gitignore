@@ -25,3 +25,6 @@ Thumbs.db
 # Clips der Bibliothek und im Eingang SOLLEN ins Repo
 !bibliothek/clips/**
 !eingang/**
+
+# Fertige Videos zum Herunterladen SOLLEN ins Repo
+!fertig/**

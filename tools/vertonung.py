@@ -6,10 +6,10 @@ Benutzung (aus dem Repo-Hauptordner):
     python3 tools/vertonung.py videos/01-abo-chaos --ja       # ohne Rückfrage
     python3 tools/vertonung.py videos/01-abo-chaos --neu 03   # nur Szene 03 neu erzeugen
 
-Zugangsdaten NUR aus Umgebungsvariablen oder der lokalen .env (steht in .gitignore):
-    ELEVENLABS_API_KEY    API-Schlüssel
-    ELEVENLABS_VOICE_ID   ID der Erzählerstimme
-    ELEVENLABS_MODEL_ID   optional, Standard: eleven_multilingual_v2 (kann Deutsch)
+Stimme, Modell und Stimm-Einstellungen stehen in bausteine/stimme.toml (kein Geheimnis).
+Der API-Schlüssel NUR aus der Umgebungsvariable ELEVENLABS_API_KEY oder der lokalen .env
+(steht in .gitignore). In der Cloud-Umgebung setzt der Netzwerk-Proxy den Schlüssel selbst ein,
+dann darf die Variable leer bleiben.
 
 Schnittstelle laut ElevenLabs-Doku (geprüft 2026-11-04,
 https://elevenlabs.io/docs/api-reference/text-to-speech/convert):
@@ -23,6 +23,7 @@ import argparse
 import json
 import os
 import sys
+import tomllib
 import urllib.error
 import urllib.request
 from pathlib import Path
@@ -32,6 +33,7 @@ from brokey import ROOT, Mappe, fuer_tts  # noqa: E402
 
 API = "https://api.elevenlabs.io/v1/text-to-speech/{voice_id}?output_format=mp3_44100_128"
 STANDARD_MODELL = "eleven_multilingual_v2"
+STIMME = ROOT / "bausteine" / "stimme.toml"
 
 
 def lade_env():
@@ -58,7 +60,8 @@ def tts(text: str, schluessel: str, stimme: str, modell: str, vorher: str, nachh
         body["next_text"] = nachher
     req = urllib.request.Request(
         API.format(voice_id=stimme), data=json.dumps(body).encode("utf-8"), method="POST",
-        headers={"xi-api-key": schluessel, "Content-Type": "application/json", "Accept": "audio/mpeg"})
+        headers={"Content-Type": "application/json", "Accept": "audio/mpeg",
+             **({"xi-api-key": schluessel} if schluessel else {})})
     try:
         with urllib.request.urlopen(req, timeout=120) as r:
             return r.read()
@@ -75,15 +78,19 @@ def main():
     p.add_argument("--ja", action="store_true", help="ohne Rückfrage senden")
     p.add_argument("--neu", nargs="*", metavar="NN", help="diese Szenen neu erzeugen (ohne Angabe: alle)")
     p.add_argument("--tempo", type=float, help="Sprechtempo, z. B. 1.1 (1.0 = normal)")
+    p.add_argument("--stimme", help="andere voice_id als in bausteine/stimme.toml")
     p.add_argument("--stabilitaet", type=float, help="0-1, niedriger = lebendiger (Standard der Stimme)")
     a = p.parse_args()
 
     lade_env()
+    cfg = tomllib.loads(STIMME.read_text(encoding="utf-8")) if STIMME.exists() else {}
     schluessel = os.environ.get("ELEVENLABS_API_KEY", "").strip()
-    stimme = os.environ.get("ELEVENLABS_VOICE_ID", "").strip()
-    modell = os.environ.get("ELEVENLABS_MODEL_ID", "").strip() or STANDARD_MODELL
-    if not schluessel or not stimme:
-        sys.exit("ELEVENLABS_API_KEY und ELEVENLABS_VOICE_ID fehlen (Umgebungsvariable oder .env, siehe .env.example).")
+    stimme = a.stimme or os.environ.get("ELEVENLABS_VOICE_ID", "").strip() or cfg.get("voice_id", "")
+    modell = os.environ.get("ELEVENLABS_MODEL_ID", "").strip() or cfg.get("model_id") or STANDARD_MODELL
+    if not stimme:
+        sys.exit("Keine Stimme: voice_id in bausteine/stimme.toml eintragen.")
+    if not schluessel:
+        print("Hinweis: kein ELEVENLABS_API_KEY gesetzt – nutze den Schlüssel des Netzwerk-Proxys (Cloud).")
 
     ordner = Path(a.ordner).resolve()
     m = Mappe(ordner)
@@ -110,7 +117,7 @@ def main():
         print("Abgebrochen, nichts gesendet.")
         return
 
-    einstellungen = {}
+    einstellungen = dict(cfg.get("voice_settings", {}))
     if a.tempo:
         einstellungen["speed"] = a.tempo
     if a.stabilitaet is not None:

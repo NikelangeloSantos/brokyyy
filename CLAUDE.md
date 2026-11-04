@@ -10,7 +10,7 @@ Ziel dieses Repos: Den Ablauf für neue Videos **Schritt für Schritt automatisi
 
 ## 2. Kanalkonzept
 
-- **Format:** Kurzvideos, ca. 60-70 Sekunden (für das TikTok Creator Rewards Program sollen Videos über einer Minute mit echtem Inhalt sein; aktuelle Bedingungen müssen in der App geprüft werden, nicht annehmen).
+- **Format:** Kurzvideos, aktuell **35-50 Sekunden** mit schnellen Schnitten (vor allem im Hook), Ziel: erst 10.000 Follower. Später ggf. über 1 Minute für das TikTok Creator Rewards Program (aktuelle Bedingungen in der App prüfen, nicht annehmen).
 - **Zielgruppe:** breit, von Teenagern über Azubis und Berufseinsteiger bis zu Leuten mit etwas Vorwissen.
 - **Ton:** sarkastisch, dramatisch, leicht übertrieben, aber nie zu viel. Am Ende soll man wirklich etwas verstanden haben.
 - **Grundregel:** Der Witz transportiert die Info, er ersetzt sie nicht. Pro Video genau ein klarer Lerneffekt, verpackt in eine übertriebene Mini-Geschichte.
@@ -66,7 +66,7 @@ Eine ausführliche, bereits vorhandene Prompt-Bibliothek liegt im Repo (siehe Ab
 Eine Pipeline, bei der ich mit einem Thema starte und möglichst viele Schritte vorbereitet bekomme:
 
 1. **Thema und Lerneffekt** festlegen (Eingabe: Thema, Zielgruppe, gewünschter Ton)
-2. **Skript** nach dem Aufbau aus Abschnitt 2 erzeugen (inkl. Sprechertext, ca. 140-160 Wörter für 60 Sekunden)
+2. **Skript** nach dem Aufbau aus Abschnitt 2 erzeugen (inkl. Sprechertext, ca. 85-120 Wörter für 35-50 Sekunden)
 3. **Szenenliste** mit pro Szene: Bildbeschreibung, Mimik, Humor-Booster, Sprechertext, Einblendtext
 4. **Bild-Prompts** aus den Bausteinen der Prompt-Bibliothek zusammensetzen
 5. **Video-Prompts** (Bild-zu-Video) mit Aktionen in Zeitphasen erzeugen

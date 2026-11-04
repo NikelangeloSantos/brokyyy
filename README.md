@@ -34,14 +34,14 @@ Danach `videos/02-inflation/thema.toml` ausfüllen: Sprechertext und Einblendtex
 ```bash
 python3 tools/brokey.py baue videos/01-abo-chaos
 ```
-Erzeugt `skript.md`, `szenen.md`, `prompts.md`, `faktencheck.md`, `untertitel.srt`, `einblendungen.srt`, `voiceover.txt` und `checkliste.md`.
+Ziel aktuell: 35–50 s (ca. 85–120 Wörter). Erzeugt `skript.md`, `szenen.md`, `prompts.md`, `faktencheck.md`, `untertitel.srt`, `einblendungen.srt`, `voiceover.txt` und `checkliste.md`.
 
 Dabei wird automatisch geprüft:
 - Rechnungen werden nachgerechnet.
 - Markennamen werden gesucht.
 - Der Disclaimer muss im Outro stehen.
 - Der Running Gag muss vorkommen.
-- Die Wortzahl soll bei 140–160 liegen.
+- Die Wortzahl soll bei 85–120 liegen (35–50 s).
 - Der Hook soll höchstens ca. 3 s dauern.
 - Pro Szene sind höchstens 2 Booster erlaubt.
 - Im Bild-Prompt sollen keine Ziffern stehen.
@@ -51,6 +51,12 @@ Dabei wird automatisch geprüft:
 python3 tools/brokey.py pruefe-bausteine
 ```
 
+**Stimme erzeugen** (ElevenLabs, braucht `ELEVENLABS_API_KEY` und `ELEVENLABS_VOICE_ID` als Umgebungsvariable oder in `.env`):
+```bash
+python3 tools/vertonung.py videos/01-abo-chaos
+```
+Zeigt vorher die Zeichenzahl und fragt nach, weil jede Anfrage Guthaben verbraucht. Erzeugt `medien/vo-01.mp3` usw. Mit `--neu 03` nur Szene 3 neu, mit `--tempo 1.1` etwas schneller.
+
 **Video schneiden** (braucht ffmpeg):
 ```bash
 python3 tools/schnitt.py videos/01-abo-chaos --plan
@@ -58,6 +64,7 @@ python3 tools/schnitt.py videos/01-abo-chaos --plan
 ```bash
 python3 tools/schnitt.py videos/01-abo-chaos
 ```
+Schnelle Schnitte: Jede Szene wird in kurze Einstellungen mit wechselndem Ausschnitt zerlegt (Hook ca. alle 0,6 s, sonst ca. alle 1,8 s, pro Szene änderbar mit `schnitt_tempo = 1.2` in `thema.toml`).
 `--plan` zeigt nur, welche Dateien gefunden wurden. Ohne `--plan` entsteht `export/01-abo-chaos.mp4` (1080×1920) mit eingebrannten Untertiteln, Einblendtexten und Disclaimer.
 Lege dafür pro Szene in `videos/NN-name/medien/` ab:
 - `szene-01.mp4` (Flow-Clip) oder `szene-01.png` (Standbild, bekommt Stop-Motion-Wackeln)

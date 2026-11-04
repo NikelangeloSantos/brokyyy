@@ -14,12 +14,12 @@ Alles hier vor dem Upload selbst prüfen und abhaken. Automatisch gefunden heiß
 
 - [ ] (Hook: Panik vor dem Kontoauszug) Ungefähr 600 Euro im Jahr.
 - [ ] (Hook: Panik vor dem Kontoauszug) ca. 600 € im Jahr. Für NICHTS.
-- [ ] (Setup: Brokey und seine Abos) Jedes kostet nur ungefähr 10 Euro.
+- [ ] (Setup: Brokey und seine Abos) Jedes nur ungefähr 10 Euro.
 - [ ] (Setup: Brokey und seine Abos) je ca. 10 €
-- [ ] (Die Rechnung) Rechnen wir mal, mit Beispielpreisen: 5 Abos mal ungefähr 10 Euro sind 50 Euro im Monat.
+- [ ] (Die Rechnung) Mit Beispielpreisen: 5 mal ungefähr 10 Euro sind 50 Euro im Monat.
 - [ ] (Die Rechnung) Mal 12: 600 Euro im Jahr.
 - [ ] (Die Rechnung) 5 × ca. 10 € = 50 €/Monat · × 12 = ca. 600 €/Jahr (Beispielpreise)
-- [ ] (Lerneffekt: drei Abos durchstreichen) Im Beispiel sind das ungefähr 360 Euro im Jahr.
+- [ ] (Lerneffekt: drei Abos durchstreichen) Drei Abos weg, im Beispiel ungefähr 360 Euro im Jahr.
 - [ ] (Lerneffekt: drei Abos durchstreichen) 1× im Monat: Kontoauszug checken
 
 ## Behauptungen und Annahmen

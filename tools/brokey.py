@@ -218,8 +218,8 @@ class Mappe:
             if not ok:
                 self.fehler.append(f"Rechnung stimmt nicht: {r['ausdruck']} = {ist}, angegeben {r['ergebnis']}.")
 
-        if self.dauer < 61:
-            self.warnungen.append(f"Geschätzte Sprechdauer {self.dauer:.0f} s – für >1 Minute evtl. zu kurz (echte Dauer nach Vertonung prüfen).")
+        if not b["dauer_min"] <= self.dauer <= b["dauer_max"]:
+            self.warnungen.append(f"Geschätzte Dauer {self.dauer:.0f} s (Ziel {b['dauer_min']}-{b['dauer_max']} s, echte Dauer nach Vertonung prüfen).")
 
     # --- Dateien schreiben
     def kopf(self, titel: str) -> str:

@@ -60,5 +60,8 @@ markennamen = [
   "Sparkasse", "Commerzbank", "Trade Republic", "Scalable", "comdirect", "ING",
   "Schufa-App", "Vodafone", "Telekom", "O2",
 ]
-woerter_min = 140
-woerter_max = 160
+# Ziel aktuell: 35-50 s fuer Wachstum (bei ca. 2,5 Woertern/s also ca. 85-120 Woerter)
+woerter_min = 85
+woerter_max = 120
+dauer_min = 35
+dauer_max = 50

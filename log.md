@@ -5,3 +5,4 @@
 | 2026-11-04 | Pipeline-Grundgerüst angelegt, Test mit 01-abo-chaos | – | Mappe wird erzeugt, Prompts noch nicht in Flow getestet |
 | 2026-11-04 | Erster Testschnitt 01-abo-chaos mit Referenzbildern als Platzhalter, ohne Stimme | – | Ablauf klappt (65 s). Einblendung oben verdeckt bei Nahaufnahmen den Kopf |
 | 2026-11-04 | Referenzbilder gesichtet | – | Schrift im Bild bei: brokey-holding-large-receipt ("TOTAL"), character-drawing-marker-line ("RENT BILLS"), two-brokeys-comparing ("SALE"?). person-using-laptop-at-desk hat dunklen Hintergrund statt Papier. person-smoking-cigarette: Rauchen für junge Zielgruppe vermeiden |
+| 2026-11-04 | Auf 35-50 s umgestellt, schnelle Schnitte (Hook 0,6 s), Abo-Chaos auf 111 Wörter gekürzt | – | Testschnitt 47 s, noch ohne Stimme |

@@ -70,7 +70,7 @@ bild_de = "Brokey auf dem Sofa, fünf Abo-Karten mit Symbolen schweben um seinen
 mimik = "gelangweilt"
 booster = []
 aktion_frei = '''0-3s: the five cards float gently around his head. 3-6s: each card wobbles once, as if purring. 6-8s: Brokey blinks slowly, deadpan.'''
-sprechertext = '''Das ist Brokey. Brokey hat Abos. Streaming, Musik, Cloud, Fitness und ein Spiel, das er seit März nicht geöffnet hat. Jedes kostet nur ungefähr 10 Euro. Nur. Das Lieblingswort aller Leute mit leerem Konto.'''
+sprechertext = '''Das ist Brokey. Brokey hat Abos. Streaming, Musik, Cloud, Fitness, ein Spiel. Jedes nur ungefähr 10 Euro. Nur.'''
 einblendtext = "je ca. 10 €"
 
 [[szene]]
@@ -84,7 +84,7 @@ mimik = "gelangweilt"
 booster = []
 running_gag = true
 aktion_frei = '''0-3s: a tentacle sneaks into the wallet. 3-6s: gold coins slip out one after another, clink, clink, while calendar pages flip by. 6-8s: Brokey slowly turns his head to the viewer, deadpan.'''
-sprechertext = '''Das Gemeine an Abos: Sie melden sich nie. Jeden Monat schleicht das Geld einfach raus. Leise. Pünktlich. Wie ein Mitbewohner, den du nie siehst, der aber trotzdem deinen Kühlschrank leer räumt.'''
+sprechertext = '''Das Gemeine: Abos melden sich nie. Jeden Monat schleicht das Geld raus. Leise. Pünktlich.'''
 einblendtext = "jeden Monat"
 
 [[szene]]
@@ -97,7 +97,7 @@ bild_de = "Winziger Brokey vor einer riesigen Rechnung"
 mimik = "panik"
 booster = ["groessen_gag"]
 aktion = "aufblasen"
-sprechertext = '''Rechnen wir mal, mit Beispielpreisen: 5 Abos mal ungefähr 10 Euro sind 50 Euro im Monat. Mal 12: 600 Euro im Jahr. Für Fitness, die Brokey nur von der Abbuchung kennt.'''
+sprechertext = '''Mit Beispielpreisen: 5 mal ungefähr 10 Euro sind 50 Euro im Monat. Mal 12: 600 Euro im Jahr. Für Fitness, die er nur von der Abbuchung kennt.'''
 einblendtext = "5 × ca. 10 € = 50 €/Monat · × 12 = ca. 600 €/Jahr (Beispielpreise)"
 
 [[szene]]
@@ -110,7 +110,7 @@ bild_de = "Brokey mit Glühbirne streicht drei Abo-Karten durch, Marker-Konfetti
 mimik = "erleuchtung"
 booster = []
 aktion_frei = '''0-2s: a lightbulb pops up above his head. 2-6s: three subscription cards get crossed out one by one with a thick black line, squeak, squeak, squeak. 6-8s: the crossed-out cards crumple and fall, tiny marker-dot confetti.'''
-sprechertext = '''Der Trick ist langweilig, aber er wirkt: Einmal im Monat den Kontoauszug durchgehen. Was du nicht nutzt, kündigen. Brokey streicht drei Abos. Im Beispiel sind das ungefähr 360 Euro im Jahr.'''
+sprechertext = '''Der Trick ist langweilig: Einmal im Monat den Kontoauszug checken. Was du nicht nutzt, kündigen. Drei Abos weg, im Beispiel ungefähr 360 Euro im Jahr.'''
 einblendtext = "1× im Monat: Kontoauszug checken"
 
 [[szene]]
@@ -124,7 +124,7 @@ mimik = "resigniert"
 booster = ["vierte_wand"]
 running_gag = true
 aktion = "muenze_flieht"
-sprechertext = '''Und schließt vom Gesparten sofort ein neues ab. Wir arbeiten dran.'''
+sprechertext = '''Brokey feiert. Mit einem neuen Abo.'''
 einblendtext = ""
 
 [[szene]]
@@ -137,5 +137,5 @@ bild_de = "Brokey winkt müde, eine Münze rollt davon"
 mimik = "resigniert"
 booster = []
 aktion_frei = '''0-3s: Brokey waves tiredly. 3-6s: a gold coin falls at his feet, clink, and rolls out of frame. 6-8s: he lowers his hand, deadpan.'''
-sprechertext = '''Keine Finanzberatung. Nur ein Typ mit Mütze und sehr leerem Portemonnaie.'''
+sprechertext = '''Keine Finanzberatung. Folg Brokey. Er macht die Fehler, damit du sie nicht machen musst.'''
 einblendtext = "Keine Finanzberatung · Preise sind Beispiele"

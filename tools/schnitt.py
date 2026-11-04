@@ -35,6 +35,14 @@ STOPMOTION_FPS = 10
 PAUSE_NACH_SZENE = 0.35  # Sekunden Luft nach dem Sprechertext
 WOERTER_PRO_UNTERTITEL = 5
 CLIP_SFX_LAUTSTAERKE = 0.35  # Soundeffekte aus Flow-Clips leise unter die Stimme
+# Schnelle Schnitte: jede Szene wird in kurze Einstellungen mit wechselndem Ausschnitt zerlegt
+# (Totale -> Gesicht nah -> halbnah -> sehr nah). Pro Szene in thema.toml ueberschreibbar: schnitt_tempo = 1.2
+SCHNITT_TEMPO_HOOK = 0.6     # Sekunden pro Einstellung im Hook
+SCHNITT_TEMPO = 1.8          # Sekunden pro Einstellung sonst
+# Zoomstufen der Einstellungen und wie weit oben (0 = Bildoberkante, 0.5 = Mitte) der Ausschnitt sitzt
+EINSTELLUNGEN = [(1.0, 0.5), (1.3, 0.33), (1.12, 0.45), (1.45, 0.3)]
+WACKELN = 3                  # Pixel Stop-Motion-Wackeln bei Standbildern
+WACKELN_HOOK = 6
 BILD_ENDUNGEN = (".png", ".jpg", ".jpeg", ".webp")
 CLIP_ENDUNGEN = (".mp4", ".mov", ".webm", ".mkv")
 AUDIO_ENDUNGEN = (".mp3", ".wav", ".m4a")
@@ -127,17 +135,36 @@ def platzhalter(ziel: Path, text: str):
     img.save(ziel)
 
 
-def baue_segment(medium: Path, stimme: Path | None, d: float, ziel: Path):
+def zoom_ausdruck(tempo: float, fps: int) -> tuple[str, str, str]:
+    """zoompan-Ausdrücke: alle `tempo` Sekunden harter Schnitt auf die nächste Einstellung."""
+    k = max(1, round(tempo * fps))
+    idx = f"mod(floor(in/{k}),{len(EINSTELLUNGEN)})"
+    z, y = "1", "0.5"
+    for i in reversed(range(len(EINSTELLUNGEN))):
+        zi, yi = EINSTELLUNGEN[i]
+        z = f"if(eq({idx},{i}),{zi},{z})"
+        y = f"if(eq({idx},{i}),{yi},{y})"
+    x_expr = "iw/2-iw/zoom/2"
+    y_expr = f"max(0,min(ih-ih/zoom,ih*({y})-ih/zoom/2))"
+    return z, x_expr, y_expr
+
+
+def baue_segment(medium: Path, stimme: Path | None, d: float, ziel: Path, tempo: float, wackeln: int):
     ist_clip = medium.suffix.lower() in CLIP_ENDUNGEN
+    gross_b, gross_h = int(B * 1.5), int(H * 1.5)  # Reserve, damit Zooms scharf bleiben
     if ist_clip:
         eingabe = ["-i", str(medium)]
-        v = (f"[0:v]scale={B}:{H}:force_original_aspect_ratio=increase,crop={B}:{H},fps={FPS},"
-             f"tpad=stop_mode=clone:stop_duration={d + 1:.2f},trim=duration={d:.3f},setpts=PTS-STARTPTS,format=yuv420p[v]")
+        z, x, y = zoom_ausdruck(tempo, FPS)
+        v = (f"[0:v]fps={FPS},scale={gross_b}:{gross_h}:force_original_aspect_ratio=increase,crop={gross_b}:{gross_h},"
+             f"tpad=stop_mode=clone:stop_duration={d + 1:.2f},trim=duration={d:.3f},setpts=PTS-STARTPTS,"
+             f"zoompan=z='{z}':x='{x}':y='{y}':d=1:s={B}x{H}:fps={FPS},format=yuv420p[v]")
     else:
         eingabe = ["-loop", "1", "-t", f"{d:.3f}", "-i", str(medium)]
-        # leichtes Wackeln bei 10 fps = Stop-Motion-/Line-Boil-Gefühl, Kamera bleibt fest
-        v = (f"[0:v]fps={STOPMOTION_FPS},scale={B + 16}:{H + 28}:force_original_aspect_ratio=increase,"
-             f"crop={B}:{H}:x='(iw-{B})/2+3*sin(n*2.3)':y='(ih-{H})/2+3*cos(n*1.7)',"
+        z, x, y = zoom_ausdruck(tempo, STOPMOTION_FPS)
+        # 10 fps + leichtes Wackeln = Stop-Motion-/Line-Boil-Gefühl
+        v = (f"[0:v]fps={STOPMOTION_FPS},scale={gross_b + 4 * wackeln}:{gross_h + 4 * wackeln}:force_original_aspect_ratio=increase,"
+             f"crop={gross_b}:{gross_h}:x='(iw-{gross_b})/2+{wackeln}*sin(n*2.3)':y='(ih-{gross_h})/2+{wackeln}*cos(n*1.7)',"
+             f"zoompan=z='{z}':x='{x}':y='{y}':d=1:s={B}x{H}:fps={STOPMOTION_FPS},"
              f"fps={FPS},format=yuv420p[v]")
     if stimme:
         eingabe += ["-i", str(stimme)]
@@ -213,7 +240,9 @@ def schneide(ordner: Path, nur_pruefen: bool = False) -> Path | None:
                 platzhalter(medium, f"Szene {p['nn']}\n{p['szene'].get('name', '')}\n\nmedien/szene-{p['nn']}.mp4\nfehlt noch")
             seg = tmp / f"seg-{p['nn']}.mp4"
             print(f"  schneide Szene {p['nn']} ...")
-            baue_segment(medium, p["stimme"], p["d"], seg)
+            hook = p["szene"].get("teil") == "hook"
+            tempo = p["szene"].get("schnitt_tempo") or (SCHNITT_TEMPO_HOOK if hook else SCHNITT_TEMPO)
+            baue_segment(medium, p["stimme"], p["d"], seg, tempo, WACKELN_HOOK if hook else WACKELN)
             liste.append(f"file '{seg}'")
 
             s, ende = p["szene"], t + p["d"]

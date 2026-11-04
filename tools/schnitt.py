@@ -9,7 +9,9 @@ Erwartete Dateien im Video-Ordner unter medien/ (NN = Szenennummer 01, 02, ...):
     szene-NN.png / .jpg / .jpeg   oder Standbild (bekommt leichtes Stop-Motion-Wackeln)
     vo-NN.mp3 / .wav              Voiceover pro Szene (z. B. aus tools/vertonung.py)
     voiceover.mp3 / .wav          alternativ: ein Voiceover für alles
-Statt medien/szene-NN kann eine Szene in thema.toml `medien = "pfad/zur/datei"` setzen.
+Mehrere Medien pro Szene: szene-NN-a.mp4, szene-NN-b.mp4 ... oder in thema.toml
+`medien = ["clips/x.mp4", "bilder/y.jpg"]` – dann wird im Schnitt-Tempo hart zwischen ihnen geschnitten.
+Clips wackeln nicht; Standbilder bekommen leichtes Stop-Motion-Wackeln.
 Fehlt etwas, kommt ein Platzhalter-Bild bzw. Stille, damit du trotzdem schon den Ablauf siehst.
 
 Ausgabe: videos/<ordner>/export/<ordner>.mp4 und untertitel-final.srt (echte Zeiten).
@@ -149,36 +151,102 @@ def zoom_ausdruck(tempo: float, fps: int) -> tuple[str, str, str]:
     return z, x_expr, y_expr
 
 
-def baue_segment(medium: Path, stimme: Path | None, d: float, ziel: Path, tempo: float, wackeln: int):
-    ist_clip = medium.suffix.lower() in CLIP_ENDUNGEN
-    gross_b, gross_h = int(B * 1.5), int(H * 1.5)  # Reserve, damit Zooms scharf bleiben
-    if ist_clip:
-        eingabe = ["-i", str(medium)]
-        z, x, y = zoom_ausdruck(tempo, FPS)
+def ist_clip(p: Path) -> bool:
+    return p.suffix.lower() in CLIP_ENDUNGEN
+
+
+def ausschnitt(zoom: float, y_anteil: float) -> str:
+    """Fester Bildausschnitt (für wechselnde Einstellungen ohne Kamerafahrt)."""
+    if zoom == 1.0:
+        return f"scale={B}:{H}"
+    return (f"crop=w=iw/{zoom}:h=ih/{zoom}:x=(iw-iw/{zoom})/2:"
+            f"y='max(0,min(ih-ih/{zoom},ih*{y_anteil}-ih/{zoom}/2))',scale={B}:{H}")
+
+
+def baue_einstellung(medium: Path, d: float, ziel: Path, *, start: float = 0.0, zoom_tempo: float | None = None,
+                     einstellung=(1.0, 0.5), wackeln: int = 0):
+    """Eine Einstellung (ein Bild oder Clip-Stück) als MP4 mit Ton (Clip-Geräusche oder Stille)."""
+    gross_b, gross_h = int(B * 1.5), int(H * 1.5)  # Reserve, damit Ausschnitte scharf bleiben
+    if ist_clip(medium):
+        eingabe = ["-ss", f"{start:.3f}", "-i", str(medium)]
         v = (f"[0:v]fps={FPS},scale={gross_b}:{gross_h}:force_original_aspect_ratio=increase,crop={gross_b}:{gross_h},"
-             f"tpad=stop_mode=clone:stop_duration={d + 1:.2f},trim=duration={d:.3f},setpts=PTS-STARTPTS,"
-             f"zoompan=z='{z}':x='{x}':y='{y}':d=1:s={B}x{H}:fps={FPS},format=yuv420p[v]")
+             f"tpad=stop_mode=clone:stop_duration={d + 1:.2f},trim=duration={d:.3f},setpts=PTS-STARTPTS,")
+        if zoom_tempo:
+            z, x, y = zoom_ausdruck(zoom_tempo, FPS)
+            v += f"zoompan=z='{z}':x='{x}':y='{y}':d=1:s={B}x{H}:fps={FPS},"
+        else:
+            v += ausschnitt(*einstellung) + ","
+        v += "setsar=1,format=yuv420p[v]"
     else:
         eingabe = ["-loop", "1", "-t", f"{d:.3f}", "-i", str(medium)]
-        z, x, y = zoom_ausdruck(tempo, STOPMOTION_FPS)
-        # 10 fps + leichtes Wackeln = Stop-Motion-/Line-Boil-Gefühl
+        # Standbild: 10 fps + leichtes Wackeln = Stop-Motion-/Line-Boil-Gefühl
         v = (f"[0:v]fps={STOPMOTION_FPS},scale={gross_b + 4 * wackeln}:{gross_h + 4 * wackeln}:force_original_aspect_ratio=increase,"
-             f"crop={gross_b}:{gross_h}:x='(iw-{gross_b})/2+{wackeln}*sin(n*2.3)':y='(ih-{gross_h})/2+{wackeln}*cos(n*1.7)',"
-             f"zoompan=z='{z}':x='{x}':y='{y}':d=1:s={B}x{H}:fps={STOPMOTION_FPS},"
-             f"fps={FPS},format=yuv420p[v]")
-    if stimme:
-        eingabe += ["-i", str(stimme)]
+             f"crop={gross_b}:{gross_h}:x='(iw-{gross_b})/2+{wackeln}*sin(n*2.3)':y='(ih-{gross_h})/2+{wackeln}*cos(n*1.7)',")
+        if zoom_tempo:
+            z, x, y = zoom_ausdruck(zoom_tempo, STOPMOTION_FPS)
+            v += f"zoompan=z='{z}':x='{x}':y='{y}':d=1:s={B}x{H}:fps={STOPMOTION_FPS},"
+        else:
+            v += ausschnitt(*einstellung) + ","
+        v += f"fps={FPS},setsar=1,format=yuv420p[v]"
+    if ist_clip(medium) and hat_audio(medium):
+        a = (f"[0:a]aresample=48000,aformat=channel_layouts=stereo,volume={CLIP_SFX_LAUTSTAERKE},"
+             f"apad,atrim=duration={d:.3f}[a]")
     else:
         eingabe += ["-f", "lavfi", "-i", "anullsrc=r=48000:cl=stereo"]
-    a = f"[1:a]aresample=48000,aformat=channel_layouts=stereo,apad,atrim=duration={d:.3f}[stimme]"
-    if ist_clip and hat_audio(medium):
-        a += (f";[0:a]aresample=48000,aformat=channel_layouts=stereo,volume={CLIP_SFX_LAUTSTAERKE},apad,"
-              f"atrim=duration={d:.3f}[sfx];[stimme][sfx]amix=inputs=2:normalize=0[a]")
-    else:
-        a += ";[stimme]anull[a]"
-    ffmpeg(*eingabe, "-filter_complex", f"{v};{a}", "-map", "[v]", "-map", "[a]",
-           "-t", f"{d:.3f}", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
+        a = f"[1:a]atrim=duration={d:.3f}[a]"
+    ffmpeg(*eingabe, "-filter_complex", f"{v};{a}", "-map", "[v]", "-map", "[a]", "-t", f"{d:.3f}",
+           "-c:v", "libx264", "-preset", "veryfast", "-crf", "18", "-c:a", "aac", "-b:a", "192k", "-ar", "48000", str(ziel))
+
+
+def einstellungen_planen(medien: list[Path], d: float, tempo: float, hook: bool):
+    """Liste von (medium, dauer, start, zoom_tempo, einstellung).
+
+    - 1 Standbild: wechselnde Ausschnitte im Tempo (sonst wirkt es tot)
+    - 1 Clip: läuft durch, ohne Zoom; nur im Hook schnelle Ausschnittwechsel
+    - mehrere Medien: harte Schnitte zwischen ihnen im Tempo, Clips laufen weiter statt neu zu starten
+    """
+    if len(medien) == 1:
+        m = medien[0]
+        if ist_clip(m) and not hook:
+            return [(m, d, 0.0, None, (1.0, 0.5))]
+        return [(m, d, 0.0, tempo, (1.0, 0.5))]
+    n = max(len(medien), round(d / tempo))
+    laenge = d / n
+    clip_pos = {m: 0.0 for m in medien}
+    clip_dauer = {m: dauer(m) for m in medien if ist_clip(m)}
+    plan = []
+    for k in range(n):
+        m = medien[k % len(medien)]
+        runde = k // len(medien)
+        start = 0.0
+        if m in clip_dauer:
+            start = clip_pos[m] if clip_pos[m] + laenge <= clip_dauer[m] else 0.0
+            clip_pos[m] = start + laenge
+            einst = (1.0, 0.5)
+        else:  # Standbild wiederholt sich -> anderer Ausschnitt
+            einst = EINSTELLUNGEN[runde % len(EINSTELLUNGEN)]
+        plan.append((m, laenge, start, None, einst))
+    return plan
+
+
+def baue_segment(medien: list[Path], stimme: Path | None, d: float, ziel: Path, tempo: float, wackeln: int,
+                 hook: bool, tmp: Path):
+    teile = []
+    for k, (m, dk, start, zt, einst) in enumerate(einstellungen_planen(medien, d, tempo, hook)):
+        t = tmp / f"{ziel.stem}-e{k:02d}.mp4"
+        baue_einstellung(m, dk, t, start=start, zoom_tempo=zt, einstellung=einst,
+                         wackeln=0 if ist_clip(m) else wackeln)
+        teile.append(t)
+    eingabe = [x for t in teile for x in ("-i", str(t))]
+    n = len(teile)
+    eingabe += ["-i", str(stimme)] if stimme else ["-f", "lavfi", "-i", "anullsrc=r=48000:cl=stereo"]
+    f = "".join(f"[{i}:v][{i}:a]" for i in range(n)) + f"concat=n={n}:v=1:a=1[v][sfx];"
+    f += (f"[{n}:a]aresample=48000,aformat=channel_layouts=stereo,apad,atrim=duration={d:.3f}[stimme];"
+          f"[stimme][sfx]amix=inputs=2:normalize=0,atrim=duration={d:.3f}[a]")
+    ffmpeg(*eingabe, "-filter_complex", f, "-map", "[v]", "-map", "[a]", "-t", f"{d:.3f}",
+           "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
            "-c:a", "aac", "-b:a", "192k", "-ar", "48000", str(ziel))
+    return n
 
 
 # ---------------------------------------------------------------- Hauptablauf
@@ -196,11 +264,15 @@ def schneide(ordner: Path, nur_pruefen: bool = False) -> Path | None:
     plan = []
     for i, s in enumerate(m.szenen, 1):
         nn = f"{i:02d}"
-        medium = Path(ROOT / s["medien"]) if s.get("medien") else (
-            finde(medien, f"szene-{nn}", CLIP_ENDUNGEN) or finde(medien, f"szene-{nn}", BILD_ENDUNGEN))
-        if medium and not medium.exists():
-            print(f"  WARNUNG: Szene {nn}: {medium} gibt es nicht.")
-            medium = None
+        if s.get("medien"):
+            eintraege = s["medien"] if isinstance(s["medien"], list) else [s["medien"]]
+            liste = [ROOT / e for e in eintraege]
+        else:  # medien/szene-NN.mp4, szene-NN-a.mp4, szene-NN-b.png ...
+            liste = sorted(x for x in medien.glob(f"szene-{nn}*")
+                           if x.suffix.lower() in CLIP_ENDUNGEN + BILD_ENDUNGEN) if medien.exists() else []
+        for x in [x for x in liste if not x.exists()]:
+            print(f"  WARNUNG: Szene {nn}: {x.relative_to(ROOT)} gibt es nicht.")
+        medium = [x for x in liste if x.exists()]
         stimme = finde(medien, f"vo-{nn}", AUDIO_ENDUNGEN)
         if stimme:
             d = dauer(stimme) + PAUSE_NACH_SZENE
@@ -216,8 +288,8 @@ def schneide(ordner: Path, nur_pruefen: bool = False) -> Path | None:
     print(f"Schnittplan {ordner.name}:")
     t = 0.0
     for p in plan:
-        print(f"  {p['nn']} {t:5.1f}-{t + p['d']:5.1f}s ({p['quelle']:>16})  Bild: "
-              f"{p['medium'].relative_to(ROOT) if p['medium'] else 'FEHLT -> Platzhalter'}"
+        namen = ", ".join(x.name for x in p["medium"]) if p["medium"] else "FEHLT -> Platzhalter"
+        print(f"  {p['nn']} {t:5.1f}-{t + p['d']:5.1f}s ({p['quelle']:>16})  Medien: {namen}"
               f"  Stimme: {p['stimme'].name if p['stimme'] else ('voiceover' if gesamt_vo else 'FEHLT -> Stille')}")
         t += p["d"]
     print(f"  Gesamt: {t:.1f} s")
@@ -236,13 +308,14 @@ def schneide(ordner: Path, nur_pruefen: bool = False) -> Path | None:
         for p in plan:
             medium = p["medium"]
             if not medium:
-                medium = tmp / f"platzhalter-{p['nn']}.png"
-                platzhalter(medium, f"Szene {p['nn']}\n{p['szene'].get('name', '')}\n\nmedien/szene-{p['nn']}.mp4\nfehlt noch")
+                ph = tmp / f"platzhalter-{p['nn']}.png"
+                platzhalter(ph, f"Szene {p['nn']}\n{p['szene'].get('name', '')}\n\nmedien/szene-{p['nn']}.mp4\nfehlt noch")
+                medium = [ph]
             seg = tmp / f"seg-{p['nn']}.mp4"
-            print(f"  schneide Szene {p['nn']} ...")
             hook = p["szene"].get("teil") == "hook"
             tempo = p["szene"].get("schnitt_tempo") or (SCHNITT_TEMPO_HOOK if hook else SCHNITT_TEMPO)
-            baue_segment(medium, p["stimme"], p["d"], seg, tempo, WACKELN_HOOK if hook else WACKELN)
+            n = baue_segment(medium, p["stimme"], p["d"], seg, tempo, WACKELN_HOOK if hook else WACKELN, hook, tmp)
+            print(f"  Szene {p['nn']}: {n} Einstellung(en)")
             liste.append(f"file '{seg}'")
 
             s, ende = p["szene"], t + p["d"]
@@ -264,7 +337,7 @@ def schneide(ordner: Path, nur_pruefen: bool = False) -> Path | None:
                "-af", "loudnorm=I=-14:TP=-1.5:LRA=11", "-c:a", "aac", "-b:a", "192k", "-ar", "48000",
                "-movflags", "+faststart", str(ziel))
         (export / "untertitel-final.srt").write_text("\n".join(srt), encoding="utf-8")
-    print(f"Fertig: {ziel.relative_to(ROOT)} ({dauer(ziel):.1f} s)")
+    print(f"Fertig: {ziel.relative_to(ROOT) if ziel.is_relative_to(ROOT) else ziel} ({dauer(ziel):.1f} s)")
     if not all(p["stimme"] for p in plan) and not gesamt_vo:
         print("  Hinweis: ohne Voiceover geschnitten (stumm, Zeiten geschätzt).")
     print("  Vor dem Upload: checkliste.md abhaken (inkl. KI-Kennzeichnung).")

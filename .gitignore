@@ -12,6 +12,7 @@ venv/
 # Große Rohdateien / Exporte (bei Bedarf anpassen)
 *.mp4
 *.mov
+*.webm
 *.wav
 *.mp3
 ausgabe/
@@ -20,3 +21,7 @@ export/
 # Betriebssystem
 .DS_Store
 Thumbs.db
+
+# Clips der Bibliothek und im Eingang SOLLEN ins Repo
+!bibliothek/clips/**
+!eingang/**

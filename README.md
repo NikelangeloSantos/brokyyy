@@ -10,7 +10,8 @@ Projektregeln: `CLAUDE.md` · Look und Prompt-Bausteine: `brokey-prompt-biblioth
 CLAUDE.md                     Projektregeln
 brokey-prompt-bibliothek.md   Prompt-Bibliothek (Quelle der Wahrheit für den Look)
 bausteine/bausteine.toml      dieselben Bausteine maschinenlesbar, wörtlich aus der Bibliothek
-referenz/                     Referenz- und Beispielbilder von Brokey
+eingang/                      HIER neue Bilder/Clips hochladen (werden dann einsortiert)
+bibliothek/bilder|clips/      sortierte Medien, katalog.toml = Beschreibung + Stichworte
 tools/brokey.py               das Pipeline-Tool
 tools/vorlage-thema.toml      Vorlage für neue Videos
 videos/NN-name/thema.toml     DEINE Eingabe pro Video (Skript, Szenen, Zahlen)
@@ -57,6 +58,15 @@ python3 tools/vertonung.py videos/01-abo-chaos
 ```
 Zeigt vorher die Zeichenzahl und fragt nach, weil jede Anfrage Guthaben verbraucht. Erzeugt `medien/vo-01.mp3` usw. Mit `--neu 03` nur Szene 3 neu, mit `--tempo 1.1` etwas schneller.
 
+**Neue Medien einsortieren und suchen:**
+```bash
+python3 tools/katalog.py einsortieren
+```
+```bash
+python3 tools/katalog.py suche abo panik
+```
+`uebersicht` erzeugt `bibliothek/katalog.md` und ein Vorschaubild aller Medien.
+
 **Video schneiden** (braucht ffmpeg):
 ```bash
 python3 tools/schnitt.py videos/01-abo-chaos --plan
@@ -68,6 +78,7 @@ Schnelle Schnitte: Jede Szene wird in kurze Einstellungen mit wechselndem Aussch
 `--plan` zeigt nur, welche Dateien gefunden wurden. Ohne `--plan` entsteht `export/01-abo-chaos.mp4` (1080×1920) mit eingebrannten Untertiteln, Einblendtexten und Disclaimer.
 Lege dafür pro Szene in `videos/NN-name/medien/` ab:
 - `szene-01.mp4` (Flow-Clip) oder `szene-01.png` (Standbild, bekommt Stop-Motion-Wackeln)
+- mehrere pro Szene: `szene-01-a.mp4`, `szene-01-b.mp4` … oder `medien = ["bibliothek/clips/x.mp4", …]` in `thema.toml` → harte Schnitte im Schnitt-Tempo, Clips wackeln nicht
 - `vo-01.mp3` (Stimme dieser Szene) – oder eine `voiceover.mp3` für alles
 
 Fehlt ein Bild, kommt ein Platzhalter. Fehlt die Stimme, bleibt es stumm mit geschätzten Zeiten.

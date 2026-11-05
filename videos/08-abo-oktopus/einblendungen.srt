@@ -1,0 +1,31 @@
+1
+00:00:00,000 --> 00:00:06,800
+Du zahlst gerade für etwas, das du nicht nutzt
+
+2
+00:00:06,800 --> 00:00:13,600
+Abos
+
+3
+00:00:13,600 --> 00:00:17,600
+Beispiel 1: nie genutzt
+
+4
+00:00:17,600 --> 00:00:25,200
+Beispiel 2: Probemonat
+
+5
+00:00:25,200 --> 00:00:33,600
+Jeden Monat
+
+6
+00:00:33,600 --> 00:00:42,400
+1x im Monat Kontoauszug prüfen
+
+7
+00:00:42,400 --> 00:00:50,800
+Kündigungsfrist prüfen
+
+8
+00:00:50,800 --> 00:00:59,200
+Wie viele Abos hast du? · Keine Finanzberatung

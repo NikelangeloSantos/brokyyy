@@ -41,6 +41,7 @@ LANGSAM_ZOOM = 0.08          # Standbilder außerhalb des Hooks: langsamer Zoom 
 AUSSCHNITTE = {"": (1.0, 0.5), "oben": (1.6, 0.25), "mitte": (1.35, 0.45), "unten": (1.35, 0.7)}
 CLIP_SFX_LAUTSTAERKE = 0.35  # Soundeffekte aus Flow-Clips leise unter die Stimme ([video] clip_ton)
 VORLAUF = 0.0                # Sekunden Bild vor Einsatz der Stimme ([video] vorlauf)
+EINBLEND_DAUER = 0.0         # >0: Einblendtexte nur so viele Sekunden am Szenenanfang ([video] einblend_dauer)
 CLIP_GANZ = False            # True: Clips immer vollständig zeigen, nie kürzen ([video] clip_ganz)
 CLIP_MIN_TEMPO = 1.0         # zu kurze Clips bis auf dieses Tempo verlangsamen, Rest = Standbild ([video] clip_min_tempo)
 # Schnelle Schnitte: jede Szene wird in kurze Einstellungen mit wechselndem Ausschnitt zerlegt
@@ -312,8 +313,9 @@ def schneide(ordner: Path, nur_pruefen: bool = False, ausgabe: Path | None = Non
         sys.exit("ffmpeg nicht gefunden. Bitte installieren (siehe README).")
     m = Mappe(ordner)
     m.pruefe()
-    global VORLAUF, CLIP_MIN_TEMPO, CLIP_SFX_LAUTSTAERKE, PAUSE_NACH_SZENE, CLIP_GANZ
+    global VORLAUF, CLIP_MIN_TEMPO, CLIP_SFX_LAUTSTAERKE, PAUSE_NACH_SZENE, CLIP_GANZ, EINBLEND_DAUER
     CLIP_GANZ = m.v.get("clip_ganz", CLIP_GANZ)
+    EINBLEND_DAUER = m.v.get("einblend_dauer", EINBLEND_DAUER)
     VORLAUF = m.v.get("vorlauf", VORLAUF)
     CLIP_MIN_TEMPO = m.v.get("clip_min_tempo", CLIP_MIN_TEMPO)
     CLIP_SFX_LAUTSTAERKE = m.v.get("clip_ton", CLIP_SFX_LAUTSTAERKE)
@@ -391,7 +393,9 @@ def schneide(ordner: Path, nur_pruefen: bool = False, ausgabe: Path | None = Non
             s, ende = p["szene"], t + p["d"]
             sprech_ende = ende - (s.get("pause_nach", PAUSE_NACH_SZENE) if p["quelle"] != "Anteil voiceover" else 0)
             if s.get("einblendtext"):
-                ass.append(f"Dialogue: 1,{ass_zeit(t)},{ass_zeit(ende)},Einblendung,,0,0,0,,{ass_text(s['einblendtext'])}\n")
+                # [video] einblend_dauer: Einblendung nur am Szenenanfang; Szene mit einblend_ganz=true bis zum Ende
+                e_ende = ende if (not EINBLEND_DAUER or s.get("einblend_ganz")) else min(ende, t + EINBLEND_DAUER)
+                ass.append(f"Dialogue: 1,{ass_zeit(t)},{ass_zeit(e_ende)},Einblendung,,0,0,0,,{ass_text(s['einblendtext'])}\n")
             for a, e, txt in untertitel_stuecke(s.get("sprechertext", ""), t + VORLAUF, sprech_ende):
                 ass.append(f"Dialogue: 0,{ass_zeit(a)},{ass_zeit(e)},Untertitel,,0,0,0,,{hervorheben(ass_text(txt), betonen)}\n")
                 srt.append(f"{len(srt) + 1}\n{zeit_srt(a)} --> {zeit_srt(e)}\n{txt}\n")

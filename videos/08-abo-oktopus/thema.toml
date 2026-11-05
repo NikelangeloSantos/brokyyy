@@ -1,0 +1,127 @@
+# Video 08 – Der Abo-Oktopus (ca. 60-64 s)
+# Quelle: Auftrag im Chat vom 2026-11-05. Texte wörtlich übernommen, außer Szene 5 (Ersatz-Clip, erster Satz ans Bild angepasst).
+# Keine Preise, Beträge, Marken oder Anbieter; Kündigungsfristen nur allgemein.
+#
+# Vertonen:  python3 tools/vertonung.py videos/08-abo-oktopus --am-stueck --medien output/arbeit/08-abo-oktopus/audio --tempo 1.0 --stabilitaet 0.5
+#   Schnitte von Hand geprüft: --schnitte 6.19,14.62,21.41,31.29,40.11,49.14,58.32
+# Schneiden: python3 tools/schnitt.py videos/08-abo-oktopus --medien output/arbeit/08-abo-oktopus/audio \
+#              --arbeitsordner output/arbeit/08-abo-oktopus/schnitt --ausgabe output/abo-oktopus.mp4
+
+[video]
+nummer = "08"
+titel = "Der Abo-Oktopus"
+thema = "Kleine Abos summieren sich unbemerkt"
+lerneffekt = "Kleine Abos summieren sich unbemerkt. Einmal im Monat den Kontoauszug prüfen und Ungenutztes kündigen."
+zielgruppe = "breit: Teenager, Azubis, Berufseinsteiger"
+ton = "trockener, sarkastischer Erzähler im Stil einer ruhigen Naturdoku, Understatement"
+disclaimer = "Keine Finanzberatung"
+referenzbild = "bibliothek/bilder/brokey-abos.jpg"
+caption = "TODO: Caption auswählen"
+hashtags = ["#finanzen", "#geldtipps", "#abos", "#sparen", "#finanzbildung"]
+betonen = ["nicht benutzt", "Kontoauszug", "Kündigungsfrist", "Keine Finanzberatung"]
+# Sprechzeit allein 67 s (> Ziel 60-64): minimaler Vorlauf/Pause, natürliche Atempausen bleiben
+vorlauf = 0.1
+pause_nach = 0.1
+clip_min_tempo = 0.8
+clip_ton = 0.2
+clip_ganz = true
+einblend_dauer = 2.5
+
+[[fakt]]
+text = "'Ein Monat gratis, danach läuft es still weiter' – gilt nicht bei jedem Angebot; im Video als typisches Beispiel"
+status = "offen"
+
+[[fakt]]
+text = "Kündigung: nur allgemein 'Prüf vorher die Kündigungsfrist im Vertrag' – keine Fristen nennen"
+status = "offen"
+
+[[szene]]
+name = "1 Endloser Kontoauszug"
+teil = "hook"
+schnellschnitt = false
+medien = ["bibliothek/bilder/stick-figure-screaming-at-statement-1d7b7bb3.jpg"]
+bild = '''Brokey screams at an endless bank statement, a coin flies away'''
+bild_de = "Brokey schreit vor endlosem Kontoauszug (nur als Bild vorhanden)"
+mimik = "panik"
+booster = []
+running_gag = true
+sprechertext = '''Du zahlst gerade für etwas, das du nicht benutzt. Brokey hat nachgesehen. Es geht ihm nicht gut.'''
+einblendtext = "Du zahlst gerade für etwas, das du nicht nutzt"
+
+[[szene]]
+name = "2 Abo-Oktopus"
+teil = "setup"
+medien = ["bibliothek/bilder/octopus-wrapping-tentacles-aroun-c0cebb06.jpg"]
+bild = '''An octopus made of subscription cards grabs Brokey's wallet while he sits on the sofa'''
+bild_de = "Abo-Krake greift nach dem Portemonnaie, Brokey auf dem Sofa (nur als Bild vorhanden)"
+mimik = "gelangweilt"
+booster = []
+sprechertext = '''Das Problem heißt Abo. Einzeln unauffällig, zusammen ein Oktopus. Brokey sitzt auf dem Sofa und merkt nichts.'''
+einblendtext = "Abos"
+
+[[szene]]
+name = "3 Fitnessstudio-Abo"
+teil = "geschichte"
+medien = ["bibliothek/bilder/brokey-relaxing-on-sofa-b44493b7.jpg"]
+bild = '''Brokey in sportswear on the sofa, a gym building sucks coins through a straw'''
+bild_de = "Brokey im Jogginganzug auf dem Sofa, Studio saugt Münzen (nur als Bild vorhanden)"
+mimik = "gelangweilt"
+booster = []
+sprechertext = '''Beispiel eins: das Fitnessstudio. Brokey zahlt pünktlich. Hingehen ist optional.'''
+einblendtext = "Beispiel 1: nie genutzt"
+
+[[szene]]
+name = "4 Gratis-Probemonat"
+teil = "geschichte"
+medien = ["bibliothek/clips/character-trapped-by-gift-box-13c41a6b-720p.mp4"]
+bild = '''A gift box with a calendar mousetrap'''
+bild_de = "Geschenkbox, Kalender-Mausefalle"
+mimik = "gelangweilt"
+booster = []
+sprechertext = '''Beispiel zwei: ein Monat gratis. Danach läuft es still weiter. Brokey nennt das Treue. Das Kleingedruckte nennt es Verlängerung.'''
+einblendtext = "Beispiel 2: Probemonat"
+
+[[szene]]
+name = "5 Der Haken (Ersatz)"
+teil = "geschichte"
+medien = ["bibliothek/clips/character-throws-coin-off-paper-f20edc6a-720p.mp4"]
+bild = '''Calendar pages fly, coins stream out of the wallet every month'''
+bild_de = "Münze fliegt vom Papier, Brokey schaut traurig hinterher (Ersatz für Kalender/Münzstrom)"
+mimik = "resigniert"
+booster = []
+sprechertext = '''Jeden Monat winkt Brokey ein bisschen Geld hinterher. Einzeln zu klein zum Ärgern. Zusammen ein Betrag, den Brokey lieber nicht ausrechnet.'''
+einblendtext = "Jeden Monat"
+
+[[szene]]
+name = "6 Haushaltsbuch-Detektiv"
+teil = "lerneffekt"
+medien = ["bibliothek/clips/brokey-catches-coin-thief-200fcf91.mp4"]
+bild = '''Brokey as a detective with a magnifying glass catches coin thieves'''
+bild_de = "Detektiv mit Lupe und Münzdieb"
+mimik = "erleuchtung"
+booster = []
+sprechertext = '''Der Trick ist unspektakulär: einmal im Monat in den Kontoauszug schauen. Ein paar Minuten. Brokey geht vor wie ein Detektiv. Ein müder.'''
+einblendtext = "1x im Monat Kontoauszug prüfen"
+
+[[szene]]
+name = "7 Abo-Kündigung"
+teil = "lerneffekt"
+medien = ["bibliothek/clips/character-cuts-tentacles-with-sc-ca1c3058.mp4"]
+bild = '''Brokey defeats the subscription octopus with giant scissors'''
+bild_de = "Riesenschere, Oktopus wird besiegt"
+mimik = "selbstsicher"
+booster = []
+sprechertext = '''Was du nicht nutzt, kündigst du. Prüf vorher die Kündigungsfrist im Vertrag. Brokey greift zur Schere. Der Oktopus nimmt es persönlich.'''
+einblendtext = "Kündigungsfrist prüfen"
+
+[[szene]]
+name = "8 Outro (Ersatz)"
+teil = "outro"
+medien = ["bibliothek/clips/brokey-relaxing-on-beach-chair-d3d4ab96.mp4"]
+bild = '''Brokey waves tiredly at the camera, a coin falls at his feet'''
+bild_de = "Brokey entspannt im Liegestuhl, Portemonnaie mit Münzen (Ersatz für Winken)"
+mimik = "resigniert"
+booster = []
+sprechertext = '''Was du nutzt, behältst du und zahlst bewusst. Und ja, du hast gerade überlegt, wie viele Abos du hast. Keine Finanzberatung.'''
+einblendtext = "Wie viele Abos hast du? · Keine Finanzberatung"
+einblend_ganz = true

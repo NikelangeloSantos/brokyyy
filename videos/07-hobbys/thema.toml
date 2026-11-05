@@ -1,0 +1,103 @@
+# Video 07 – Hobbys, die dein Konto leeren
+# Quelle: Auftrag im Chat vom 2026-11-05. Texte wörtlich übernommen, außer:
+#   Szene 2 (Ersatzbild Gadget-Regal statt Kamera) und Szene 3 (Bild zeigt mehr als sieben Bildschirme) angepasst,
+#   Szene 6 langer Satz für den Sprechfluss geteilt.
+# Keine Preise, Beiträge oder Zahlen; keine Marken.
+#
+# Vertonen:  python3 tools/vertonung.py videos/07-hobbys --am-stueck --medien output/arbeit/07-hobbys/audio --tempo 1.0 --stabilitaet 0.5
+# Schneiden: python3 tools/schnitt.py videos/07-hobbys --medien output/arbeit/07-hobbys/audio \
+#              --arbeitsordner output/arbeit/07-hobbys/schnitt --ausgabe output/hobbys.mp4
+
+[video]
+nummer = "07"
+titel = "Hobbys, die dein Konto leeren"
+thema = "Kaufpreis, Zubehör und laufende Kosten bei Hobbys"
+lerneffekt = "Bei einem Hobby zählt nicht nur der Kaufpreis, sondern auch Zubehör und laufende Kosten. Ein festes Hobby-Budget schafft Kontrolle."
+zielgruppe = "breit: Teenager, Azubis, Berufseinsteiger"
+ton = "trockener, sarkastischer Erzähler im Stil einer ruhigen Naturdoku, Understatement"
+disclaimer = "Keine Finanzberatung"
+referenzbild = "bibliothek/bilder/brokey-abos.jpg"
+caption = "TODO: Caption auswählen"
+hashtags = ["#finanzen", "#geldtipps", "#hobby", "#finanzbildung"]
+betonen = ["mehr, als du denkst", "laufende Kosten", "Hobby-Budget", "Keine Finanzberatung"]
+vorlauf = 0.3
+pause_nach = 0.3
+clip_min_tempo = 0.8
+clip_ton = 0.2
+clip_ganz = true
+
+[[fakt]]
+text = "'Dein Hobby kostet oft mehr, als du denkst' – bewusst allgemein ('oft'), keine Preise"
+status = "offen"
+
+[[fakt]]
+text = "Fitnessstudio-Abo und Boot-Wartung als typische laufende Kosten – ohne Beträge oder Anbieter"
+status = "offen"
+
+[[szene]]
+name = "1 Golf-Desaster"
+teil = "hook"
+schnellschnitt = false
+medien = ["bibliothek/bilder/stick-figure-hitting-golf-ball-d0f39be7.jpg"]
+bild = '''Brokey swings a golf club, the ball flies into a pond, a duck watches'''
+bild_de = "Brokey schwingt, Ball fliegt in den Teich, Ente schaut zu (Standbild)"
+mimik = "gelangweilt"
+booster = []
+running_gag = true
+sprechertext = '''Dein Hobby kostet oft mehr, als du denkst. Brokey spielt jetzt Golf. Der Teich freut sich.'''
+einblendtext = "Das neue Hobby"
+
+[[szene]]
+name = "2 Zubehör (Ersatz für Kamera)"
+teil = "geschichte"
+medien = ["bibliothek/bilder/stick-figure-holding-banana-slicer-a0a8e86a.jpg"]
+bild = '''Brokey proudly holds a banana slicer in front of a shelf of dusty unused gadgets'''
+bild_de = "Regal voller verstaubter Geräte, Brokey mit Bananenschneider (Ersatz für Kamera)"
+mimik = "selbstsicher"
+booster = []
+sprechertext = '''Dann das Zubehör. Das Regal ist voll. Benutzt wird nur der Bananenschneider.'''
+einblendtext = "Zubehör"
+
+[[szene]]
+name = "3 Gaming-Setup-Overkill"
+teil = "geschichte"
+medien = ["bibliothek/bilder/stick-figure-sitting-in-chair-14e7dbaa.jpg"]
+bild = '''Brokey in a gaming chair surrounded by a dozen monitors, all showing a loading icon'''
+bild_de = "Gaming-Stuhl, umringt von Bildschirmen mit Lade-Symbol (Standbild)"
+mimik = "gelangweilt"
+booster = []
+sprechertext = '''Das Gaming-Setup: Bildschirme, so weit das Auge reicht. Auf allen lädt es noch.'''
+einblendtext = "Noch ein Upgrade"
+
+[[szene]]
+name = "4 Fitnessstudio-Abo"
+teil = "geschichte"
+medien = ["bibliothek/bilder/brokey-relaxing-on-sofa-b44493b7.jpg"]
+bild = '''Brokey in a tracksuit on the sofa, a muscular gym building sucks coins from his wallet through a hose'''
+bild_de = "Brokey im Jogginganzug auf dem Sofa, Studio saugt Münzen ab (Standbild)"
+mimik = "gelangweilt"
+booster = []
+sprechertext = '''Das Fitnessstudio-Abo zahlt Brokey pünktlich. Hingehen ist optional.'''
+einblendtext = "Laufende Kosten"
+
+[[szene]]
+name = "5 Boot"
+teil = "geschichte"
+medien = ["bibliothek/bilder/stick-figure-scooping-sinking-boat-67462fe2.jpg"]
+bild = '''Brokey as captain in a sailboat, coins pour out of a hole in the hull'''
+bild_de = "Brokey als Kapitän, Münzen laufen aus dem Rumpf (Standbild)"
+mimik = "panik"
+booster = []
+sprechertext = '''Dann das Boot. Es hat ein Loch, durch das Geld verschwindet. Brokey nennt es Wartung.'''
+einblendtext = "Folgekosten"
+
+[[szene]]
+name = "6 Hobby-Budget (Ersatz für Budget-Held)"
+teil = "outro"
+medien = ["bibliothek/clips/piggy-bank-coins-and-shopping-443f2687.mp4"]
+bild = '''A machine splits Brokey's money: one coin into the piggy bank, the rest into a shopping bag'''
+bild_de = "Maschine teilt das Geld auf, Brokey entspannt im Liegestuhl (Ersatz für Budget-Held)"
+mimik = "gelangweilt"
+booster = []
+sprechertext = '''Der Kaufpreis ist nur der Anfang. Plane Zubehör und laufende Kosten ein. Und setz ein festes Hobby-Budget. Keine Finanzberatung.'''
+einblendtext = "Hobby-Budget · Keine Finanzberatung"

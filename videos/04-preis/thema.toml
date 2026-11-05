@@ -1,9 +1,9 @@
 # Video 04 – Der Preis ist nicht der Preis
 # Quelle: Auftrag im Chat vom 2026-11-05 (Sprechertexte und Einblendtexte wörtlich übernommen).
-# [pause] = kurze Pause vor der Pointe (nur Vertonung). Alle Beträge sind erfundene Beispiele.
+# = kurze Pause vor der Pointe (nur Vertonung). Alle Beträge sind erfundene Beispiele.
 #
-# Vertonen:  python3 tools/vertonung.py videos/04-preis --medien output/arbeit/04-preis/audio --tempo 1.0 --stabilitaet 0.65 --pause 0.35
-# Schneiden: python3 tools/schnitt.py videos/04-preis --medien output/arbeit/04-preis/audio \
+# Vertonen:  python3 tools/vertonung.py videos/04-preis --am-stueck --medien output/arbeit/04-preis/audio-v2 --tempo 1.0 --stabilitaet 0.5
+# Schneiden: python3 tools/schnitt.py videos/04-preis --medien output/arbeit/04-preis/audio-v2 \
 #              --arbeitsordner output/arbeit/04-preis/schnitt --ausgabe output/preis.mp4
 
 [video]
@@ -18,8 +18,9 @@ referenzbild = "bibliothek/bilder/brokey-abos.jpg"
 caption = "TODO: Caption auswählen"
 hashtags = ["#finanzen", "#geldtipps", "#sparen", "#finanzbildung"]
 betonen = ["selten der Preis", "null Prozent", "Kleingedruckten", "Arbeitsstunden", "Keine Finanzberatung"]
-vorlauf = 0.3
-pause_nach = 0.2
+# Stimme am Stück erzeugt: natürliche Atempausen stecken schon im Audio
+vorlauf = 0.1
+pause_nach = 0.0
 clip_min_tempo = 0.8
 clip_ton = 0.2
 
@@ -46,13 +47,13 @@ status = "offen"
 name = "1 Ratenkauf-Schwanz"
 teil = "hook"
 schnellschnitt = false
-medien = ["bibliothek/bilder/stick-figure-holding-banana-slicer-a0a8e86a.jpg#mitte"]
+medien = ["bibliothek/clips/broky-tanz-tvor-freude-d14b6d67-720p.mp4"]
 bild = '''Brokey proudly holds a gadget while an endless chain of paper slips trails behind him'''
-bild_de = "Brokey mit Gadget, endlose Zettelkette (Ersatz: Standbild Bananenschneider)"
+bild_de = "Brokey tanzt vor Freude am Sale-Stand (Clip vom Nutzer)"
 mimik = "selbstsicher"
 booster = []
 running_gag = true
-sprechertext = '''Der Preis auf dem Schild ist selten der Preis. Brokey hört nur: [pause] nur 29 Euro.'''
+sprechertext = '''Der Preis auf dem Schild ist selten der Preis. Brokey hört nur eins: nur 29 Euro.'''
 einblendtext = "Nur 29 € im Monat? (Beispiel)"
 
 [[szene]]
@@ -63,7 +64,7 @@ bild = '''Brokey with spiral eyes carries a pile of sale items toward a starburs
 bild_de = "Spiralaugen, Mausefalle schnappt zu"
 mimik = "hoffnung_absturz"
 booster = []
-sprechertext = '''Fünfzig Prozent Rabatt auf etwas Unnötiges spart exakt null Prozent. [pause] Brokey nennt es Erfolg.'''
+sprechertext = '''Fünfzig Prozent Rabatt auf etwas Unnötiges spart exakt null Prozent. Brokey nennt es Erfolg.'''
 einblendtext = "-50 % = 0 € gespart"
 
 [[szene]]
@@ -74,18 +75,19 @@ bild = '''A gift box with a calendar mousetrap catches Brokey's wallet'''
 bild_de = "Geschenkbox, Kalender-Mausefalle"
 mimik = "gelangweilt"
 booster = []
-sprechertext = '''Ein Monat gratis. Danach läuft das Abo still weiter. [pause] Brokey nennt es Treue.'''
+sprechertext = '''Ein Monat gratis. Danach läuft das Abo still weiter. Brokey nennt es Treue.'''
 einblendtext = "Kündigungsfrist prüfen"
 
 [[szene]]
 name = "4 Billigflug"
 teil = "geschichte"
-medien = ["bibliothek/bilder/stick-figure-chases-cartoon-train-6ec4188e.jpg"]
+# Flughafen-Clip ohne den Abschnitt 1,4-3,0 s (dort Figur ohne rote Mütze), erzeugt mit ffmpeg trim+concat
+medien = ["output/arbeit/04-preis/medien/flughafen-ohne-fremdfigur.mp4"]
 bild = '''A paper plane with a long tail of extra costs'''
-bild_de = "Papierflieger mit Zusatzkosten-Schwanz (Ersatz: Standbild Brokey jagt Zug)"
+bild_de = "Gepäckaufgabe und Flugzeug (Clip vom Nutzer, Abschnitt ohne Mütze herausgeschnitten)"
 mimik = "panik"
 booster = []
-sprechertext = '''Der Flug war günstig. Dann kamen Koffer, Sitzplatz und Snack. [pause] Brokey nennt es Gesamtpaket.'''
+sprechertext = '''Der Flug war günstig. Dann kamen Koffer, Sitzplatz und Snack. Brokey nennt es Gesamtpaket.'''
 einblendtext = "Zusatzkosten"
 
 [[szene]]
@@ -96,7 +98,7 @@ bild = '''Brokey with a magnifying glass discovers a monster with a coin sack hi
 bild_de = "Lupe, Dieb zwischen den Zeilen (Teil-Ersatz: Münzdieb statt Monster)"
 mimik = "erleuchtung"
 booster = []
-sprechertext = '''Im Kleingedruckten steht, was es wirklich kostet. [pause] Brokey liest nie so weit.'''
+sprechertext = '''Im Kleingedruckten steht, was es wirklich kostet. Brokey liest nie so weit.'''
 einblendtext = "Kleingedrucktes lesen"
 
 [[szene]]
@@ -107,5 +109,5 @@ bild = '''Brokey holds a gadget, a chain of clocks appears, he puts the gadget b
 bild_de = "Gadget, Uhrenkette, Brokey stellt es zurück (Teil-Ersatz: Goldbarren statt Auto)"
 mimik = "erleuchtung"
 booster = []
-sprechertext = '''Neue Regel: Wie viele Arbeitsstunden kostet das? [pause] Brokey überlegt es sich plötzlich anders. Keine Finanzberatung.'''
+sprechertext = '''Neue Regel: Wie viele Arbeitsstunden kostet das? Brokey überlegt es sich plötzlich anders. Keine Finanzberatung.'''
 einblendtext = "Wie viele Arbeitsstunden? · Keine Finanzberatung"

@@ -6,10 +6,10 @@ Diese Liste hakst **du** vor dem Upload ab. Die Pipeline veröffentlicht nichts.
 
 Automatische Prüfung beim letzten Bauen: 
   - ⚠️ Es stehen noch TODO-Platzhalter in thema.toml.
-  - ⚠️ Sprechertext hat 83 Wörter (Ziel 85-120).
+  - ⚠️ Sprechertext hat 84 Wörter (Ziel 85-120).
   - ⚠️ Kein Szenen-Teil 'rechnung' – gehört zum Standard-Aufbau.
-  - ⚠️ Hook-Sprechertext dauert ca. 6.0 s (Ziel: max. ~3 s).
-  - ⚠️ Geschätzte Dauer 33 s (Ziel 35-50 s, echte Dauer nach Vertonung prüfen).
+  - ⚠️ Hook-Sprechertext dauert ca. 6.4 s (Ziel: max. ~3 s).
+  - ⚠️ Geschätzte Dauer 34 s (Ziel 35-50 s, echte Dauer nach Vertonung prüfen).
   - ⚠️ Szene '1 Ratenkauf-Schwanz': keine Aktion angegeben (aktion oder aktion_frei).
   - ⚠️ Szene '2 Rabatt-Falle': keine Aktion angegeben (aktion oder aktion_frei).
   - ⚠️ Szene '3 Gratis-Probemonat': keine Aktion angegeben (aktion oder aktion_frei).

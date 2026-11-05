@@ -358,3 +358,23 @@ tags = []
 ["bilder/stick-figure-wallet-stolen-by-d46ce061-2k.jpg"]
 beschreibung = ""
 tags = []
+
+["bilder/broky-at-airport-with-suitcases-f6346b86-2k.jpg"]
+beschreibung = "Brokey mit Kofferwagen am Flughafen (Startbild Flughafen-Clip)"
+tags = ["reisen","flug","zusatzkosten","gepaeck"]
+hinweis = "Schild DEPARTURES"
+
+["bilder/broky-at-sale-stand-3b3c5990-2k.jpg"]
+beschreibung = "Brokey jubelt mit Portemonnaie am Sale-Stand (Startbild Tanz-Clip)"
+tags = ["rabatt","sale","lockpreis","freude"]
+hinweis = "Schrift im Bild (SALE, 50% OFF)"
+
+["clips/broky-tanz-tvor-freude-d14b6d67-720p.mp4"]
+beschreibung = "Brokey tanzt vor Freude mit Portemonnaie vor einem Sale-Stand"
+tags = ["rabatt","sale","lockpreis","freude","impulskauf"]
+hinweis = "Schrift im Bild (SALE, 50% OFF)"
+
+["clips/man-checking-bags-boarding-airplane-45189e09-720p.mp4"]
+beschreibung = "Brokey gibt Gepäck am Flughafen auf, dann sitzt er im Flugzeug"
+tags = ["reisen","flug","zusatzkosten","gepaeck"]
+hinweis = "1,4-3,0 s: Figur ohne rote Mütze; Schild DEPARTURES"

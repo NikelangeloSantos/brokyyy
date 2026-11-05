@@ -4,52 +4,52 @@ Der Preis auf dem Schild ist selten
 
 2
 00:00:02,800 --> 00:00:05,600
-der Preis. Brokey hört nur: nur 29
+der Preis. Brokey hört nur eins: nur
 
 3
-00:00:05,600 --> 00:00:06,000
-Euro.
+00:00:05,600 --> 00:00:06,400
+29 Euro.
 
 4
-00:00:06,000 --> 00:00:08,800
+00:00:06,400 --> 00:00:09,200
 Fünfzig Prozent Rabatt auf etwas Unnötiges spart
 
 5
-00:00:08,800 --> 00:00:11,600
+00:00:09,200 --> 00:00:12,000
 exakt null Prozent. Brokey nennt es Erfolg.
 
 6
-00:00:11,600 --> 00:00:14,400
+00:00:12,000 --> 00:00:14,800
 Ein Monat gratis. Danach läuft das Abo
 
 7
-00:00:14,400 --> 00:00:16,800
+00:00:14,800 --> 00:00:17,200
 still weiter. Brokey nennt es Treue.
 
 8
-00:00:16,800 --> 00:00:19,600
+00:00:17,200 --> 00:00:20,000
 Der Flug war günstig. Dann kamen Koffer,
 
 9
-00:00:19,600 --> 00:00:22,400
+00:00:20,000 --> 00:00:22,800
 Sitzplatz und Snack. Brokey nennt es Gesamtpaket.
 
 10
-00:00:22,400 --> 00:00:25,200
+00:00:22,800 --> 00:00:25,600
 Im Kleingedruckten steht, was es wirklich kostet.
 
 11
-00:00:25,200 --> 00:00:27,200
+00:00:25,600 --> 00:00:27,600
 Brokey liest nie so weit.
 
 12
-00:00:27,200 --> 00:00:30,000
+00:00:27,600 --> 00:00:30,400
 Neue Regel: Wie viele Arbeitsstunden kostet das?
 
 13
-00:00:30,000 --> 00:00:32,800
+00:00:30,400 --> 00:00:33,200
 Brokey überlegt es sich plötzlich anders. Keine
 
 14
-00:00:32,800 --> 00:00:33,200
+00:00:33,200 --> 00:00:33,600
 Finanzberatung.

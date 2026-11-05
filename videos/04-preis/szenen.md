@@ -4,11 +4,11 @@ _Automatisch erzeugt aus `thema.toml` – Änderungen bitte dort machen und neu 
 
 ## 1. 1 Ratenkauf-Schwanz (hook, ca. 0–6 s)
 
-- **Bild:** Brokey mit Gadget, endlose Zettelkette (Ersatz: Standbild Bananenschneider)
+- **Bild:** Brokey tanzt vor Freude am Sale-Stand (Clip vom Nutzer)
 - **Mimik:** selbstsicher
 - **Humor-Booster:** – + running_gag
 - **Aktion (Video):** –
-- **Sprechertext:** Der Preis auf dem Schild ist selten der Preis. Brokey hört nur: nur 29 Euro.
+- **Sprechertext:** Der Preis auf dem Schild ist selten der Preis. Brokey hört nur eins: nur 29 Euro.
 - **Einblendtext:** Nur 29 € im Monat? (Beispiel)
 
 ## 2. 2 Rabatt-Falle (geschichte, ca. 6–12 s)
@@ -29,16 +29,16 @@ _Automatisch erzeugt aus `thema.toml` – Änderungen bitte dort machen und neu 
 - **Sprechertext:** Ein Monat gratis. Danach läuft das Abo still weiter. Brokey nennt es Treue.
 - **Einblendtext:** Kündigungsfrist prüfen
 
-## 4. 4 Billigflug (geschichte, ca. 17–22 s)
+## 4. 4 Billigflug (geschichte, ca. 17–23 s)
 
-- **Bild:** Papierflieger mit Zusatzkosten-Schwanz (Ersatz: Standbild Brokey jagt Zug)
+- **Bild:** Gepäckaufgabe und Flugzeug (Clip vom Nutzer, Abschnitt ohne Mütze herausgeschnitten)
 - **Mimik:** panik
 - **Humor-Booster:** –
 - **Aktion (Video):** –
 - **Sprechertext:** Der Flug war günstig. Dann kamen Koffer, Sitzplatz und Snack. Brokey nennt es Gesamtpaket.
 - **Einblendtext:** Zusatzkosten
 
-## 5. 5 Kleingedrucktes-Monster (lerneffekt, ca. 22–27 s)
+## 5. 5 Kleingedrucktes-Monster (lerneffekt, ca. 23–28 s)
 
 - **Bild:** Lupe, Dieb zwischen den Zeilen (Teil-Ersatz: Münzdieb statt Monster)
 - **Mimik:** erleuchtung
@@ -47,7 +47,7 @@ _Automatisch erzeugt aus `thema.toml` – Änderungen bitte dort machen und neu 
 - **Sprechertext:** Im Kleingedruckten steht, was es wirklich kostet. Brokey liest nie so weit.
 - **Einblendtext:** Kleingedrucktes lesen
 
-## 6. 6 Arbeitsstunden-Umrechnung (outro, ca. 27–33 s)
+## 6. 6 Arbeitsstunden-Umrechnung (outro, ca. 28–34 s)
 
 - **Bild:** Gadget, Uhrenkette, Brokey stellt es zurück (Teil-Ersatz: Goldbarren statt Auto)
 - **Mimik:** erleuchtung

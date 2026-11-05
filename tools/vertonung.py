@@ -22,6 +22,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import subprocess
 import sys
 import tomllib
@@ -92,6 +93,67 @@ def verbinde_mit_pausen(stuecke: list[Path], ziel: Path):
         sys.exit(f"ffmpeg-Fehler beim Verbinden:\n{r.stderr}")
 
 
+def stillen(datei: Path, schwelle_db: int = -35, mindest: float = 0.12) -> list[tuple[float, float]]:
+    """Atempausen im Audio finden (ffmpeg silencedetect): Liste (start, ende)."""
+    r = subprocess.run(["ffmpeg", "-hide_banner", "-i", str(datei), "-af",
+                        f"silencedetect=noise={schwelle_db}dB:d={mindest}", "-f", "null", "-"],
+                       capture_output=True, text=True)
+    st = [float(x) for x in re.findall(r"silence_start: ([\d.]+)", r.stderr)]
+    en = [float(x) for x in re.findall(r"silence_end: ([\d.]+)", r.stderr)]
+    return list(zip(st, en))
+
+
+def audio_dauer(datei: Path) -> float:
+    r = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(datei)],
+                       capture_output=True, text=True, check=True)
+    return float(r.stdout)
+
+
+def am_stueck(texte: list[str], medien: Path, schluessel, stimme, modell, einstellungen, neu: bool, ja: bool):
+    """Ganzen Text in EINER Anfrage vertonen (natürlicher Fluss), dann an den Atempausen
+    zwischen den Szenen in vo-NN.wav zerschneiden."""
+    voll = medien / "vo-voll.mp3"
+    gesamt = " ".join(t for t in texte if t)
+    if not voll.exists() or neu:
+        print(f"1 Anfrage, {len(gesamt)} Zeichen, Modell {modell}. Verbraucht Zeichen-Guthaben.")
+        if not ja and input("Senden? [j/N] ").strip().lower() not in ("j", "ja", "y", "yes"):
+            print("Abgebrochen, nichts gesendet.")
+            return
+        voll.write_bytes(tts(gesamt, schluessel, stimme, modell, "", "", einstellungen))
+    else:
+        print(f"Nutze vorhandene {voll.name} (nichts gesendet). Mit --neu neu erzeugen.")
+    dauer_gesamt = audio_dauer(voll)
+    pausen = stillen(voll)
+    # erwartete Grenzen nach Zeichenanteil, dann jeweils die nächstgelegene Atempause (in Reihenfolge)
+    zeichen = [len(t) for t in texte]
+    grenzen, kum, letzte = [], 0, 0.0
+    for k in range(len(texte) - 1):
+        kum += zeichen[k] + 1
+        erwartet = dauer_gesamt * kum / (len(gesamt) + 1)
+        kandidaten = [(a, e) for a, e in pausen if (a + e) / 2 > letzte + 0.5]
+        if not kandidaten:
+            sys.exit("Keine passende Atempause gefunden – Text bitte prüfen.")
+        a, e = min(kandidaten, key=lambda x: abs((x[0] + x[1]) / 2 - erwartet))
+        grenzen.append((a, e, erwartet))
+        letzte = (a + e) / 2
+    schnitte = [0.0] + [(a + e) / 2 for a, e, _ in grenzen] + [dauer_gesamt]
+    print(f"Gesamt {dauer_gesamt:.2f} s. Schnitte an den Atempausen:")
+    for k in range(len(texte)):
+        a, e = schnitte[k], schnitte[k + 1]
+        ziel = medien / f"vo-{k + 1:02d}.wav"
+        r = subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-i", str(voll), "-af",
+                            f"atrim={a:.3f}:{e:.3f},asetpts=PTS-STARTPTS,afade=t=in:d=0.015,"
+                            f"afade=t=out:st={max(0, e - a - 0.02):.3f}:d=0.02",
+                            "-ar", "44100", str(ziel)], capture_output=True, text=True)
+        if r.returncode:
+            sys.exit(r.stderr)
+        info = ""
+        if k < len(grenzen):
+            ga, ge, erw = grenzen[k]
+            info = f"  | Pause {ge - ga:.2f} s bei {ga:.2f}-{ge:.2f} (erwartet ~{erw:.2f})"
+        print(f"  Szene {k + 1:02d}: {a:6.2f}-{e:6.2f} s = {e - a:.2f} s{info}")
+
+
 def main():
     global PAUSE_SEKUNDEN
     p = argparse.ArgumentParser(description="Voiceover mit ElevenLabs erzeugen")
@@ -100,6 +162,8 @@ def main():
     p.add_argument("--neu", nargs="*", metavar="NN", help="diese Szenen neu erzeugen (ohne Angabe: alle)")
     p.add_argument("--tempo", type=float, help="Sprechtempo, z. B. 1.1 (1.0 = normal)")
     p.add_argument("--medien", help="Ordner für die Audiodateien (Standard: <video>/medien)")
+    p.add_argument("--am-stueck", action="store_true",
+                   help="ganzen Text in einer Anfrage vertonen und an Atempausen in Szenen schneiden (natürlicher)")
     p.add_argument("--pause", type=float, help=f"Länge der [pause]-Stille in Sekunden (Standard {PAUSE_SEKUNDEN})")
     p.add_argument("--stimme", help="andere voice_id als in bausteine/stimme.toml")
     p.add_argument("--stabilitaet", type=float, help="0-1, niedriger = lebendiger (Standard der Stimme)")
@@ -124,6 +188,16 @@ def main():
     texte = [fuer_tts(s.get("sprechertext", "")) for s in m.szenen]
     teile_roh = [[fuer_tts(x) for x in s.get("sprechertext_tts", "").split(PAUSE) if x.strip()] for s in m.szenen]
 
+    einstellungen = dict(cfg.get("voice_settings", {}))
+    if a.tempo:
+        einstellungen["speed"] = a.tempo
+    if a.stabilitaet is not None:
+        einstellungen["stability"] = a.stabilitaet
+    if a.am_stueck:
+        am_stueck(texte, medien, schluessel, stimme, modell, einstellungen, a.neu is not None, a.ja)
+        print(f"Fertig. Jetzt schneiden: python3 tools/schnitt.py {ordner.relative_to(ROOT)} --medien {medien}")
+        return
+
     neu_alle = a.neu is not None and len(a.neu) == 0
     neu = {f"{int(x):02d}" for x in (a.neu or [])}
     aufgaben = []
@@ -143,11 +217,6 @@ def main():
         print("Abgebrochen, nichts gesendet.")
         return
 
-    einstellungen = dict(cfg.get("voice_settings", {}))
-    if a.tempo:
-        einstellungen["speed"] = a.tempo
-    if a.stabilitaet is not None:
-        einstellungen["stability"] = a.stabilitaet
     for i, nn, t, ziel in aufgaben:
         vorher = texte[i - 2] if i > 1 else ""
         nachher = texte[i] if i < len(texte) else ""

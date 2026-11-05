@@ -10,7 +10,7 @@ Alles hier vor dem Upload selbst prüfen und abhaken. Automatisch gefunden heiß
 
 ## Sätze mit Zahlen (aus Sprecher- und Einblendtext)
 
-- [ ] (1 Ratenkauf-Schwanz) Brokey hört nur: nur 29 Euro.
+- [ ] (1 Ratenkauf-Schwanz) Brokey hört nur eins: nur 29 Euro.
 - [ ] (1 Ratenkauf-Schwanz) Nur 29 € im Monat? (Beispiel)
 - [ ] (2 Rabatt-Falle) -50 % = 0 € gespart
 

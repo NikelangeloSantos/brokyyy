@@ -1,0 +1,31 @@
+1
+00:00:00,000 --> 00:00:06,800
+Dein Zahlungsverhalten zählt
+
+2
+00:00:06,800 --> 00:00:12,000
+Wohnung gesucht
+
+3
+00:00:12,000 --> 00:00:21,200
+Score = Zahlungs-Zeugnis
+
+4
+00:00:21,200 --> 00:00:27,200
+Pünktlich zahlen
+
+5
+00:00:27,200 --> 00:00:33,600
+Rechnung liegen lassen?
+
+6
+00:00:33,600 --> 00:00:41,200
+Gespeicherte Daten prüfen
+
+7
+00:00:41,200 --> 00:00:49,200
+Erinnerung statt Vergessen
+
+8
+00:00:49,200 --> 00:00:57,200
+Pünktlich zahlen schadet nie · Keine Finanzberatung

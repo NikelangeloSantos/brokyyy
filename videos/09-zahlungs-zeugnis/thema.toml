@@ -1,0 +1,131 @@
+# Video 09 – Dein Zahlungs-Zeugnis (ca. 60-64 s)
+# Quelle: Auftrag im Chat vom 2026-11-05. Texte wörtlich übernommen, außer Szene 3 und 8 (Ersatz-Clips, Pointe ans Bild angepasst).
+# Keine Score-Werte, Punkte, Prozente, Gewichtungen; keine Versprechen (Wohnung/Kredit). "Schufa" nur sachlich.
+#
+# Vertonen:  python3 tools/vertonung.py videos/09-zahlungs-zeugnis --am-stueck --medien output/arbeit/09-zahlungs-zeugnis/audio --tempo 1.0 --stabilitaet 0.5
+#   Schnitte von Hand geprüft: --schnitte 6.16,11.59,20.14,27.41,34.98,42.76,51.12
+# Schneiden: python3 tools/schnitt.py videos/09-zahlungs-zeugnis --medien output/arbeit/09-zahlungs-zeugnis/audio \
+#              --arbeitsordner output/arbeit/09-zahlungs-zeugnis/schnitt --ausgabe output/zahlungs-zeugnis.mp4
+
+[video]
+nummer = "09"
+titel = "Dein Zahlungs-Zeugnis"
+thema = "Schufa-Score und Zahlungsverhalten bei der Wohnungssuche"
+lerneffekt = "Dein Zahlungsverhalten kann beeinflussen, ob du eine Wohnung oder einen Vertrag bekommst. Pünktlich zahlen, Rechnungen nicht liegen lassen, gespeicherte Daten im Blick behalten."
+zielgruppe = "breit: Teenager, Azubis, Berufseinsteiger"
+ton = "trockener, sarkastischer Erzähler im Stil einer ruhigen Naturdoku, Understatement"
+disclaimer = "Keine Finanzberatung"
+referenzbild = "bibliothek/bilder/brokey-abos.jpg"
+caption = "TODO: Caption auswählen"
+hashtags = ["#finanzen", "#schufa", "#wohnung", "#finanzbildung"]
+betonen = ["Zahlungsverhalten", "pünktlich bezahlen", "Dauerauftrag", "Keine Finanzberatung"]
+# Sprechzeit 60,6 s: Vorlauf/Pause je 0,2 s, damit es bei 60-64 s bleibt (Atempausen kommen dazu)
+vorlauf = 0.2
+pause_nach = 0.2
+clip_min_tempo = 0.8
+clip_ton = 0.2
+clip_ganz = true
+einblend_dauer = 2.5
+
+[[fakt]]
+text = "Schufa als eine von mehreren Auskunfteien ('unter anderem') – sachlich, nicht bewerten"
+status = "offen"
+
+[[fakt]]
+text = "'Unbezahlte Rechnungen können dem Score schaden' – bewusst 'können', keine Bedingungen oder Fristen nennen"
+status = "offen"
+
+[[fakt]]
+text = "'Du darfst nachsehen, was über dich gespeichert ist' – Auskunftsrecht allgemein formuliert, keine Details zu Verfahren/Kosten"
+status = "offen"
+
+[[szene]]
+name = "1 Schufa-Waage"
+teil = "hook"
+schnellschnitt = false
+medien = ["bibliothek/clips/brokey-balances-scale-with-coins-b3835dbf.mp4"]
+bild = '''A scale tips toward a pile of reminder letters, Brokey worriedly holds his beanie'''
+bild_de = "Waage: Rechnungen gegen Münzen, Brokey besorgt"
+mimik = "panik"
+booster = []
+running_gag = true
+sprechertext = '''Bevor du eine Wohnung bekommst, schaut jemand nach, wie du Rechnungen zahlst. Brokey weiß das noch nicht.'''
+einblendtext = "Dein Zahlungsverhalten zählt"
+
+[[szene]]
+name = "2 Wohnungstür"
+teil = "setup"
+medien = ["bibliothek/clips/character-interacts-with-coin-boss-f2ff460c-720p.mp4"]
+bild = '''Brokey in front of a door, a coin-sack landlord with glasses examines him'''
+bild_de = "Münzsack-Vermieter mit Brille prüft Brokey (ohne Tür)"
+mimik = "panik"
+booster = []
+sprechertext = '''Brokey will eine Wohnung. Der Vermieter will erst wissen, ob Brokey zahlt. Pünktlich.'''
+einblendtext = "Wohnung gesucht"
+
+[[szene]]
+name = "3 Score-Anzeige (Ersatz)"
+teil = "geschichte"
+medien = ["bibliothek/clips/character-crossing-finish-line-s-1389e02e.mp4"]
+bild = '''Brokey with a report card and a half-full thermometer gauge'''
+bild_de = "Spar-Thermometer, Ziellinie, Brokey jubelt und kippt um (Ersatz für Score-Anzeige)"
+mimik = "selbstsicher"
+booster = []
+sprechertext = '''Dafür gibt es unter anderem die Schufa. Sie macht aus deinem Zahlungsverhalten einen Score. Eine Art Zeugnis. Brokey hält es für ein Wettrennen.'''
+einblendtext = "Score = Zahlungs-Zeugnis"
+
+[[szene]]
+name = "4 Pünktlich zahlen"
+teil = "lerneffekt"
+medien = ["bibliothek/clips/character-collects-coins-from-ma-7754677b.mp4"]
+bild = '''Brokey runs to the mailbox, a checkmark appears'''
+bild_de = "Brokey mit Papieren am Briefkasten (ohne Häkchen)"
+mimik = "erleuchtung"
+booster = []
+sprechertext = '''Was oft hilft: Rechnungen pünktlich bezahlen. Langweilig, aber wirksam. Brokey übt es an einem Briefkasten.'''
+einblendtext = "Pünktlich zahlen"
+
+[[szene]]
+name = "5 Mahngebühren-Schneeball"
+teil = "geschichte"
+medien = ["bibliothek/clips/snowball-rolls-over-character-f2224411-720p.mp4"]
+bild = '''A paper snowball made of letters rolls toward Brokey'''
+bild_de = "Papierschneeball aus Briefen rollt über Brokey"
+mimik = "panik"
+booster = []
+sprechertext = '''Was nicht hilft: Briefe stapeln. Unbezahlte Rechnungen können dem Score schaden. Brokey nennt den Stapel Archiv.'''
+einblendtext = "Rechnung liegen lassen?"
+
+[[szene]]
+name = "6 Akte prüfen"
+teil = "lerneffekt"
+medien = ["bibliothek/clips/brokey-catches-coin-thief-200fcf91.mp4"]
+bild = '''Brokey with a detective hat and magnifying glass over a long list'''
+bild_de = "Detektivhut, Lupe, lange Liste"
+mimik = "erleuchtung"
+booster = []
+sprechertext = '''Du darfst nachsehen, was über dich gespeichert ist. Brokey schaut genau hin. Wie ein Detektiv, der sich selbst verdächtigt.'''
+einblendtext = "Gespeicherte Daten prüfen"
+
+[[szene]]
+name = "7 Dauerauftrag-Automat"
+teil = "lerneffekt"
+medien = ["bibliothek/clips/piggy-bank-coins-and-shopping-443f2687.mp4"]
+bild = '''A machine stamps letters, Brokey relaxes in a deckchair'''
+bild_de = "Maschine verteilt Geld, Brokey im Liegestuhl"
+mimik = "gelangweilt"
+booster = []
+sprechertext = '''Für feste Zahlungen gibt es Dauerauftrag und Erinnerungen. Brokey lässt eine Maschine für sich denken. Selten war er so effizient.'''
+einblendtext = "Erinnerung statt Vergessen"
+
+[[szene]]
+name = "8 Schlüsselübergabe (Ersatz)"
+teil = "outro"
+medien = ["bibliothek/clips/character-sipping-drink-during-s-cd3c82ef.mp4"]
+bild = '''The landlord hands Brokey a key, the door opens'''
+bild_de = "Brokey entspannt auf Sparschwein mit Schild (Ersatz für Schlüsselübergabe)"
+mimik = "gelangweilt"
+booster = []
+sprechertext = '''Ob es mit der Wohnung klappt, hängt von vielem ab. Ordentliches Zahlen schadet nie. Brokey bleibt jedenfalls entspannt. Keine Finanzberatung.'''
+einblendtext = "Pünktlich zahlen schadet nie · Keine Finanzberatung"
+einblend_ganz = true

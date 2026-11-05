@@ -1,0 +1,106 @@
+# Video 10 – Dein Zahlungs-Zeugnis, Kurzfassung (ca. 40-44 s, nie über 50 s)
+# Quelle: Auftrag im Chat vom 2026-11-05. Texte wörtlich übernommen, außer Szene 3 und 6 (Ersatz-Clips, Pointe ans Bild angepasst).
+# Keine Score-Werte, Punkte, Prozente, Gewichtungen; keine Versprechen. "Schufa" nur sachlich.
+#
+# Vertonen:  python3 tools/vertonung.py videos/10-zahlungs-zeugnis-kurz --am-stueck --medien output/arbeit/10-zahlungs-zeugnis-kurz/audio --tempo 1.0 --stabilitaet 0.5
+#   Schnitte von Hand geprüft: --schnitte 5.72,11.02,19.27,26.29,33.69
+# Schneiden: python3 tools/schnitt.py videos/10-zahlungs-zeugnis-kurz --medien output/arbeit/10-zahlungs-zeugnis-kurz/audio \
+#              --arbeitsordner output/arbeit/10-zahlungs-zeugnis-kurz/schnitt --ausgabe output/zahlungs-zeugnis-kurz.mp4
+
+[video]
+nummer = "10"
+titel = "Dein Zahlungs-Zeugnis (kurz)"
+thema = "Schufa-Score und Zahlungsverhalten bei der Wohnungssuche"
+lerneffekt = "Dein Zahlungsverhalten kann beeinflussen, ob du eine Wohnung oder einen Vertrag bekommst. Pünktlich zahlen und Rechnungen nicht liegen lassen."
+zielgruppe = "breit: Teenager, Azubis, Berufseinsteiger"
+ton = "trockener, sarkastischer Erzähler im Stil einer ruhigen Naturdoku, Understatement"
+disclaimer = "Keine Finanzberatung"
+referenzbild = "bibliothek/bilder/brokey-abos.jpg"
+caption = "TODO: Caption auswählen"
+hashtags = ["#finanzen", "#schufa", "#wohnung", "#finanzbildung"]
+betonen = ["Zahlungsverhalten", "pünktlich bezahlen", "Keine Finanzberatung"]
+# Laut Auftrag: Clip auf Sprechlänge + Nachwirken kürzen (clip_ganz aus), zu kurze Clips bis 0,8-fach
+# Sprechzeit 42,0 s: Vorlauf/Pause je 0,15 s (natürliche Atempausen kommen dazu)
+vorlauf = 0.15
+pause_nach = 0.15
+clip_min_tempo = 0.8
+clip_ton = 0.2
+clip_ganz = false
+einblend_dauer = 2.5
+
+[[fakt]]
+text = "Schufa als eine von mehreren Auskunfteien ('unter anderem') – sachlich, nicht bewerten"
+status = "offen"
+
+[[fakt]]
+text = "'Unbezahlte Rechnungen können dem Score schaden' – bewusst 'können', keine Bedingungen oder Fristen nennen"
+status = "offen"
+
+[[szene]]
+name = "1 Schufa-Waage"
+teil = "hook"
+schnellschnitt = false
+medien = ["bibliothek/clips/brokey-balances-scale-with-coins-b3835dbf.mp4"]
+bild = '''A scale tips toward a pile of reminder letters, Brokey worriedly holds his beanie'''
+bild_de = "Waage: Rechnungen gegen Münzen, Brokey besorgt"
+mimik = "panik"
+booster = []
+running_gag = true
+sprechertext = '''Bevor du eine Wohnung bekommst, schaut jemand, wie du Rechnungen zahlst. Brokey wusste das nicht.'''
+einblendtext = "Dein Zahlungsverhalten zählt"
+
+[[szene]]
+name = "2 Wohnungstür"
+teil = "setup"
+medien = ["bibliothek/clips/character-interacts-with-coin-boss-f2ff460c-720p.mp4"]
+bild = '''Brokey in front of a door, a coin-sack landlord with glasses examines him'''
+bild_de = "Münzsack-Vermieter mit Brille prüft Brokey (ohne Tür)"
+mimik = "panik"
+booster = []
+sprechertext = '''Brokey will eine Wohnung. Der Vermieter will erst wissen, ob er zahlt. Pünktlich.'''
+einblendtext = "Wohnung gesucht"
+
+[[szene]]
+name = "3 Score-Anzeige (Ersatz)"
+teil = "geschichte"
+medien = ["bibliothek/clips/character-crossing-finish-line-s-1389e02e.mp4"]
+bild = '''Brokey with a report card and a half-full thermometer gauge'''
+bild_de = "Spar-Thermometer, Ziellinie (Ersatz für Score-Anzeige)"
+mimik = "selbstsicher"
+booster = []
+sprechertext = '''Dafür gibt es unter anderem die Schufa. Ein Score aus deinem Zahlungsverhalten. Ein Zeugnis. Brokey hält es für ein Wettrennen.'''
+einblendtext = "Score = Zahlungs-Zeugnis"
+
+[[szene]]
+name = "4 Pünktlich zahlen"
+teil = "lerneffekt"
+medien = ["bibliothek/clips/character-collects-coins-from-ma-7754677b.mp4"]
+bild = '''Brokey runs to the mailbox, a checkmark appears'''
+bild_de = "Brokey mit Papieren am Briefkasten (ohne Häkchen)"
+mimik = "erleuchtung"
+booster = []
+sprechertext = '''Was oft hilft: Rechnungen pünktlich bezahlen. Langweilig, aber wirksam. Brokey übt am Briefkasten.'''
+einblendtext = "Pünktlich zahlen"
+
+[[szene]]
+name = "5 Mahngebühren-Schneeball"
+teil = "geschichte"
+medien = ["bibliothek/clips/snowball-rolls-over-character-f2224411-720p.mp4"]
+bild = '''A paper snowball made of letters rolls toward Brokey'''
+bild_de = "Papierschneeball aus Briefen rollt über Brokey"
+mimik = "panik"
+booster = []
+sprechertext = '''Was nicht hilft: Briefe stapeln. Unbezahlte Rechnungen können dem Score schaden. Brokey nennt es Archiv.'''
+einblendtext = "Rechnung liegen lassen?"
+
+[[szene]]
+name = "6 Schlüsselübergabe (Ersatz)"
+teil = "outro"
+medien = ["bibliothek/clips/character-sipping-drink-during-s-cd3c82ef.mp4"]
+bild = '''The landlord hands Brokey a key, the door opens'''
+bild_de = "Brokey entspannt auf Sparschwein mit Schild (Ersatz für Schlüsselübergabe)"
+mimik = "gelangweilt"
+booster = []
+sprechertext = '''Ob es klappt, hängt von vielem ab. Ordentliches Zahlen schadet nie. Brokey bleibt jedenfalls entspannt. Keine Finanzberatung.'''
+einblendtext = "Pünktlich zahlen schadet nie · Keine Finanzberatung"
+einblend_ganz = true

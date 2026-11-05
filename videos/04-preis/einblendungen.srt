@@ -1,0 +1,23 @@
+1
+00:00:00,000 --> 00:00:06,000
+Nur 29 € im Monat? (Beispiel)
+
+2
+00:00:06,000 --> 00:00:11,600
+-50 % = 0 € gespart
+
+3
+00:00:11,600 --> 00:00:16,800
+Kündigungsfrist prüfen
+
+4
+00:00:16,800 --> 00:00:22,400
+Zusatzkosten
+
+5
+00:00:22,400 --> 00:00:27,200
+Kleingedrucktes lesen
+
+6
+00:00:27,200 --> 00:00:33,200
+Wie viele Arbeitsstunden? · Keine Finanzberatung

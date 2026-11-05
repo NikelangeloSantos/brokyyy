@@ -1,0 +1,111 @@
+# Video 04 – Der Preis ist nicht der Preis
+# Quelle: Auftrag im Chat vom 2026-11-05 (Sprechertexte und Einblendtexte wörtlich übernommen).
+# [pause] = kurze Pause vor der Pointe (nur Vertonung). Alle Beträge sind erfundene Beispiele.
+#
+# Vertonen:  python3 tools/vertonung.py videos/04-preis --medien output/arbeit/04-preis/audio --tempo 1.0 --stabilitaet 0.65 --pause 0.35
+# Schneiden: python3 tools/schnitt.py videos/04-preis --medien output/arbeit/04-preis/audio \
+#              --arbeitsordner output/arbeit/04-preis/schnitt --ausgabe output/preis.mp4
+
+[video]
+nummer = "04"
+titel = "Der Preis ist nicht der Preis"
+thema = "Lockpreise, Rabatte, Gratis-Monate und Zusatzkosten"
+lerneffekt = "Schau auf den Gesamtpreis und die Bedingungen, nicht nur auf den Lockpreis."
+zielgruppe = "breit: Teenager, Azubis, Berufseinsteiger"
+ton = "trockener, sarkastischer Erzähler im Stil einer ruhigen Naturdoku, Understatement"
+disclaimer = "Keine Finanzberatung"
+referenzbild = "bibliothek/bilder/brokey-abos.jpg"
+caption = "TODO: Caption auswählen"
+hashtags = ["#finanzen", "#geldtipps", "#sparen", "#finanzbildung"]
+betonen = ["selten der Preis", "null Prozent", "Kleingedruckten", "Arbeitsstunden", "Keine Finanzberatung"]
+vorlauf = 0.3
+pause_nach = 0.2
+clip_min_tempo = 0.8
+clip_ton = 0.2
+
+[[rechnung]]
+beschreibung = "Rabatt auf etwas, das man nicht braucht: gespart wird nichts (Beispiel)"
+ausdruck = "0"
+ergebnis = 0
+einheit = "€"
+hinweis = "Pointe, kein echter Preis"
+
+[[fakt]]
+text = "'Nur 29 Euro' ist ein erfundenes Beispiel (im Einblendtext als Beispiel gekennzeichnet)"
+status = "offen"
+
+[[fakt]]
+text = "Gratis-Probemonat: 'läuft still weiter' gilt nicht immer – je nach Vertrag/Anbieter; im Video nur als Beispiel, Kündigungsfrist prüfen"
+status = "offen"
+
+[[fakt]]
+text = "Billigflug-Zusatzkosten (Koffer, Sitzplatz, Snack) als typisches Beispiel, keine Aussage über einen bestimmten Anbieter"
+status = "offen"
+
+[[szene]]
+name = "1 Ratenkauf-Schwanz"
+teil = "hook"
+schnellschnitt = false
+medien = ["bibliothek/bilder/stick-figure-holding-banana-slicer-a0a8e86a.jpg#mitte"]
+bild = '''Brokey proudly holds a gadget while an endless chain of paper slips trails behind him'''
+bild_de = "Brokey mit Gadget, endlose Zettelkette (Ersatz: Standbild Bananenschneider)"
+mimik = "selbstsicher"
+booster = []
+running_gag = true
+sprechertext = '''Der Preis auf dem Schild ist selten der Preis. Brokey hört nur: [pause] nur 29 Euro.'''
+einblendtext = "Nur 29 € im Monat? (Beispiel)"
+
+[[szene]]
+name = "2 Rabatt-Falle"
+teil = "geschichte"
+medien = ["bibliothek/clips/character-snaps-from-hypnotic-state-57b1a298.mp4"]
+bild = '''Brokey with spiral eyes carries a pile of sale items toward a starburst sign, a mousetrap snaps shut'''
+bild_de = "Spiralaugen, Mausefalle schnappt zu"
+mimik = "hoffnung_absturz"
+booster = []
+sprechertext = '''Fünfzig Prozent Rabatt auf etwas Unnötiges spart exakt null Prozent. [pause] Brokey nennt es Erfolg.'''
+einblendtext = "-50 % = 0 € gespart"
+
+[[szene]]
+name = "3 Gratis-Probemonat"
+teil = "geschichte"
+medien = ["bibliothek/clips/character-trapped-by-gift-box-13c41a6b-720p.mp4"]
+bild = '''A gift box with a calendar mousetrap catches Brokey's wallet'''
+bild_de = "Geschenkbox, Kalender-Mausefalle"
+mimik = "gelangweilt"
+booster = []
+sprechertext = '''Ein Monat gratis. Danach läuft das Abo still weiter. [pause] Brokey nennt es Treue.'''
+einblendtext = "Kündigungsfrist prüfen"
+
+[[szene]]
+name = "4 Billigflug"
+teil = "geschichte"
+medien = ["bibliothek/bilder/stick-figure-chases-cartoon-train-6ec4188e.jpg"]
+bild = '''A paper plane with a long tail of extra costs'''
+bild_de = "Papierflieger mit Zusatzkosten-Schwanz (Ersatz: Standbild Brokey jagt Zug)"
+mimik = "panik"
+booster = []
+sprechertext = '''Der Flug war günstig. Dann kamen Koffer, Sitzplatz und Snack. [pause] Brokey nennt es Gesamtpaket.'''
+einblendtext = "Zusatzkosten"
+
+[[szene]]
+name = "5 Kleingedrucktes-Monster"
+teil = "lerneffekt"
+medien = ["bibliothek/clips/brokey-catches-coin-thief-200fcf91.mp4"]
+bild = '''Brokey with a magnifying glass discovers a monster with a coin sack hiding between the lines'''
+bild_de = "Lupe, Dieb zwischen den Zeilen (Teil-Ersatz: Münzdieb statt Monster)"
+mimik = "erleuchtung"
+booster = []
+sprechertext = '''Im Kleingedruckten steht, was es wirklich kostet. [pause] Brokey liest nie so weit.'''
+einblendtext = "Kleingedrucktes lesen"
+
+[[szene]]
+name = "6 Arbeitsstunden-Umrechnung"
+teil = "outro"
+medien = ["bibliothek/clips/character-holding-and-protecting-b0af4af6.mp4"]
+bild = '''Brokey holds a gadget, a chain of clocks appears, he puts the gadget back'''
+bild_de = "Gadget, Uhrenkette, Brokey stellt es zurück (Teil-Ersatz: Goldbarren statt Auto)"
+mimik = "erleuchtung"
+booster = []
+sprechertext = '''Neue Regel: Wie viele Arbeitsstunden kostet das? [pause] Brokey überlegt es sich plötzlich anders. Keine Finanzberatung.'''
+einblendtext = "Wie viele Arbeitsstunden? · Keine Finanzberatung"

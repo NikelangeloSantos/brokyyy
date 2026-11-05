@@ -378,3 +378,27 @@ hinweis = "Schrift im Bild (SALE, 50% OFF)"
 beschreibung = "Brokey gibt Gepäck am Flughafen auf, dann sitzt er im Flugzeug"
 tags = ["reisen","flug","zusatzkosten","gepaeck"]
 hinweis = "1,4-3,0 s: Figur ohne rote Mütze; Schild DEPARTURES"
+
+["clips/brokey-sells-items-for-coins-55471e48-720p.mp4"]
+beschreibung = "Brokey verkauft alte Sachen von einer Decke (Flohmarkt), ein Münzturm wächst"
+tags = ["flohmarkt","ausmisten","verkaufen","nebeneinkommen"]
+
+["clips/character-interacts-with-coin-boss-f2ff460c-720p.mp4"]
+beschreibung = "Brokey vor einem Münzsack-Chef auf Drehstuhl, Münzleiter, er übt die Gehaltsverhandlung"
+tags = ["gehaltsverhandlung","gehalt","chef","karriere"]
+
+["clips/snowball-rolls-over-character-f2224411-720p.mp4"]
+beschreibung = "Riesiger Papierschneeball aus Briefen rollt über Brokey, am Ende sitzt er platt auf einer Münze"
+tags = ["mahngebuehren","rechnungen","schneeball","schulden","panik"]
+
+["bilder/stick-figure-avoiding-giant-snow-0bcf06c0-2k.jpg"]
+beschreibung = "Brokey weicht einem riesigen Papierschneeball aus (Startbild Schneeball-Clip)"
+tags = ["mahngebuehren","rechnungen","schneeball"]
+
+["bilder/stick-figure-selling-items-e1f96339-2k.jpg"]
+beschreibung = "Brokey verkauft Sachen auf dem Flohmarkt (Startbild Flohmarkt-Clip)"
+tags = ["flohmarkt","ausmisten","verkaufen"]
+
+["bilder/stick-figure-standing-before-chair-5c0f65ff-2k.jpg"]
+beschreibung = "Brokey vor dem Münzsack-Chef auf dem Stuhl (Startbild Chef-Clip)"
+tags = ["gehaltsverhandlung","gehalt","chef"]

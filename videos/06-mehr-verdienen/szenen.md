@@ -13,7 +13,7 @@ _Automatisch erzeugt aus `thema.toml` – Änderungen bitte dort machen und neu 
 
 ## 2. 2 Flohmarkt-Gewinn (geschichte, ca. 4–9 s)
 
-- **Bild:** Flohmarkt, Münzturm (Ersatz: Standbild Regal mit unnützen Geräten)
+- **Bild:** Brokey verkauft Sachen von einer Decke, Münzturm wächst (Clip vom Nutzer)
 - **Mimik:** erleuchtung
 - **Humor-Booster:** –
 - **Aktion (Video):** –
@@ -31,7 +31,7 @@ _Automatisch erzeugt aus `thema.toml` – Änderungen bitte dort machen und neu 
 
 ## 4. 4 Gehaltsverhandlung (geschichte, ca. 14–18 s)
 
-- **Bild:** Münzsack-Chef (Ersatz: Standbild Brokey mit Gehaltsscheck)
+- **Bild:** Brokey vor Münzsack-Chef auf Drehstuhl, Münzleiter (Clip vom Nutzer)
 - **Mimik:** selbstsicher
 - **Humor-Booster:** –
 - **Aktion (Video):** –

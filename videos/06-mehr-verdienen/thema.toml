@@ -6,8 +6,6 @@
 #   Schnitte von Hand geprüft: --schnitte 6.10,11.99,18.35,24.42,32.44 (automatisch lag Szene 3/4 eine Pause zu spät)
 # Schneiden: python3 tools/schnitt.py videos/06-mehr-verdienen --medien output/arbeit/06-mehr-verdienen/audio \
 #              --arbeitsordner output/arbeit/06-mehr-verdienen/schnitt --ausgabe output/mehr-verdienen.mp4
-# Szene 4 (Ersatz): Standbild = Bild bei 0,3 s aus bibliothek/clips/stick-figure-holding-paycheck-gr-4f689b84.mp4
-#   ffmpeg -ss 0.3 -i <clip> -frames:v 1 output/arbeit/06-mehr-verdienen/medien/gehaltsscheck-start.png
 
 [video]
 nummer = "06"
@@ -21,8 +19,10 @@ referenzbild = "bibliothek/bilder/brokey-abos.jpg"
 caption = "TODO: Caption auswählen"
 hashtags = ["#finanzen", "#geldtipps", "#gehalt", "#finanzbildung"]
 betonen = ["ausmisten", "Kleinvieh", "nichts übrig", "Netto", "Keine Finanzberatung"]
-vorlauf = 0.1
-pause_nach = 0.0
+# bis 50 s erlaubt: Timing laut Auftrag, Clips nie kürzen
+vorlauf = 0.3
+pause_nach = 0.3
+clip_ganz = true
 clip_min_tempo = 0.8
 clip_ton = 0.2
 
@@ -54,9 +54,9 @@ einblendtext = "Noch ein Nebenjob?"
 [[szene]]
 name = "2 Flohmarkt-Gewinn"
 teil = "geschichte"
-medien = ["bibliothek/bilder/stick-figure-holding-banana-slicer-a0a8e86a.jpg"]
+medien = ["bibliothek/clips/brokey-sells-items-for-coins-55471e48-720p.mp4"]
 bild = '''Brokey sits behind a blanket with old things at a flea market, a coin tower grows'''
-bild_de = "Flohmarkt, Münzturm (Ersatz: Standbild Regal mit unnützen Geräten)"
+bild_de = "Brokey verkauft Sachen von einer Decke, Münzturm wächst (Clip vom Nutzer)"
 mimik = "erleuchtung"
 booster = []
 sprechertext = '''Erste gute Idee: ausmisten. Was Brokey nicht braucht, braucht vielleicht jemand anderes.'''
@@ -76,9 +76,9 @@ einblendtext = "Kleinvieh"
 [[szene]]
 name = "4 Gehaltsverhandlung"
 teil = "geschichte"
-medien = ["output/arbeit/06-mehr-verdienen/medien/gehaltsscheck-start.png"]
+medien = ["bibliothek/clips/character-interacts-with-coin-boss-f2ff460c-720p.mp4"]
 bild = '''Brokey stands before a coin-sack boss on a swivel chair, a coin ladder behind him'''
-bild_de = "Münzsack-Chef (Ersatz: Standbild Brokey mit Gehaltsscheck)"
+bild_de = "Brokey vor Münzsack-Chef auf Drehstuhl, Münzleiter (Clip vom Nutzer)"
 mimik = "selbstsicher"
 booster = []
 sprechertext = '''Dann: nach mehr Gehalt fragen. Vorbereitet. Brokey übt vorher vor einem Münzsack.'''

@@ -41,6 +41,7 @@ LANGSAM_ZOOM = 0.08          # Standbilder außerhalb des Hooks: langsamer Zoom 
 AUSSCHNITTE = {"": (1.0, 0.5), "oben": (1.6, 0.25), "mitte": (1.35, 0.45), "unten": (1.35, 0.7)}
 CLIP_SFX_LAUTSTAERKE = 0.35  # Soundeffekte aus Flow-Clips leise unter die Stimme ([video] clip_ton)
 VORLAUF = 0.0                # Sekunden Bild vor Einsatz der Stimme ([video] vorlauf)
+CLIP_GANZ = False            # True: Clips immer vollständig zeigen, nie kürzen ([video] clip_ganz)
 CLIP_MIN_TEMPO = 1.0         # zu kurze Clips bis auf dieses Tempo verlangsamen, Rest = Standbild ([video] clip_min_tempo)
 # Schnelle Schnitte: jede Szene wird in kurze Einstellungen mit wechselndem Ausschnitt zerlegt
 # (Totale -> Gesicht nah -> halbnah -> sehr nah). Pro Szene in thema.toml ueberschreibbar: schnitt_tempo = 1.2
@@ -311,7 +312,8 @@ def schneide(ordner: Path, nur_pruefen: bool = False, ausgabe: Path | None = Non
         sys.exit("ffmpeg nicht gefunden. Bitte installieren (siehe README).")
     m = Mappe(ordner)
     m.pruefe()
-    global VORLAUF, CLIP_MIN_TEMPO, CLIP_SFX_LAUTSTAERKE, PAUSE_NACH_SZENE
+    global VORLAUF, CLIP_MIN_TEMPO, CLIP_SFX_LAUTSTAERKE, PAUSE_NACH_SZENE, CLIP_GANZ
+    CLIP_GANZ = m.v.get("clip_ganz", CLIP_GANZ)
     VORLAUF = m.v.get("vorlauf", VORLAUF)
     CLIP_MIN_TEMPO = m.v.get("clip_min_tempo", CLIP_MIN_TEMPO)
     CLIP_SFX_LAUTSTAERKE = m.v.get("clip_ton", CLIP_SFX_LAUTSTAERKE)
@@ -346,6 +348,9 @@ def schneide(ordner: Path, nur_pruefen: bool = False, ausgabe: Path | None = Non
         else:
             d = s["_ende"] - s["_start"] + PAUSE_NACH_SZENE
             quelle = "geschätzt"
+        if CLIP_GANZ and medium and all(ist_clip(x) for x, _ in medium):
+            # Clips nicht kürzen: Szene dauert mindestens so lange wie die Clips (Rest = Stille)
+            d = max(d, sum(dauer(x) for x, _ in medium))
         plan.append(dict(nn=nn, szene=s, medium=medium, stimme=stimme, d=d, quelle=quelle))
 
     print(f"Schnittplan {ordner.name}:")

@@ -109,7 +109,8 @@ def audio_dauer(datei: Path) -> float:
     return float(r.stdout)
 
 
-def am_stueck(texte: list[str], medien: Path, schluessel, stimme, modell, einstellungen, neu: bool, ja: bool):
+def am_stueck(texte: list[str], medien: Path, schluessel, stimme, modell, einstellungen, neu: bool, ja: bool,
+              feste_schnitte: list[float] | None = None):
     """Ganzen Text in EINER Anfrage vertonen (natürlicher Fluss), dann an den Atempausen
     zwischen den Szenen in vo-NN.wav zerschneiden."""
     voll = medien / "vo-voll.mp3"
@@ -136,6 +137,10 @@ def am_stueck(texte: list[str], medien: Path, schluessel, stimme, modell, einste
         a, e = min(kandidaten, key=lambda x: abs((x[0] + x[1]) / 2 - erwartet))
         grenzen.append((a, e, erwartet))
         letzte = (a + e) / 2
+    if feste_schnitte:  # von Hand geprüfte Schnittpunkte (z. B. wenn zwei Pausen dicht beieinander liegen)
+        if len(feste_schnitte) != len(texte) - 1:
+            sys.exit(f"--schnitte braucht {len(texte) - 1} Zeitpunkte.")
+        grenzen = [(t, t, t) for t in feste_schnitte]
     schnitte = [0.0] + [(a + e) / 2 for a, e, _ in grenzen] + [dauer_gesamt]
     print(f"Gesamt {dauer_gesamt:.2f} s. Schnitte an den Atempausen:")
     for k in range(len(texte)):
@@ -164,6 +169,7 @@ def main():
     p.add_argument("--medien", help="Ordner für die Audiodateien (Standard: <video>/medien)")
     p.add_argument("--am-stueck", action="store_true",
                    help="ganzen Text in einer Anfrage vertonen und an Atempausen in Szenen schneiden (natürlicher)")
+    p.add_argument("--schnitte", help="nur mit --am-stueck: Schnittpunkte in Sekunden, z. B. 6.1,12.0,18.35")
     p.add_argument("--pause", type=float, help=f"Länge der [pause]-Stille in Sekunden (Standard {PAUSE_SEKUNDEN})")
     p.add_argument("--stimme", help="andere voice_id als in bausteine/stimme.toml")
     p.add_argument("--stabilitaet", type=float, help="0-1, niedriger = lebendiger (Standard der Stimme)")
@@ -194,7 +200,8 @@ def main():
     if a.stabilitaet is not None:
         einstellungen["stability"] = a.stabilitaet
     if a.am_stueck:
-        am_stueck(texte, medien, schluessel, stimme, modell, einstellungen, a.neu is not None, a.ja)
+        am_stueck(texte, medien, schluessel, stimme, modell, einstellungen, a.neu is not None, a.ja,
+                  [float(x) for x in a.schnitte.split(",")] if a.schnitte else None)
         print(f"Fertig. Jetzt schneiden: python3 tools/schnitt.py {ordner.relative_to(ROOT)} --medien {medien}")
         return
 

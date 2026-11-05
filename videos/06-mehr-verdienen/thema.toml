@@ -1,0 +1,107 @@
+# Video 06 – Mehr verdienen, aber richtig
+# Quelle: Auftrag im Chat vom 2026-11-05 (Sprechertexte und Einblendtexte wörtlich übernommen).
+# Keine Beträge, Steuersätze, Abgaben, Verhandlungserfolge; keine Aussagen zu Steuerpflicht/Nebenjobs.
+#
+# Vertonen:  python3 tools/vertonung.py videos/06-mehr-verdienen --am-stueck --medien output/arbeit/06-mehr-verdienen/audio --tempo 1.0 --stabilitaet 0.5
+#   Schnitte von Hand geprüft: --schnitte 6.10,11.99,18.35,24.42,32.44 (automatisch lag Szene 3/4 eine Pause zu spät)
+# Schneiden: python3 tools/schnitt.py videos/06-mehr-verdienen --medien output/arbeit/06-mehr-verdienen/audio \
+#              --arbeitsordner output/arbeit/06-mehr-verdienen/schnitt --ausgabe output/mehr-verdienen.mp4
+# Szene 4 (Ersatz): Standbild = Bild bei 0,3 s aus bibliothek/clips/stick-figure-holding-paycheck-gr-4f689b84.mp4
+#   ffmpeg -ss 0.3 -i <clip> -frames:v 1 output/arbeit/06-mehr-verdienen/medien/gehaltsscheck-start.png
+
+[video]
+nummer = "06"
+titel = "Mehr verdienen, aber richtig"
+thema = "Mehr Einnahmen, Lifestyle-Inflation, Brutto vs. Netto"
+lerneffekt = "Mehr Einnahmen helfen nur, wenn die Ausgaben nicht im gleichen Tempo mitwachsen. Plane mit dem Netto, nicht mit dem Brutto."
+zielgruppe = "breit: Teenager, Azubis, Berufseinsteiger"
+ton = "trockener, sarkastischer Erzähler im Stil einer ruhigen Naturdoku, Understatement"
+disclaimer = "Keine Finanzberatung"
+referenzbild = "bibliothek/bilder/brokey-abos.jpg"
+caption = "TODO: Caption auswählen"
+hashtags = ["#finanzen", "#geldtipps", "#gehalt", "#finanzbildung"]
+betonen = ["ausmisten", "Kleinvieh", "nichts übrig", "Netto", "Keine Finanzberatung"]
+vorlauf = 0.1
+pause_nach = 0.0
+clip_min_tempo = 0.8
+clip_ton = 0.2
+
+[[fakt]]
+text = "Ausmisten/Verkaufen: keine Aussage zur Steuerpflicht machen ('vielleicht' bewusst so lassen)"
+status = "offen"
+
+[[fakt]]
+text = "Pfandflaschen: 'Kleinvieh hilft' – keine Beträge nennen"
+status = "offen"
+
+[[fakt]]
+text = "Gehaltsverhandlung: keine Erfolgsversprechen; Brutto/Netto ohne Steuersätze oder Abgaben erklären"
+status = "offen"
+
+[[szene]]
+name = "1 Nebenjob-Jongleur"
+teil = "hook"
+schnellschnitt = false
+medien = ["bibliothek/clips/character-juggles-objects-and-drops-f3d1391d-720p.mp4"]
+bild = '''Brokey with six arms juggles a laptop, coffee, a parcel, a calendar, a clock and a coin'''
+bild_de = "Brokey mit sechs Armen jongliert"
+mimik = "resigniert"
+booster = []
+running_gag = true
+sprechertext = '''Brokey hat Geldprobleme. Seine Lösung: mehr arbeiten. Seine Augenringe sind skeptisch.'''
+einblendtext = "Noch ein Nebenjob?"
+
+[[szene]]
+name = "2 Flohmarkt-Gewinn"
+teil = "geschichte"
+medien = ["bibliothek/bilder/stick-figure-holding-banana-slicer-a0a8e86a.jpg"]
+bild = '''Brokey sits behind a blanket with old things at a flea market, a coin tower grows'''
+bild_de = "Flohmarkt, Münzturm (Ersatz: Standbild Regal mit unnützen Geräten)"
+mimik = "erleuchtung"
+booster = []
+sprechertext = '''Erste gute Idee: ausmisten. Was Brokey nicht braucht, braucht vielleicht jemand anderes.'''
+einblendtext = "Ausmisten"
+
+[[szene]]
+name = "3 Pfandflaschen-Sparplan"
+teil = "geschichte"
+medien = ["bibliothek/clips/character-recycles-bottles-for-c-a311b88c-720p.mp4"]
+bild = '''Brokey drags a sack of bottles to a deposit machine, coins drop into a piggy bank'''
+bild_de = "Pfandflaschen, Automat, Sparschwein"
+mimik = "gelangweilt"
+booster = []
+sprechertext = '''Auch Kleinvieh hilft. Brokey sammelt Pfandflaschen. Nicht glamourös. Aber es klimpert.'''
+einblendtext = "Kleinvieh"
+
+[[szene]]
+name = "4 Gehaltsverhandlung"
+teil = "geschichte"
+medien = ["output/arbeit/06-mehr-verdienen/medien/gehaltsscheck-start.png"]
+bild = '''Brokey stands before a coin-sack boss on a swivel chair, a coin ladder behind him'''
+bild_de = "Münzsack-Chef (Ersatz: Standbild Brokey mit Gehaltsscheck)"
+mimik = "selbstsicher"
+booster = []
+sprechertext = '''Dann: nach mehr Gehalt fragen. Vorbereitet. Brokey übt vorher vor einem Münzsack.'''
+einblendtext = "Nachfragen, gut vorbereitet"
+
+[[szene]]
+name = "5 Erste Gehaltserhöhung"
+teil = "lerneffekt"
+medien = ["bibliothek/bilder/brokey-holds-golden-slab-d05bbab9.jpg"]
+bild = '''A bigger money block, a flashy car nibbles at it'''
+bild_de = "Größerer Block, Auto knabbert (Ersatz: Standbild Goldbarren und Sportwagen)"
+mimik = "selbstsicher"
+booster = []
+sprechertext = '''Mehr Gehalt. Doch die Ausgaben wachsen mit. Brokey nennt das Lebensstil. Sein Konto nennt es: nichts übrig.'''
+einblendtext = "Mehr Gehalt, mehr Ausgaben"
+
+[[szene]]
+name = "6 Brutto vs. Netto"
+teil = "outro"
+medien = ["bibliothek/clips/stick-figure-holding-paycheck-gr-4f689b84.mp4"]
+bild = '''Claws tear pieces off a money block'''
+bild_de = "Krallen reißen Stücke vom Gehaltsscheck"
+mimik = "hoffnung_absturz"
+booster = []
+sprechertext = '''Besserer Plan: einen Teil der Erhöhung sofort sparen. Und gerechnet wird mit dem Netto. Das Brutto kommt nie ganz an. Keine Finanzberatung.'''
+einblendtext = "Plane mit dem Netto · Keine Finanzberatung"

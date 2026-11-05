@@ -67,7 +67,7 @@ python3 tools/katalog.py suche abo panik
 ```
 `uebersicht` erzeugt `bibliothek/katalog.md` und ein Vorschaubild aller Medien.
 
-**Natürlicher Sprachfluss (empfohlen):** `--am-stueck` vertont den ganzen Text in einer Anfrage und schneidet ihn an den Atempausen in Szenen (`vo-NN.wav`). Klingt deutlich weniger nach KI als einzeln erzeugte Szenen.
+**Natürlicher Sprachfluss (empfohlen):** `--am-stueck` vertont den ganzen Text in einer Anfrage und schneidet ihn an den Atempausen in Szenen (`vo-NN.wav`). Klingt deutlich weniger nach KI als einzeln erzeugte Szenen. Schnittpunkte prüfen; falls nötig mit `--schnitte 6.1,12.0,...` von Hand setzen (nutzt die vorhandene Aufnahme, kostet nichts).
 
 **Pausen vor Pointen:** `[pause]` im Sprechertext erzeugt die Stücke einzeln und setzt 0,45 s Stille dazwischen.
 

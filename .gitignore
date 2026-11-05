@@ -28,3 +28,6 @@ Thumbs.db
 
 # Fertige Videos zum Herunterladen SOLLEN ins Repo
 !fertig/**
+
+# Fertige Exporte und Zwischendateien (nicht ins Repo)
+output/

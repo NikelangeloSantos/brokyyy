@@ -22,6 +22,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import subprocess
 import sys
 import tomllib
 import urllib.error
@@ -29,7 +30,7 @@ import urllib.request
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from brokey import ROOT, Mappe, fuer_tts  # noqa: E402
+from brokey import PAUSE, ROOT, Mappe, fuer_tts  # noqa: E402
 
 API = "https://api.elevenlabs.io/v1/text-to-speech/{voice_id}?output_format=mp3_44100_128"
 STANDARD_MODELL = "eleven_multilingual_v2"
@@ -72,12 +73,32 @@ def tts(text: str, schluessel: str, stimme: str, modell: str, vorher: str, nachh
         sys.exit(f"ElevenLabs nicht erreichbar ({e.reason}). Netzwerkzugriff auf api.elevenlabs.io prüfen.")
 
 
+PAUSE_SEKUNDEN = 0.45
+
+
+def verbinde_mit_pausen(stuecke: list[Path], ziel: Path):
+    """Audio-Stücke hintereinander, dazwischen jeweils PAUSE_SEKUNDEN Stille."""
+    eingabe, ketten = [], []
+    for i, x in enumerate(stuecke):
+        eingabe += ["-i", str(x)]
+        if i:
+            eingabe += ["-f", "lavfi", "-t", str(PAUSE_SEKUNDEN), "-i", "anullsrc=r=44100:cl=mono"]
+    anzahl = len(stuecke) * 2 - 1
+    f = "".join(f"[{i}:a]aresample=44100,aformat=channel_layouts=mono[x{i}];" for i in range(anzahl))
+    f += "".join(f"[x{i}]" for i in range(anzahl)) + f"concat=n={anzahl}:v=0:a=1[out]"
+    r = subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", *eingabe, "-filter_complex", f,
+                        "-map", "[out]", "-c:a", "libmp3lame", "-b:a", "192k", str(ziel)], capture_output=True, text=True)
+    if r.returncode:
+        sys.exit(f"ffmpeg-Fehler beim Verbinden:\n{r.stderr}")
+
+
 def main():
     p = argparse.ArgumentParser(description="Voiceover mit ElevenLabs erzeugen")
     p.add_argument("ordner")
     p.add_argument("--ja", action="store_true", help="ohne Rückfrage senden")
     p.add_argument("--neu", nargs="*", metavar="NN", help="diese Szenen neu erzeugen (ohne Angabe: alle)")
     p.add_argument("--tempo", type=float, help="Sprechtempo, z. B. 1.1 (1.0 = normal)")
+    p.add_argument("--medien", help="Ordner für die Audiodateien (Standard: <video>/medien)")
     p.add_argument("--stimme", help="andere voice_id als in bausteine/stimme.toml")
     p.add_argument("--stabilitaet", type=float, help="0-1, niedriger = lebendiger (Standard der Stimme)")
     a = p.parse_args()
@@ -94,9 +115,10 @@ def main():
 
     ordner = Path(a.ordner).resolve()
     m = Mappe(ordner)
-    medien = ordner / "medien"
-    medien.mkdir(exist_ok=True)
+    medien = Path(a.medien).resolve() if a.medien else ordner / "medien"
+    medien.mkdir(parents=True, exist_ok=True)
     texte = [fuer_tts(s.get("sprechertext", "")) for s in m.szenen]
+    teile_roh = [[fuer_tts(x) for x in s.get("sprechertext_tts", "").split(PAUSE) if x.strip()] for s in m.szenen]
 
     neu_alle = a.neu is not None and len(a.neu) == 0
     neu = {f"{int(x):02d}" for x in (a.neu or [])}
@@ -126,7 +148,18 @@ def main():
         vorher = texte[i - 2] if i > 1 else ""
         nachher = texte[i] if i < len(texte) else ""
         print(f"  Szene {nn} ...", end=" ", flush=True)
-        ziel.write_bytes(tts(t, schluessel, stimme, modell, vorher, nachher, einstellungen))
+        teile = teile_roh[i - 1]
+        if len(teile) <= 1:
+            ziel.write_bytes(tts(t, schluessel, stimme, modell, vorher, nachher, einstellungen))
+        else:  # [pause]: Stücke einzeln erzeugen (Kontext über previous/next_text) und mit Stille verbinden
+            stuecke = []
+            for k, teil in enumerate(teile):
+                v = " ".join(teile[:k]) or vorher
+                n = " ".join(teile[k + 1:]) or nachher
+                f = medien / f"vo-{nn}-teil{k + 1}.mp3"
+                f.write_bytes(tts(teil, schluessel, stimme, modell, v, n, einstellungen))
+                stuecke.append(f)
+            verbinde_mit_pausen(stuecke, ziel)
         print(f"{ziel.relative_to(ROOT)}")
     print(f"Fertig. Jetzt schneiden: python3 tools/schnitt.py {ordner.relative_to(ROOT)}")
 

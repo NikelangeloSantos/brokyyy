@@ -23,6 +23,7 @@ BAUSTEINE = ROOT / "bausteine" / "bausteine.toml"
 BIBLIOTHEK = ROOT / "brokey-prompt-bibliothek.md"
 VORLAGE = ROOT / "tools" / "vorlage-thema.toml"
 
+PAUSE = "[pause]"
 TEILE = ["hook", "setup", "geschichte", "rechnung", "lerneffekt", "punchline", "outro"]
 WOERTER_PRO_SEKUNDE = 2.5  # ca. 150 Wörter/Minute, nur Schätzung
 SRT_WOERTER_PRO_ZEILE = 7
@@ -99,6 +100,10 @@ class Mappe:
         self.t = lade_toml(ordner / "thema.toml")
         self.v = self.t.get("video", {})
         self.szenen = self.t.get("szene", [])
+        for sz in self.szenen:  # [pause] = kurze Pause vor einer Pointe (nur für die Vertonung)
+            roh = sz.get("sprechertext", "")
+            sz["sprechertext_tts"] = roh
+            sz["sprechertext"] = re.sub(r"\s+", " ", roh.replace(PAUSE, " ")).strip()
         self.fehler: list[str] = []
         self.warnungen: list[str] = []
         self._timing()

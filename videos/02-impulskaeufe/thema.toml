@@ -1,0 +1,149 @@
+# Video 02 – Impulskäufe und die 24-Stunden-Regel
+# Quelle: video-impulskaeufe.md (Texte, Szenen, Einblendtexte, Prompts wörtlich übernommen).
+# [pause] im Sprechertext = kurze Pause vor einer Pointe (wird nur in der Vertonung als Stille eingefügt).
+# medien: vorhandenes Material aus bibliothek/ als Ersatz, bis eigene Clips zu den Szenen da sind.
+#   "#oben" / "#mitte" / "#unten" = Bildausschnitt; Standbilder bekommen außerhalb des Hooks langsamen Zoom.
+#
+# Vertonen:  python3 tools/vertonung.py videos/02-impulskaeufe --medien output/arbeit/02-impulskaeufe/audio
+# Schneiden: python3 tools/schnitt.py videos/02-impulskaeufe --medien output/arbeit/02-impulskaeufe/audio \
+#              --arbeitsordner output/arbeit/02-impulskaeufe/schnitt --ausgabe output/impulskaeufe.mp4
+
+[video]
+nummer = "02"
+titel = "Impulskäufe und die 24-Stunden-Regel"
+thema = "Spontane Käufe, die man nicht braucht"
+lerneffekt = "Wer einen unnötigen Kauf einen Tag liegen lässt, spart oft Geld, weil der Impuls meist verfliegt."
+zielgruppe = "breit, besonders Teenager, Azubis, Berufseinsteiger"
+ton = "trockener Erzähler, sarkastisch, ruhig, kurze Pausen vor den Pointen"
+disclaimer = "Keine Finanzberatung"
+referenzbild = "bibliothek/bilder/brokey-abos.jpg"
+caption = "Dein Warenkorb will nur dein Bestes. Dein Geld."
+hashtags = ["#geldtipps", "#finanzen", "#sparen", "#impulskauf", "#finanzbildung", "#stickman"]
+betonen = ["nicht brauchst", "Nur heute", "24-Stunden-Regel", "Geld gespart"]
+
+[[fakt]]
+text = "Die 24-Stunden-Regel kann Impulskäufe verringern – gängige Faustregel, kein Gesetz, nicht als Garantie formulieren"
+status = "offen"
+
+[[fakt]]
+text = "'Ist der Wunsch weg, hast du Geld gespart' – logisch, aber nicht als Studienergebnis darstellen"
+status = "offen"
+
+[[fakt]]
+text = "Das Bananen-Schneidegerät ist erfunden, kein reales Produkt oder Marke"
+status = "offen"
+
+[[fakt]]
+text = "Keine Markennamen/Logos in Bildern (Pakete, Warenkörbe, Schilder) – Ersatzmaterial prüfen"
+status = "offen"
+
+[[szene]]
+name = "1 Hook"
+teil = "hook"
+medien = ["bibliothek/bilder/brokey-dragged-by-shopping-bag-78877049.jpg", "bibliothek/bilder/stick-figure-dragged-by-bag-255f96d4.jpg"]
+bild = '''Brokey freezes in front of a giant doodled shopping cart with a mischievous grin, eyes bulging, mouth wide open, sweat drops flying, a gold coin flying away in the background, black motion lines'''
+bild_de = "Brokey erstarrt vor einem grinsenden Warenkorb"
+mimik = "panik"
+booster = []
+aktion_frei = '''0-2s: the grinning shopping cart slowly rolls toward Brokey, he freezes. 2-4s: his eyes bulge and he starts shaking, sweat drops fly. 4-6s: he slowly lifts his hands in front of his face.'''
+sprechertext = '''Du kaufst gleich etwas, das du nicht brauchst. Und du weißt es noch nicht.'''
+einblendtext = "Du kaufst gleich etwas, das du nicht brauchst"
+
+[[szene]]
+name = "2a Nachts scrollen"
+teil = "setup"
+medien = ["bibliothek/bilder/devil-and-angel-arguing-on-ea4c55a3.jpg"]
+bild = '''Brokey sits hunched in front of a glowing laptop at night, a small crescent moon doodled in the corner, a tiny doodled devil with horns on one shoulder whispering and a tiny angel with a halo facepalming on the other, Brokey with a smug unaware grin, a gold coin flying away in the background'''
+bild_de = "Brokey scrollt nachts am Bildschirm, Engel-Teufel-Gag"
+mimik = "selbstsicher"
+booster = []
+aktion_frei = '''0-2s: Brokey scrolls on the laptop, the devil on his shoulder whispers. 2-4s: the angel facepalms and slides down. 4-6s: Brokey nods along with a smug grin.'''
+sprechertext = '''Brokey will nur kurz gucken.'''
+einblendtext = "Nur kurz gucken..."
+pause_nach = 0.05
+
+[[szene]]
+name = "2b Nur heute"
+teil = "setup"
+medien = ["bibliothek/clips/character-snaps-from-hypnotic-state-57b1a298.mp4", "bibliothek/bilder/stick-figure-holding-banana-slicer-a0a8e86a.jpg#mitte"]
+bild = '''Brokey stares hopefully at a huge doodled starburst-shaped sign with percent-like marks (no letters), next to it a ridiculous single-purpose banana-slicing gadget sparkling, Brokey's eyes shining, a gold coin flying away in the background'''
+bild_de = "Blinkendes Sternschild und ein Bananen-Schneidegerät"
+mimik = "hoffnung_absturz"
+booster = []
+aktion_frei = '''0-2s: the starburst sign starts blinking, Brokey's eyes shine. 2-4s: the banana gadget sparkles and hops closer. 4-6s: Brokey reaches for it, mouth open in awe.'''
+sprechertext = '''Dann blinkt es: [pause] Nur heute, fast ausverkauft. Und plötzlich braucht er unbedingt ein Gerät, das Bananen schneidet.'''
+einblendtext = "Nur heute!"
+
+[[szene]]
+name = "3a Paket"
+teil = "geschichte"
+medien = ["bibliothek/bilder/stick-figure-using-glowing-laptop-f3fc41ef.jpg"]
+bild = '''A doodled delivery box lands on the paper with a thud, Brokey opens it with a short joyful smile and holds up the shiny banana-slicing gadget, tiny confetti dots around him, a gold coin flying away in the background'''
+bild_de = "Paket kommt an, Brokey freut sich kurz"
+mimik = "gelangweilt"
+booster = []
+aktion_frei = '''0-2s: the box thuds onto the paper. 2-4s: Brokey rips it open and holds up the gadget with a joyful smile. 4-6s: his smile fades, he looks bored at the gadget.'''
+sprechertext = '''Paket da, Freude kurz,'''
+einblendtext = "Freude: 2 Minuten"
+pause_nach = 0.0
+
+[[szene]]
+name = "3b Schrank"
+teil = "geschichte"
+medien = ["bibliothek/bilder/stick-figure-holding-banana-slicer-a0a8e86a.jpg#oben"]
+bild = '''Brokey stands in front of a doodled wardrobe overflowing with dusty useless gadgets with cobwebs, one gadget has a sad face, Brokey stares at the viewer resigned and deadpan, the new banana gadget in his hand, a gold coin flying away in the background'''
+bild_de = "Voller Schrank mit nutzlosen Geräten"
+mimik = "resigniert"
+booster = []
+aktion_frei = '''0-2s: Brokey opens the wardrobe, dusty gadgets tumble out. 2-4s: he looks at them, then at the new gadget. 4-6s: he places it in the wardrobe and closes the door with a deadpan stare at the viewer.'''
+sprechertext = '''ab in den Schrank. Zu den fünf anderen Dingen, [pause] die er auch unbedingt brauchte.'''
+einblendtext = "Noch ein Ding im Schrank"
+
+[[szene]]
+name = "4a Warenkorb und Uhr"
+teil = "lerneffekt"
+medien = ["bibliothek/clips/stick-figure-watering-coin-sapling-88d0a5b5.mp4"]
+bild = '''Brokey places the banana gadget into a small doodled shopping cart with a big doodled ticking clock beside it, Brokey sits down patiently with his arms crossed, bored deadpan expression, a gold coin flying away in the background'''
+bild_de = "Brokey legt das Gerät in den Warenkorb, eine Uhr tickt"
+mimik = "gelangweilt"
+booster = []
+aktion_frei = '''0-2s: Brokey drops the gadget in the cart, the clock starts ticking. 2-4s: Brokey sits down and crosses his arms, the clock hands spin fast. 4-6s: a tiny calendar page flips, Brokey yawns.'''
+sprechertext = '''Der Trick: die 24-Stunden-Regel. Pack es in den Warenkorb und warte einen Tag.'''
+einblendtext = "24-Stunden-Regel"
+
+[[szene]]
+name = "4b Wunsch verpufft"
+teil = "lerneffekt"
+medien = ["bibliothek/clips/character-holding-and-protecting-b0af4af6.mp4"]
+bild = '''A small cartoon craving cloud with a tiny sparkly want face above the shopping cart slowly evaporates into smoke, Brokey with a sudden realization expression and a lightbulb above his head, his wallet still full next to him, a gold coin flying away in the background'''
+bild_de = "Wunsch verpufft, Münze bleibt im Portemonnaie"
+mimik = "erleuchtung"
+booster = []
+aktion_frei = '''0-2s: the craving cloud above the cart flickers. 2-4s: it shrinks and evaporates with a little puff of smoke. 4-6s: Brokey's face lights up with realization, the wallet bulges with coins and a lightbulb pings above his head.'''
+sprechertext = '''Ist der Wunsch dann noch da, kauf bewusst. Ist er weg, hast du Geld gespart.'''
+einblendtext = "Wunsch weg = Geld gespart"
+
+[[szene]]
+name = "5 Punchline"
+teil = "punchline"
+medien = ["bibliothek/bilder/devil-and-angel-arguing-on-ea4c55a3.jpg#oben"]
+bild = '''Brokey looks straight at the viewer with a dead-eyed resigned stare, behind him a tiny doodled shopping cart with a smug grin peeks out from the edge, a gold coin flying away in the background'''
+bild_de = "Brokey schaut resigniert in die Kamera"
+mimik = "resigniert"
+booster = []
+aktion_frei = '''0-2s: Brokey stares at the viewer, deadpan. 2-4s: the tiny smug shopping cart slides into view behind him. 4-6s: Brokey slowly turns his head, narrows his eyes at it, the cart hides.'''
+sprechertext = '''Und ja, du hast gerade an deinen Warenkorb gedacht.'''
+einblendtext = "Ja, du."
+
+[[szene]]
+name = "6 Outro"
+teil = "outro"
+medien = ["bibliothek/clips/brokey-relaxing-on-beach-chair-d3d4ab96.mp4"]
+bild = '''Brokey waves tiredly toward the viewer, one gold coin falls at his feet and rolls off, relaxed slumped pose'''
+bild_de = "Brokey winkt müde, Münze fällt vor seine Füße"
+mimik = "resigniert"
+booster = []
+running_gag = true
+aktion_frei = '''0-2s: Brokey waves tiredly toward the viewer. 2-4s: a gold coin drops at his feet and rolls out of frame. 4-6s: he sighs and shrugs.'''
+sprechertext = '''Folg mir für mehr Geld-Chaos, das du wirklich verstehst. Keine Finanzberatung.'''
+einblendtext = "Keine Finanzberatung"

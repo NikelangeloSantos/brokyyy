@@ -67,6 +67,8 @@ python3 tools/katalog.py suche abo panik
 ```
 `uebersicht` erzeugt `bibliothek/katalog.md` und ein Vorschaubild aller Medien.
 
+**Pausen vor Pointen:** `[pause]` im Sprechertext erzeugt die Stücke einzeln und setzt 0,45 s Stille dazwischen.
+
 **Video schneiden** (braucht ffmpeg):
 ```bash
 python3 tools/schnitt.py videos/01-abo-chaos --plan
@@ -82,7 +84,8 @@ Lege dafür pro Szene in `videos/NN-name/medien/` ab:
 - `vo-01.mp3` (Stimme dieser Szene) – oder eine `voiceover.mp3` für alles
 
 Fehlt ein Bild, kommt ein Platzhalter. Fehlt die Stimme, bleibt es stumm mit geschätzten Zeiten.
-Videos und Audios (`*.mp4`, `*.mp3`, `export/`) landen nicht im Repo, weil sie zu groß sind.
+Videos und Audios (`*.mp4`, `*.mp3`, `export/`, `output/`) landen nicht im Repo, weil sie zu groß sind.
+Optionen: `--ausgabe output/name.mp4`, `--arbeitsordner output/arbeit/...` (Zwischendateien behalten), `--medien` (Ordner mit vo-NN.mp3). Bildausschnitt pro Bild: `"datei.jpg#oben"`, `#mitte`, `#unten`.
 
 ffmpeg installieren: Windows `winget install ffmpeg`, Mac `brew install ffmpeg`, Linux `sudo apt install ffmpeg`.
 

@@ -35,7 +35,10 @@ B, H = 1080, 1920
 FPS = 30
 STOPMOTION_FPS = 10
 PAUSE_NACH_SZENE = 0.15  # Sekunden Luft nach dem Sprechertext (kurz = schnelleres Tempo)
-WOERTER_PRO_UNTERTITEL = 5
+ZEICHEN_PRO_ZEILE = 35       # Untertitel: max. 2 Zeilen à ca. 35 Zeichen
+LANGSAM_ZOOM = 0.08          # Standbilder außerhalb des Hooks: langsamer Zoom um 8 %
+# Bildausschnitt pro Medium: "datei.jpg#oben" / "#mitte" / "#unten" (Zoom, vertikale Lage 0-1)
+AUSSCHNITTE = {"": (1.0, 0.5), "oben": (1.6, 0.25), "mitte": (1.35, 0.45), "unten": (1.35, 0.7)}
 CLIP_SFX_LAUTSTAERKE = 0.35  # Soundeffekte aus Flow-Clips leise unter die Stimme
 # Schnelle Schnitte: jede Szene wird in kurze Einstellungen mit wechselndem Ausschnitt zerlegt
 # (Totale -> Gesicht nah -> halbnah -> sehr nah). Pro Szene in thema.toml ueberschreibbar: schnitt_tempo = 1.2
@@ -103,24 +106,56 @@ ScaledBorderAndShadow: yes
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Untertitel,DejaVu Sans,66,&H00FFFFFF,&H00FFFFFF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,6,0,2,90,90,560,1
-Style: Einblendung,DejaVu Sans,74,&H00FFFFFF,&H00FFFFFF,&H002F2FD3,&H00000000,1,0,0,0,100,100,0,0,3,18,0,8,80,80,230,1
+Style: Untertitel,Carlito,64,&H00FFFFFF,&H00FFFFFF,&H00000000,&H96000000,1,0,0,0,100,100,0,0,1,5,2,2,45,45,380,1
+Style: Einblendung,Carlito,72,&H00FFFFFF,&H00FFFFFF,&H002F2FD3,&H00000000,1,0,0,0,100,100,0,0,3,16,0,8,70,70,210,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 """
 
 
+def zeilen(text: str, breite: int = ZEICHEN_PRO_ZEILE) -> list[str]:
+    out, akt = [], ""
+    for w in text.split():
+        if akt and len(akt) + 1 + len(w) > breite:
+            out.append(akt)
+            akt = w
+        else:
+            akt = f"{akt} {w}".strip()
+    if akt:
+        out.append(akt)
+    return out
+
+
 def untertitel_stuecke(text: str, start: float, ende: float):
-    """Sprechertext in kurze Stücke teilen, Zeit nach Zeichenanzahl verteilen."""
-    w = text.split()
-    stuecke = [" ".join(w[i:i + WOERTER_PRO_UNTERTITEL]) for i in range(0, len(w), WOERTER_PRO_UNTERTITEL)]
-    gesamt = sum(len(s) for s in stuecke) or 1
+    """Sprechertext in Untertitel mit max. 2 Zeilen à ca. 35 Zeichen teilen, Zeit nach Zeichen verteilen.
+    Ein neuer Untertitel beginnt bevorzugt nach Satzende."""
+    stuecke = []
+    for satz in re.split(r"(?<=[.!?])\s+", text.strip()):
+        z = zeilen(satz)
+        stuecke += ["\n".join(z[i:i + 2]) for i in range(0, len(z), 2)]
+    # sehr kurze Stücke (ein, zwei Wörter) mit dem nächsten zusammenlegen, wenn es passt
+    zusammen = []
+    for st in stuecke:
+        if zusammen and len(zeilen(zusammen[-1].replace("\n", " ") + " " + st.replace("\n", " "))) <= 2 \
+                and len(zusammen[-1]) < 18:
+            zusammen[-1] = "\n".join(zeilen(zusammen[-1].replace("\n", " ") + " " + st.replace("\n", " ")))
+        else:
+            zusammen.append(st)
+    gesamt = sum(len(x) for x in zusammen) or 1
     t = start
-    for s in stuecke:
-        d = (ende - start) * len(s) / gesamt
-        yield t, t + d, s
+    for x in zusammen:
+        d = (ende - start) * len(x) / gesamt
+        yield t, t + d, x
         t += d
+
+
+def hervorheben(ass: str, woerter: list[str]) -> str:
+    """Schlüsselwörter gelb einfärben (ASS-Override), auch über Zeilenumbrüche hinweg."""
+    for w in sorted(woerter, key=len, reverse=True):
+        muster = r"(?:\s|\\N)+".join(re.escape(t) for t in w.split())
+        ass = re.sub(f"({muster})", r"{\\c&H2ED7FF&}\1{\\r}", ass, flags=re.IGNORECASE)
+    return ass
 
 
 # ---------------------------------------------------------------- Segmente
@@ -163,7 +198,15 @@ def ausschnitt(zoom: float, y_anteil: float) -> str:
             f"y='max(0,min(ih-ih/{zoom},ih*{y_anteil}-ih/{zoom}/2))',scale={B}:{H}")
 
 
-def baue_einstellung(medium: Path, d: float, ziel: Path, *, start: float = 0.0, zoom_tempo: float | None = None,
+def langsam_ausdruck(d: float, fps: int, einstellung) -> tuple[str, str, str]:
+    """zoompan: langsamer, gleichmäßiger Zoom (+LANGSAM_ZOOM) über die ganze Dauer, ausgehend vom Ausschnitt."""
+    z0, y0 = einstellung
+    n = max(1, round(d * fps))
+    z = f"{z0}+{z0 * LANGSAM_ZOOM:.4f}*in/{n}"
+    return z, "iw/2-iw/zoom/2", f"max(0,min(ih-ih/zoom,ih*{y0}-ih/zoom/2))"
+
+
+def baue_einstellung(medium: Path, d: float, ziel: Path, *, start: float = 0.0, zoom_tempo=None,
                      einstellung=(1.0, 0.5), wackeln: int = 0):
     """Eine Einstellung (ein Bild oder Clip-Stück) als MP4 mit Ton (Clip-Geräusche oder Stille)."""
     gross_b, gross_h = int(B * 1.5), int(H * 1.5)  # Reserve, damit Ausschnitte scharf bleiben
@@ -184,7 +227,10 @@ def baue_einstellung(medium: Path, d: float, ziel: Path, *, start: float = 0.0, 
         # Standbild: 10 fps + leichtes Wackeln = Stop-Motion-/Line-Boil-Gefühl
         v = (f"[0:v]fps={STOPMOTION_FPS},scale={gross_b + 4 * wackeln}:{gross_h + 4 * wackeln}:force_original_aspect_ratio=increase,"
              f"crop={gross_b}:{gross_h}:x='(iw-{gross_b})/2+{wackeln}*sin(n*2.3)':y='(ih-{gross_h})/2+{wackeln}*cos(n*1.7)',")
-        if zoom_tempo:
+        if zoom_tempo == "langsam":
+            z, x, y = langsam_ausdruck(d, STOPMOTION_FPS, einstellung)
+            v += f"zoompan=z='{z}':x='{x}':y='{y}':d=1:s={B}x{H}:fps={STOPMOTION_FPS},"
+        elif zoom_tempo:
             z, x, y = zoom_ausdruck(zoom_tempo, STOPMOTION_FPS)
             v += f"zoompan=z='{z}':x='{x}':y='{y}':d=1:s={B}x{H}:fps={STOPMOTION_FPS},"
         else:
@@ -200,42 +246,38 @@ def baue_einstellung(medium: Path, d: float, ziel: Path, *, start: float = 0.0, 
            "-c:v", "libx264", "-preset", "veryfast", "-crf", "18", "-c:a", "aac", "-b:a", "192k", "-ar", "48000", str(ziel))
 
 
-def einstellungen_planen(medien: list[Path], d: float, tempo: float, hook: bool):
-    """Liste von (medium, dauer, start, zoom_tempo, einstellung).
+def einstellungen_planen(medien: list[tuple[Path, tuple]], d: float, tempo: float, hook: bool):
+    """Liste von (medium, dauer, start, zoom, einstellung). medien = [(pfad, ausschnitt), ...]
 
-    - 1 Standbild: wechselnde Ausschnitte im Tempo (sonst wirkt es tot)
-    - 1 Clip: läuft durch, ohne Zoom; nur im Hook schnelle Ausschnittwechsel
-    - mehrere Medien im Hook: harte Schnitte zwischen ihnen im Tempo, Clips laufen weiter statt neu zu starten
-    - mehrere Medien sonst: nacheinander, jedes bekommt seinen Anteil der Szene
+    - Hook: schnelle harte Schnitte (zwischen mehreren Medien bzw. Ausschnitten eines Bildes)
+    - sonst: Medien nacheinander; Standbilder mit langsamem Zoom, Clips laufen normal
     """
-    if len(medien) == 1:
-        m = medien[0]
-        if ist_clip(m) and not hook:
-            return [(m, d, 0.0, None, (1.0, 0.5))]
-        return [(m, d, 0.0, tempo, (1.0, 0.5))]
-    if not hook:  # ausserhalb des Hooks: Medien nacheinander, damit die Mini-Geschichte lesbar bleibt
+    if not hook:
         anteil = d / len(medien)
-        return [(m, anteil, 0.0, None if ist_clip(m) else tempo, (1.0, 0.5)) for m in medien]
+        return [(m, anteil, 0.0, None if ist_clip(m) else "langsam", a) for m, a in medien]
+    if len(medien) == 1:
+        m, a = medien[0]
+        return [(m, d, 0.0, tempo, a)]
     n = max(len(medien), round(d / tempo))
     laenge = d / n
-    clip_pos = {m: 0.0 for m in medien}
-    clip_dauer = {m: dauer(m) for m in medien if ist_clip(m)}
+    clip_pos = {m: 0.0 for m, _ in medien}
+    clip_dauer = {m: dauer(m) for m, _ in medien if ist_clip(m)}
     plan = []
     for k in range(n):
-        m = medien[k % len(medien)]
+        m, a = medien[k % len(medien)]
         runde = k // len(medien)
         start = 0.0
         if m in clip_dauer:
             start = clip_pos[m] if clip_pos[m] + laenge <= clip_dauer[m] else 0.0
             clip_pos[m] = start + laenge
-            einst = (1.0, 0.5)
+            einst = a
         else:  # Standbild wiederholt sich -> anderer Ausschnitt
-            einst = EINSTELLUNGEN[runde % len(EINSTELLUNGEN)]
+            einst = a if runde == 0 else EINSTELLUNGEN[runde % len(EINSTELLUNGEN)]
         plan.append((m, laenge, start, None, einst))
     return plan
 
 
-def baue_segment(medien: list[Path], stimme: Path | None, d: float, ziel: Path, tempo: float, wackeln: int,
+def baue_segment(medien: list[tuple[Path, tuple]], stimme: Path | None, d: float, ziel: Path, tempo: float, wackeln: int,
                  hook: bool, tmp: Path):
     teile = []
     for k, (m, dk, start, zt, einst) in enumerate(einstellungen_planen(medien, d, tempo, hook)):
@@ -257,12 +299,13 @@ def baue_segment(medien: list[Path], stimme: Path | None, d: float, ziel: Path, 
 
 # ---------------------------------------------------------------- Hauptablauf
 
-def schneide(ordner: Path, nur_pruefen: bool = False) -> Path | None:
+def schneide(ordner: Path, nur_pruefen: bool = False, ausgabe: Path | None = None,
+             arbeit: Path | None = None, medien_ordner: Path | None = None) -> Path | None:
     if not shutil.which("ffmpeg"):
         sys.exit("ffmpeg nicht gefunden. Bitte installieren (siehe README).")
     m = Mappe(ordner)
     m.pruefe()
-    medien = ordner / "medien"
+    medien = medien_ordner or ordner / "medien"
     gesamt_vo = finde(medien, "voiceover", AUDIO_ENDUNGEN)
     gesamt_vo_dauer = dauer(gesamt_vo) if gesamt_vo else None
     gesamt_woerter = sum(len(s.get("sprechertext", "").split()) for s in m.szenen) or 1
@@ -272,16 +315,19 @@ def schneide(ordner: Path, nur_pruefen: bool = False) -> Path | None:
         nn = f"{i:02d}"
         if s.get("medien"):
             eintraege = s["medien"] if isinstance(s["medien"], list) else [s["medien"]]
-            liste = [ROOT / e for e in eintraege]
+            liste = [ROOT / e.split("#")[0] for e in eintraege]
+            ausschn = [AUSSCHNITTE.get(e.split("#")[1] if "#" in e else "", AUSSCHNITTE[""]) for e in eintraege]
         else:  # medien/szene-NN.mp4, szene-NN-a.mp4, szene-NN-b.png ...
+            ausschn = None
             liste = sorted(x for x in medien.glob(f"szene-{nn}*")
                            if x.suffix.lower() in CLIP_ENDUNGEN + BILD_ENDUNGEN) if medien.exists() else []
         for x in [x for x in liste if not x.exists()]:
             print(f"  WARNUNG: Szene {nn}: {x.relative_to(ROOT)} gibt es nicht.")
-        medium = [x for x in liste if x.exists()]
+        ausschn = ausschn or [AUSSCHNITTE[""]] * len(liste)
+        medium = [(x, a) for x, a in zip(liste, ausschn) if x.exists()]
         stimme = finde(medien, f"vo-{nn}", AUDIO_ENDUNGEN)
         if stimme:
-            d = dauer(stimme) + PAUSE_NACH_SZENE
+            d = dauer(stimme) + s.get("pause_nach", PAUSE_NACH_SZENE)
             quelle = "Stimme"
         elif gesamt_vo_dauer:
             d = gesamt_vo_dauer * len(s.get("sprechertext", "").split()) / gesamt_woerter
@@ -294,7 +340,7 @@ def schneide(ordner: Path, nur_pruefen: bool = False) -> Path | None:
     print(f"Schnittplan {ordner.name}:")
     t = 0.0
     for p in plan:
-        namen = ", ".join(x.name for x in p["medium"]) if p["medium"] else "FEHLT -> Platzhalter"
+        namen = ", ".join(x.name for x, _ in p["medium"]) if p["medium"] else "FEHLT -> Platzhalter"
         print(f"  {p['nn']} {t:5.1f}-{t + p['d']:5.1f}s ({p['quelle']:>16})  Medien: {namen}"
               f"  Stimme: {p['stimme'].name if p['stimme'] else ('voiceover' if gesamt_vo else 'FEHLT -> Stille')}")
         t += p["d"]
@@ -306,9 +352,11 @@ def schneide(ordner: Path, nur_pruefen: bool = False) -> Path | None:
     if m.fehler:
         sys.exit("Erst die Fehler in thema.toml beheben (python3 tools/brokey.py baue ...).")
 
-    export = ordner / "export"
-    export.mkdir(exist_ok=True)
-    with tempfile.TemporaryDirectory() as tmp:
+    ziel = ausgabe or ordner / "export" / f"{ordner.name}.mp4"
+    export = ziel.parent
+    export.mkdir(parents=True, exist_ok=True)
+    betonen = m.v.get("betonen", [])
+    with (tempfile.TemporaryDirectory() if arbeit is None else _Ordner(arbeit)) as tmp:
         tmp = Path(tmp)
         liste, ass, srt, t = [], [ASS_KOPF], [], 0.0
         for p in plan:
@@ -316,7 +364,7 @@ def schneide(ordner: Path, nur_pruefen: bool = False) -> Path | None:
             if not medium:
                 ph = tmp / f"platzhalter-{p['nn']}.png"
                 platzhalter(ph, f"Szene {p['nn']}\n{p['szene'].get('name', '')}\n\nmedien/szene-{p['nn']}.mp4\nfehlt noch")
-                medium = [ph]
+                medium = [(ph, AUSSCHNITTE[""])]
             seg = tmp / f"seg-{p['nn']}.mp4"
             hook = p["szene"].get("teil") == "hook"
             tempo = p["szene"].get("schnitt_tempo") or (SCHNITT_TEMPO_HOOK if hook else SCHNITT_TEMPO)
@@ -325,24 +373,23 @@ def schneide(ordner: Path, nur_pruefen: bool = False) -> Path | None:
             liste.append(f"file '{seg}'")
 
             s, ende = p["szene"], t + p["d"]
-            sprech_ende = ende - (PAUSE_NACH_SZENE if p["quelle"] != "Anteil voiceover" else 0)
+            sprech_ende = ende - (s.get("pause_nach", PAUSE_NACH_SZENE) if p["quelle"] != "Anteil voiceover" else 0)
             if s.get("einblendtext"):
                 ass.append(f"Dialogue: 1,{ass_zeit(t)},{ass_zeit(ende)},Einblendung,,0,0,0,,{ass_text(s['einblendtext'])}\n")
             for a, e, txt in untertitel_stuecke(s.get("sprechertext", ""), t, sprech_ende):
-                ass.append(f"Dialogue: 0,{ass_zeit(a)},{ass_zeit(e)},Untertitel,,0,0,0,,{ass_text(txt)}\n")
+                ass.append(f"Dialogue: 0,{ass_zeit(a)},{ass_zeit(e)},Untertitel,,0,0,0,,{hervorheben(ass_text(txt), betonen)}\n")
                 srt.append(f"{len(srt) + 1}\n{zeit_srt(a)} --> {zeit_srt(e)}\n{txt}\n")
             t = ende
 
         (tmp / "liste.txt").write_text("\n".join(liste))
         ffmpeg("-f", "concat", "-safe", "0", "-i", str(tmp / "liste.txt"), "-c", "copy", str(tmp / "roh.mp4"))
         (tmp / "text.ass").write_text("".join(ass), encoding="utf-8")
-        ziel = export / f"{ordner.name}.mp4"
         print("  brenne Untertitel und Einblendungen ein ...")
         ffmpeg("-i", str(tmp / "roh.mp4"), "-vf", f"ass={tmp / 'text.ass'}",
                "-c:v", "libx264", "-preset", "medium", "-crf", "19", "-pix_fmt", "yuv420p",
                "-af", "loudnorm=I=-14:TP=-1.5:LRA=11", "-c:a", "aac", "-b:a", "192k", "-ar", "48000",
                "-movflags", "+faststart", str(ziel))
-        (export / "untertitel-final.srt").write_text("\n".join(srt), encoding="utf-8")
+        (export / f"{ziel.stem}.srt").write_text("\n".join(srt), encoding="utf-8")
     print(f"Fertig: {ziel.relative_to(ROOT) if ziel.is_relative_to(ROOT) else ziel} ({dauer(ziel):.1f} s)")
     if not all(p["stimme"] for p in plan) and not gesamt_vo:
         print("  Hinweis: ohne Voiceover geschnitten (stumm, Zeiten geschätzt).")
@@ -350,12 +397,31 @@ def schneide(ordner: Path, nur_pruefen: bool = False) -> Path | None:
     return ziel
 
 
+class _Ordner:
+    """Wie TemporaryDirectory, aber bleibt erhalten (für nachvollziehbare Zwischendateien)."""
+    def __init__(self, pfad: Path):
+        self.pfad = pfad
+
+    def __enter__(self):
+        self.pfad.mkdir(parents=True, exist_ok=True)
+        return str(self.pfad)
+
+    def __exit__(self, *a):
+        return False
+
+
 def main():
     p = argparse.ArgumentParser(description="Brokey-Video schneiden")
+    p.add_argument("--ausgabe", help="Zieldatei, z. B. output/impulskaeufe.mp4")
+    p.add_argument("--arbeitsordner", help="Zwischendateien hier ablegen (statt temporär)")
+    p.add_argument("--medien", help="Ordner mit vo-NN.mp3 (Standard: <video>/medien)")
     p.add_argument("ordner")
     p.add_argument("--plan", action="store_true", help="nur Schnittplan anzeigen, nichts rendern")
     a = p.parse_args()
-    schneide(Path(a.ordner).resolve(), nur_pruefen=a.plan)
+    schneide(Path(a.ordner).resolve(), nur_pruefen=a.plan,
+             ausgabe=Path(a.ausgabe).resolve() if a.ausgabe else None,
+             arbeit=Path(a.arbeitsordner).resolve() if a.arbeitsordner else None,
+             medien_ordner=Path(a.medien).resolve() if a.medien else None)
 
 
 if __name__ == "__main__":

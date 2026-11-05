@@ -93,16 +93,20 @@ def verbinde_mit_pausen(stuecke: list[Path], ziel: Path):
 
 
 def main():
+    global PAUSE_SEKUNDEN
     p = argparse.ArgumentParser(description="Voiceover mit ElevenLabs erzeugen")
     p.add_argument("ordner")
     p.add_argument("--ja", action="store_true", help="ohne Rückfrage senden")
     p.add_argument("--neu", nargs="*", metavar="NN", help="diese Szenen neu erzeugen (ohne Angabe: alle)")
     p.add_argument("--tempo", type=float, help="Sprechtempo, z. B. 1.1 (1.0 = normal)")
     p.add_argument("--medien", help="Ordner für die Audiodateien (Standard: <video>/medien)")
+    p.add_argument("--pause", type=float, help=f"Länge der [pause]-Stille in Sekunden (Standard {PAUSE_SEKUNDEN})")
     p.add_argument("--stimme", help="andere voice_id als in bausteine/stimme.toml")
     p.add_argument("--stabilitaet", type=float, help="0-1, niedriger = lebendiger (Standard der Stimme)")
     a = p.parse_args()
 
+    if a.pause is not None:
+        PAUSE_SEKUNDEN = a.pause
     lade_env()
     cfg = tomllib.loads(STIMME.read_text(encoding="utf-8")) if STIMME.exists() else {}
     schluessel = os.environ.get("ELEVENLABS_API_KEY", "").strip()

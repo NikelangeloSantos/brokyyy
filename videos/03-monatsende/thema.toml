@@ -1,0 +1,107 @@
+# Video 03 – Warum du am Monatsende pleite bist
+# Quelle: Auftrag im Chat vom 2026-11-05 (Sprechertexte und Einblendtexte wörtlich übernommen).
+# [pause] = kurze Pause vor der Pointe (nur Vertonung).
+#
+# Vertonen:  python3 tools/vertonung.py videos/03-monatsende --medien output/arbeit/03-monatsende/audio --tempo 1.0 --stabilitaet 0.65 --pause 0.35
+# Schneiden: python3 tools/schnitt.py videos/03-monatsende --medien output/arbeit/03-monatsende/audio \
+#              --arbeitsordner output/arbeit/03-monatsende/schnitt --ausgabe output/monatsende.mp4
+
+[video]
+nummer = "03"
+titel = "Warum du am Monatsende pleite bist"
+thema = "Kleine Ausgaben über die Woche lassen das Gehalt verschwinden"
+lerneffekt = "Wer aufschreibt, wohin das Geld geht, und zuerst automatisch spart, behält am Monatsende mehr übrig."
+zielgruppe = "breit: Teenager, Azubis, Berufseinsteiger"
+ton = "trockener, sarkastischer Erzähler im Stil einer ruhigen Naturdoku, Understatement"
+disclaimer = "Keine Finanzberatung"
+referenzbild = "bibliothek/bilder/brokey-abos.jpg"
+caption = "TODO: Caption auswählen"
+hashtags = ["#finanzen", "#geldtipps", "#sparen", "#finanzbildung"]
+betonen = ["überallhin", "erst sparen, dann ausgeben", "Keine Finanzberatung"]
+# Timing laut Auftrag: Stimme 0,3 s nach Clip-Start, danach 0,2 s Luft für die Pointe,
+# zu kurze Clips bis 0,8-fach verlangsamen, danach letztes Bild halten. Clip-Ton deutlich leiser (-14 dB).
+vorlauf = 0.3
+pause_nach = 0.2
+clip_min_tempo = 0.8
+clip_ton = 0.2
+
+[[fakt]]
+text = "Liefer- und Servicegebühren bei Essensbestellungen: 'Gebührengebühr' ist bewusst als Witz übertrieben"
+status = "offen"
+
+[[fakt]]
+text = "Treuepunkte: 'verliert dabei Geld' gilt nur, wenn man wegen der Punkte mehr kauft als geplant – so verstanden?"
+status = "offen"
+
+[[fakt]]
+text = "Kartenzahlung: Aussage 'man sieht nicht, wie das Geld geht' ist eine allgemeine Beobachtung, keine Studie"
+status = "offen"
+
+[[szene]]
+name = "1 Gehaltstag"
+teil = "hook"
+schnellschnitt = false
+medien = ["bibliothek/bilder/brokey-standing-under-gold-coins-2f7fdce8.jpg"]
+bild = '''Payday: Brokey stands under a rain of gold coins, the coins grow tiny legs and run away toward bills'''
+bild_de = "Münzregen, Münzen rennen davon (Ersatz: Standbild)"
+mimik = "selbstsicher"
+booster = []
+running_gag = true
+aktion = "muenze_flieht"
+sprechertext = '''Dein Geld verschwindet nicht einfach. Du gibst es aus. Brokey bekommt Montag Gehalt und ist Dienstag [pause] Experte darin.'''
+einblendtext = "Gehalt da. Geld weg."
+
+[[szene]]
+name = "2 Lieferdienst-Gebühren"
+teil = "geschichte"
+medien = ["bibliothek/clips/scooter-startles-brokey-with-bubble-e9b5261a-720p.mp4"]
+bild = '''A delivery scooter startles Brokey with a giant bill bubble'''
+bild_de = "Scooter mit riesiger Rechnungsblase"
+mimik = "panik"
+booster = []
+sprechertext = '''Dienstag: Essen bestellt. Dazu Liefergebühr, Servicegebühr, Gebührengebühr. [pause] Brokey nennt es Abendessen.'''
+einblendtext = "Kleine Extras"
+
+[[szene]]
+name = "3 Treuepunkte-Karotte"
+teil = "geschichte"
+medien = ["bibliothek/clips/character-chases-loyalty-card-6bd1a376-720p.mp4"]
+bild = '''A loyalty card dangles on a stick in front of Brokey's nose while coins drip from his wallet'''
+bild_de = "Karte an einem Stock vor seiner Nase"
+mimik = "hoffnung_absturz"
+booster = []
+sprechertext = '''Mittwoch: Die Treuekarte lockt. Brokey sammelt Punkte. [pause] Und verliert dabei Geld.'''
+einblendtext = "Noch ein Einkauf"
+
+[[szene]]
+name = "4 Kartenzahlung"
+teil = "geschichte"
+medien = ["bibliothek/bilder/stick-figure-holding-glowing-card-c2cf0b19.jpg"]
+bild = '''Brokey pays with a card at a terminal, ghost coins float away'''
+bild_de = "Karte am Terminal, Geistermünzen (Ersatz: Standbild brennende Karte)"
+mimik = "gelangweilt"
+booster = []
+sprechertext = '''Bezahlt wird mit Karte. Praktisch, [pause] denn so sieht Brokey nicht, wie das Geld geht.'''
+einblendtext = "Unsichtbar bezahlt"
+
+[[szene]]
+name = "5 Haushaltsbuch-Detektiv"
+teil = "lerneffekt"
+medien = ["bibliothek/clips/brokey-catches-coin-thief-200fcf91.mp4"]
+bild = '''Brokey as a detective with a magnifying glass finds a tiny coin thief in his expense list'''
+bild_de = "Lupe, Münzdieb"
+mimik = "erleuchtung"
+booster = []
+sprechertext = '''Donnerstag: Brokey schreibt auf, wohin sein Geld geht. Erste Erkenntnis: [pause] überallhin.'''
+einblendtext = "Aufschreiben"
+
+[[szene]]
+name = "6 Sparplan-Automat"
+teil = "outro"
+medien = ["bibliothek/clips/piggy-bank-coins-and-shopping-443f2687.mp4"]
+bild = '''A machine automatically drops a coin into a piggy bank before the rest goes to shopping'''
+bild_de = "Maschine wirft Münze ins Schwein"
+mimik = "gelangweilt"
+booster = []
+sprechertext = '''Neuer Plan: erst sparen, dann ausgeben. Automatisch, [pause] damit Brokey nicht mitreden kann. Keine Finanzberatung.'''
+einblendtext = "Erst sparen, dann ausgeben · Keine Finanzberatung"

@@ -39,7 +39,9 @@ ZEICHEN_PRO_ZEILE = 35       # Untertitel: max. 2 Zeilen à ca. 35 Zeichen
 LANGSAM_ZOOM = 0.08          # Standbilder außerhalb des Hooks: langsamer Zoom um 8 %
 # Bildausschnitt pro Medium: "datei.jpg#oben" / "#mitte" / "#unten" (Zoom, vertikale Lage 0-1)
 AUSSCHNITTE = {"": (1.0, 0.5), "oben": (1.6, 0.25), "mitte": (1.35, 0.45), "unten": (1.35, 0.7)}
-CLIP_SFX_LAUTSTAERKE = 0.35  # Soundeffekte aus Flow-Clips leise unter die Stimme
+CLIP_SFX_LAUTSTAERKE = 0.35  # Soundeffekte aus Flow-Clips leise unter die Stimme ([video] clip_ton)
+VORLAUF = 0.0                # Sekunden Bild vor Einsatz der Stimme ([video] vorlauf)
+CLIP_MIN_TEMPO = 1.0         # zu kurze Clips bis auf dieses Tempo verlangsamen, Rest = Standbild ([video] clip_min_tempo)
 # Schnelle Schnitte: jede Szene wird in kurze Einstellungen mit wechselndem Ausschnitt zerlegt
 # (Totale -> Gesicht nah -> halbnah -> sehr nah). Pro Szene in thema.toml ueberschreibbar: schnitt_tempo = 1.2
 SCHNITT_TEMPO_HOOK = 0.6     # Sekunden pro Einstellung im Hook
@@ -212,8 +214,10 @@ def baue_einstellung(medium: Path, d: float, ziel: Path, *, start: float = 0.0, 
     gross_b, gross_h = int(B * 1.5), int(H * 1.5)  # Reserve, damit Ausschnitte scharf bleiben
     if ist_clip(medium):
         eingabe = ["-ss", f"{start:.3f}", "-i", str(medium)]
+        rest = dauer(medium) - start
+        tempo = max(CLIP_MIN_TEMPO, min(1.0, rest / d)) if rest < d else 1.0  # <1 = verlangsamt
         # kleine Clips (z. B. 360x640) mit Lanczos hochskalieren und leicht nachschärfen
-        v = (f"[0:v]fps={FPS},scale={gross_b}:{gross_h}:force_original_aspect_ratio=increase:flags=lanczos,"
+        v = (f"[0:v]setpts=(PTS-STARTPTS)/{tempo:.4f},fps={FPS},scale={gross_b}:{gross_h}:force_original_aspect_ratio=increase:flags=lanczos,"
              f"crop={gross_b}:{gross_h},unsharp=5:5:0.6,"
              f"tpad=stop_mode=clone:stop_duration={d + 1:.2f},trim=duration={d:.3f},setpts=PTS-STARTPTS,")
         if zoom_tempo:
@@ -236,8 +240,10 @@ def baue_einstellung(medium: Path, d: float, ziel: Path, *, start: float = 0.0, 
         else:
             v += ausschnitt(*einstellung) + ","
         v += f"fps={FPS},setsar=1,format=yuv420p[v]"
+    if not ist_clip(medium):
+        tempo = 1.0
     if ist_clip(medium) and hat_audio(medium):
-        a = (f"[0:a]aresample=48000,aformat=channel_layouts=stereo,volume={CLIP_SFX_LAUTSTAERKE},"
+        a = (f"[0:a]aresample=48000,aformat=channel_layouts=stereo,atempo={tempo:.4f},volume={CLIP_SFX_LAUTSTAERKE},"
              f"apad,atrim=duration={d:.3f}[a]")
     else:
         eingabe += ["-f", "lavfi", "-i", "anullsrc=r=48000:cl=stereo"]
@@ -289,7 +295,7 @@ def baue_segment(medien: list[tuple[Path, tuple]], stimme: Path | None, d: float
     n = len(teile)
     eingabe += ["-i", str(stimme)] if stimme else ["-f", "lavfi", "-i", "anullsrc=r=48000:cl=stereo"]
     f = "".join(f"[{i}:v][{i}:a]" for i in range(n)) + f"concat=n={n}:v=1:a=1[v][sfx];"
-    f += (f"[{n}:a]aresample=48000,aformat=channel_layouts=stereo,apad,atrim=duration={d:.3f}[stimme];"
+    f += (f"[{n}:a]aresample=48000,aformat=channel_layouts=stereo,adelay={int(VORLAUF * 1000)}:all=1,apad,atrim=duration={d:.3f}[stimme];"
           f"[stimme][sfx]amix=inputs=2:normalize=0,atrim=duration={d:.3f}[a]")
     ffmpeg(*eingabe, "-filter_complex", f, "-map", "[v]", "-map", "[a]", "-t", f"{d:.3f}",
            "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
@@ -305,6 +311,11 @@ def schneide(ordner: Path, nur_pruefen: bool = False, ausgabe: Path | None = Non
         sys.exit("ffmpeg nicht gefunden. Bitte installieren (siehe README).")
     m = Mappe(ordner)
     m.pruefe()
+    global VORLAUF, CLIP_MIN_TEMPO, CLIP_SFX_LAUTSTAERKE, PAUSE_NACH_SZENE
+    VORLAUF = m.v.get("vorlauf", VORLAUF)
+    CLIP_MIN_TEMPO = m.v.get("clip_min_tempo", CLIP_MIN_TEMPO)
+    CLIP_SFX_LAUTSTAERKE = m.v.get("clip_ton", CLIP_SFX_LAUTSTAERKE)
+    PAUSE_NACH_SZENE = m.v.get("pause_nach", PAUSE_NACH_SZENE)
     medien = medien_ordner or ordner / "medien"
     gesamt_vo = finde(medien, "voiceover", AUDIO_ENDUNGEN)
     gesamt_vo_dauer = dauer(gesamt_vo) if gesamt_vo else None
@@ -327,7 +338,7 @@ def schneide(ordner: Path, nur_pruefen: bool = False, ausgabe: Path | None = Non
         medium = [(x, a) for x, a in zip(liste, ausschn) if x.exists()]
         stimme = finde(medien, f"vo-{nn}", AUDIO_ENDUNGEN)
         if stimme:
-            d = dauer(stimme) + s.get("pause_nach", PAUSE_NACH_SZENE)
+            d = VORLAUF + dauer(stimme) + s.get("pause_nach", PAUSE_NACH_SZENE)
             quelle = "Stimme"
         elif gesamt_vo_dauer:
             d = gesamt_vo_dauer * len(s.get("sprechertext", "").split()) / gesamt_woerter
@@ -366,7 +377,7 @@ def schneide(ordner: Path, nur_pruefen: bool = False, ausgabe: Path | None = Non
                 platzhalter(ph, f"Szene {p['nn']}\n{p['szene'].get('name', '')}\n\nmedien/szene-{p['nn']}.mp4\nfehlt noch")
                 medium = [(ph, AUSSCHNITTE[""])]
             seg = tmp / f"seg-{p['nn']}.mp4"
-            hook = p["szene"].get("teil") == "hook"
+            hook = p["szene"].get("teil") == "hook" and p["szene"].get("schnellschnitt", True)
             tempo = p["szene"].get("schnitt_tempo") or (SCHNITT_TEMPO_HOOK if hook else SCHNITT_TEMPO)
             n = baue_segment(medium, p["stimme"], p["d"], seg, tempo, WACKELN_HOOK if hook else WACKELN, hook, tmp)
             print(f"  Szene {p['nn']}: {n} Einstellung(en)")
@@ -376,7 +387,7 @@ def schneide(ordner: Path, nur_pruefen: bool = False, ausgabe: Path | None = Non
             sprech_ende = ende - (s.get("pause_nach", PAUSE_NACH_SZENE) if p["quelle"] != "Anteil voiceover" else 0)
             if s.get("einblendtext"):
                 ass.append(f"Dialogue: 1,{ass_zeit(t)},{ass_zeit(ende)},Einblendung,,0,0,0,,{ass_text(s['einblendtext'])}\n")
-            for a, e, txt in untertitel_stuecke(s.get("sprechertext", ""), t, sprech_ende):
+            for a, e, txt in untertitel_stuecke(s.get("sprechertext", ""), t + VORLAUF, sprech_ende):
                 ass.append(f"Dialogue: 0,{ass_zeit(a)},{ass_zeit(e)},Untertitel,,0,0,0,,{hervorheben(ass_text(txt), betonen)}\n")
                 srt.append(f"{len(srt) + 1}\n{zeit_srt(a)} --> {zeit_srt(e)}\n{txt}\n")
             t = ende

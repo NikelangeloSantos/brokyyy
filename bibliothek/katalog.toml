@@ -280,84 +280,86 @@ tags = ["vergleich", "sparer_vs_spender", "vorsorge"]
 hinweis = "Zwei Brokeys im Bild"
 
 ["clips/car-rides-coin-track-797fb5da-720p.mp4"]
-beschreibung = ""
-tags = []
+beschreibung = "Brokey fährt panisch in einem Auto auf einer Achterbahn aus Münzen, am Ende ist er schwindelig"
+tags = ["kosten","auto","achterbahn","schwankungen","panik"]
 
 ["clips/character-chases-loyalty-card-6bd1a376-720p.mp4"]
-beschreibung = ""
-tags = []
+beschreibung = "Treuekarte an einem Stock vor Brokeys Nase (Karotte), er läuft hinterher und verliert Münzen"
+tags = ["treuepunkte","einkaufen","lockangebot","konsum"]
 
 ["clips/character-juggles-objects-and-drops-f3d1391d-720p.mp4"]
-beschreibung = ""
-tags = []
+beschreibung = "Brokey mit vielen Armen jongliert Laptop, Kaffee, Tüte, Kalender, Uhr – am Ende fällt alles runter"
+tags = ["nebenjob","stress","ueberforderung","zeit"]
 
 ["clips/character-recycles-bottles-for-c-a311b88c-720p.mp4"]
-beschreibung = ""
-tags = []
+beschreibung = "Brokey schleppt einen Sack Pfandflaschen zum Automaten, Münzen fallen ins Sparschwein"
+tags = ["pfand","kleinvieh","sparen","nebeneinkommen"]
 
 ["clips/character-scanning-price-tag-mou-9cc253c9-720p.mp4"]
-beschreibung = ""
-tags = []
+beschreibung = "Brokey sucht mit Fernglas auf einem Berg aus Preisschildern"
+tags = ["preisvergleich","preise","suchen","sparen"]
 
 ["clips/character-shivering-under-blanket-9cd634c9-720p.mp4"]
-beschreibung = ""
-tags = []
+beschreibung = "Brokey zittert in einer Decke, Heizkörper glüht, ein Zähler wirft Münzen aus"
+tags = ["heizkosten","nebenkosten","energie","unerwartete_kosten"]
 
 ["clips/character-stirs-pot-for-coins-33ef688e-720p.mp4"]
-beschreibung = ""
-tags = []
+beschreibung = "Brokey kocht selbst mit Kochmütze, daneben wächst ein Münzturm (Lieferdienst-Bild an der Wand)"
+tags = ["selbst_kochen","sparen","essen","lieferdienst"]
 
 ["clips/character-throws-coin-off-paper-f20edc6a-720p.mp4"]
-beschreibung = ""
-tags = []
+beschreibung = "Brokey wirft eine Münze weg, sie fliegt vom Papier, er schaut traurig hinterher"
+tags = ["running_gag","muenze","geld_weg","resigniert"]
 
 ["clips/character-trapped-by-gift-box-13c41a6b-720p.mp4"]
-beschreibung = ""
-tags = []
+beschreibung = "Geschenkbox mit Kalender-Mausefalle schnappt nach Brokeys Portemonnaie, Münzen fliegen"
+tags = ["gratis","probeabo","abo","falle","kuendigungsfrist"]
 
 ["clips/character-watching-items-pop-out-0482d24c-720p.mp4"]
-beschreibung = ""
-tags = []
+beschreibung = "Brokey sitzt am Handy, Wünsche (Auto, Yacht, Insel) poppen auf, Portemonnaie leer mit Motte"
+tags = ["online_shopping","handy","wuensche","impulskauf"]
 
 ["clips/scooter-startles-brokey-with-bubble-e9b5261a-720p.mp4"]
-beschreibung = ""
-tags = []
+beschreibung = "Lieferdienst-Scooter erschreckt Brokey mit riesiger Rechnungsblase, Pizza fällt vom Teller"
+tags = ["lieferdienst","gebuehren","essen","kleine_extras"]
 
 ["clips/shopping-bags-steal-wallet-7ddc39ce-720p.mp4"]
-beschreibung = ""
-tags = []
+beschreibung = "Grinsende Einkaufstüten klauen Brokeys Portemonnaie vor einem Rabatt-Schild"
+tags = ["rabatt","shopping","impulskauf","sale"]
+hinweis = "Schrift im Bild (BLACK FRIDAY)"
 
 ["bilder/stick-figure-dragging-bottle-sack-03b4ba7e-2k.jpg"]
-beschreibung = ""
-tags = []
+beschreibung = "Brokey zieht einen Sack Pfandflaschen zum Automaten (Startbild Pfand-Clip)"
+tags = ["pfand","kleinvieh","sparen"]
 
 ["bilder/stick-figure-dropping-pizza-slice-efad7933-2k.jpg"]
-beschreibung = ""
-tags = []
+beschreibung = "Brokey erschrickt, Pizza fällt vom Teller, Scooter mit langer Rechnung (Startbild Lieferdienst)"
+tags = ["lieferdienst","gebuehren","essen"]
 
 ["bilder/stick-figure-juggling-multiple-i-748c2d1d-2k.jpg"]
-beschreibung = ""
-tags = []
+beschreibung = "Brokey mit vielen Armen jongliert Alltagsdinge (Startbild Jongleur-Clip)"
+tags = ["nebenjob","stress","zeit"]
 
 ["bilder/stick-figure-looking-through-bin-a3e58d1a-2k.jpg"]
-beschreibung = ""
-tags = []
+beschreibung = "Brokey mit Fernglas auf Preisschild-Berg (Startbild Preisvergleich)"
+tags = ["preisvergleich","preise","suchen"]
 
 ["bilder/stick-figure-shivering-by-radiator-c90d2ea5-2k.jpg"]
-beschreibung = ""
-tags = []
+beschreibung = "Brokey in Decke am glühenden Heizkörper, Münzen fliegen aus dem Zähler (Startbild Heizkosten)"
+tags = ["heizkosten","nebenkosten","energie"]
 
 ["bilder/stick-figure-staring-at-phone-9a8b4f4c-2k.jpg"]
-beschreibung = ""
-tags = []
+beschreibung = "Brokey sitzt am Handy, Wunsch-Blasen (Auto, Yacht, Insel), leeres Portemonnaie"
+tags = ["online_shopping","handy","wuensche"]
 
 ["bilder/stick-figure-walking-shopping-aisle-fac9ad43-2k.jpg"]
-beschreibung = ""
-tags = []
+beschreibung = "Treuekarte an der Angel vor Brokeys Nase im Supermarktgang (Startbild Treuepunkte)"
+tags = ["treuepunkte","einkaufen","lockangebot"]
 
 ["bilder/stick-figure-wallet-stolen-by-d46ce061-2k.jpg"]
-beschreibung = ""
-tags = []
+beschreibung = "Einkaufstüten klauen Brokeys Portemonnaie vor Rabatt-Schild (Startbild)"
+tags = ["rabatt","shopping","impulskauf"]
+hinweis = "Schrift im Bild (BLACK FRIDAY)"
 
 ["bilder/broky-at-airport-with-suitcases-f6346b86-2k.jpg"]
 beschreibung = "Brokey mit Kofferwagen am Flughafen (Startbild Flughafen-Clip)"

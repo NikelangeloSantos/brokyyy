@@ -38,32 +38,32 @@ Vorschaubild aller Medien: `uebersicht.jpg`
 | 30 | `bilder/stick-figure-crosses-finish-line-3f83428a.jpg` | Bild | Brokey läuft durchs Ziel, Spar-Thermometer voll, Münzen jubeln | sparziel, erfolg, jubel |  |
 | 31 | `bilder/stick-figure-defeats-card-octopus-250abd22.jpg` | Bild | Brokey hat die Abo-Krake mit der Schere besiegt, hält sein Portemonnaie | abo, kuendigen, krake, lerneffekt, selbstsicher |  |
 | 32 | `bilder/stick-figure-dragged-by-bag-255f96d4.jpg` | Bild | Grinsende Einkaufstüte zieht Brokey, Teufel und Engel streiten neben ihm | impulskauf, shopping, teufel, engel, panik |  |
-| 33 | `bilder/stick-figure-dragging-bottle-sack-03b4ba7e-2k.jpg` | Bild |  |  |  |
-| 34 | `bilder/stick-figure-dropping-pizza-slice-efad7933-2k.jpg` | Bild |  |  |  |
+| 33 | `bilder/stick-figure-dragging-bottle-sack-03b4ba7e-2k.jpg` | Bild | Brokey zieht einen Sack Pfandflaschen zum Automaten (Startbild Pfand-Clip) | pfand, kleinvieh, sparen |  |
+| 34 | `bilder/stick-figure-dropping-pizza-slice-efad7933-2k.jpg` | Bild | Brokey erschrickt, Pizza fällt vom Teller, Scooter mit langer Rechnung (Startbild Lieferdienst) | lieferdienst, gebuehren, essen |  |
 | 35 | `bilder/stick-figure-escaping-gold-avala-bc0c9cdf.jpg` | Bild | Brokey flieht auf Skiern vor einer riesigen Münz-Lawine | zinseszins, schneeball, lawine, muenze, panik |  |
 | 36 | `bilder/stick-figure-feeding-monster-wallet-549a3933.jpg` | Bild | Rotes Monster schleckt mit der Zunge Münzen aus Brokeys Portemonnaie | inflation, schulden, zinsen, panik, hook |  |
 | 37 | `bilder/stick-figure-hitting-golf-ball-d0f39be7.jpg` | Bild | Brokey beim Golfen, der Ball fliegt ins Wasser, eine Ente schaut zu | fehlschlag, luxus, hobby, gelangweilt |  |
 | 38 | `bilder/stick-figure-holding-banana-slicer-a0a8e86a.jpg` | Bild | Brokey hält stolz einen Bananenschneider, im Regal über ihm unnötige Gadgets | impulskauf, gadgets, unnoetig, selbstsicher |  |
 | 39 | `bilder/stick-figure-holding-glowing-card-c2cf0b19.jpg` | Bild | Brokey hält eine brennende Karte und einen Feuerlöscher | kreditkarte, schulden, dispo, gelangweilt |  |
 | 40 | `bilder/stick-figure-in-rescue-boat-3b501008.jpg` | Bild | Brokey paddelt auf einer Münze vor einer Welle aus Geldscheinen und Rechnungen | rechnungen, schulden, welle, ueberfordert | Grüne Dollar-artige Geldscheine |
-| 41 | `bilder/stick-figure-juggling-multiple-i-748c2d1d-2k.jpg` | Bild |  |  |  |
+| 41 | `bilder/stick-figure-juggling-multiple-i-748c2d1d-2k.jpg` | Bild | Brokey mit vielen Armen jongliert Alltagsdinge (Startbild Jongleur-Clip) | nebenjob, stress, zeit |  |
 | 42 | `bilder/stick-figure-looking-at-gap-47f0947c.jpg` | Bild | Brokey steht vor einer Schlucht mit kaputter Brücke, drüben der Strand | notgroschen, ziel, problem, setup |  |
-| 43 | `bilder/stick-figure-looking-through-bin-a3e58d1a-2k.jpg` | Bild |  |  |  |
+| 43 | `bilder/stick-figure-looking-through-bin-a3e58d1a-2k.jpg` | Bild | Brokey mit Fernglas auf Preisschild-Berg (Startbild Preisvergleich) | preisvergleich, preise, suchen |  |
 | 44 | `bilder/stick-figure-losing-giant-paycheck-a51f9c6a.jpg` | Bild | Greifarme reißen Stücke aus Brokeys Gehaltsscheck | gehalt, abzuege, netto_brutto, steuern, panik |  |
 | 45 | `bilder/stick-figure-playing-tug-of-a8ceaf3b.jpg` | Bild | Tauziehen zwischen Brokey und einem wütenden Sparschwein mit Boxhandschuh um einen Geldsack | sparen, sparschwein, kampf, panik |  |
 | 46 | `bilder/stick-figure-relaxing-in-chair-94f3c2b0.jpg` | Bild | Brokey im Liegestuhl, Maschine verteilt Geld in Sparschwein (Startbild Automatisch-Sparen) | dauerauftrag, automatisch_sparen, entspannt |  |
 | 47 | `bilder/stick-figure-scooping-sinking-boat-67462fe2.jpg` | Bild | Brokey als Kapitän schöpft aus einem sinkenden Boot, Münzen fallen aus einem Loch | schulden, geld_verlieren, muenze, panik |  |
 | 48 | `bilder/stick-figure-screaming-at-statement-1d7b7bb3.jpg` | Bild | Nahaufnahme: Brokey schreit auf einen endlosen Kontoauszug, Münze fliegt weg | kontoauszug, panik, hook, running_gag, muenze |  |
 | 49 | `bilder/stick-figure-selling-items-e1f96339-2k.jpg` | Bild | Brokey verkauft Sachen auf dem Flohmarkt (Startbild Flohmarkt-Clip) | flohmarkt, ausmisten, verkaufen |  |
-| 50 | `bilder/stick-figure-shivering-by-radiator-c90d2ea5-2k.jpg` | Bild |  |  |  |
+| 50 | `bilder/stick-figure-shivering-by-radiator-c90d2ea5-2k.jpg` | Bild | Brokey in Decke am glühenden Heizkörper, Münzen fliegen aus dem Zähler (Startbild Heizkosten) | heizkosten, nebenkosten, energie |  |
 | 51 | `bilder/stick-figure-sitting-in-chair-14e7dbaa.jpg` | Bild | Brokey mit Headset im Gaming-Stuhl, umgeben von vielen Monitoren, bunter Regenbogen-Hintergrund | gaming, setup, technik, ausgaben | Sehr bunter Hintergrund, weicht vom Papier-Look ab |
 | 52 | `bilder/stick-figure-sitting-on-piggy-62b9218e.jpg` | Bild | Brokey auf Sparschwein mit Schild, Geldregen aus Gewitterwolke | notgroschen, ruecklage, schutz, krise |  |
 | 53 | `bilder/stick-figure-standing-before-chair-5c0f65ff-2k.jpg` | Bild | Brokey vor dem Münzsack-Chef auf dem Stuhl (Startbild Chef-Clip) | gehaltsverhandlung, gehalt, chef |  |
 | 54 | `bilder/stick-figure-staring-at-coin-968d5b33.jpg` | Bild | Brokey neben einem frechen Geldautomaten (streckt Zunge raus), eine Münze kommt heraus | geldautomat, konto, gebuehren, resigniert, outro |  |
-| 55 | `bilder/stick-figure-staring-at-phone-9a8b4f4c-2k.jpg` | Bild |  |  |  |
+| 55 | `bilder/stick-figure-staring-at-phone-9a8b4f4c-2k.jpg` | Bild | Brokey sitzt am Handy, Wunsch-Blasen (Auto, Yacht, Insel), leeres Portemonnaie | online_shopping, handy, wuensche |  |
 | 56 | `bilder/stick-figure-using-glowing-laptop-f3fc41ef.jpg` | Bild | Brokey nachts am leuchtenden Laptop, um ihn ein Berg aus Paketen | onlineshopping, impulskauf, pakete, nachts, selbstsicher |  |
-| 57 | `bilder/stick-figure-walking-shopping-aisle-fac9ad43-2k.jpg` | Bild |  |  |  |
-| 58 | `bilder/stick-figure-wallet-stolen-by-d46ce061-2k.jpg` | Bild |  |  |  |
+| 57 | `bilder/stick-figure-walking-shopping-aisle-fac9ad43-2k.jpg` | Bild | Treuekarte an der Angel vor Brokeys Nase im Supermarktgang (Startbild Treuepunkte) | treuepunkte, einkaufen, lockangebot |  |
+| 58 | `bilder/stick-figure-wallet-stolen-by-d46ce061-2k.jpg` | Bild | Einkaufstüten klauen Brokeys Portemonnaie vor Rabatt-Schild (Startbild) | rabatt, shopping, impulskauf | Schrift im Bild (BLACK FRIDAY) |
 | 59 | `bilder/stick-figures-in-money-rain-d973c32d.jpg` | Bild | Zwei Brokeys im Münzregen: einer mit Schirm, einer nass | vergleich, sparer_vs_spender, vorsorge | Zwei Brokeys im Bild |
 | 60 | `bilder/two-brokeys-comparing-financial-7ac6fd6f.jpg` | Bild | Links ruhiger Brokey mit grauer Mütze und Münzturm, rechts chaotischer Brokey mit Einkaufstüten | vergleich, sparer_vs_spender, sparen, shopping | Evtl. Schrift auf den Tüten ('SALE') |
 | 61 | `clips/animated-character-survives-wave-17c9171a.mp4` | Clip 8.0s | Brokey paddelt auf einer Münze durch eine riesige Welle aus Geldscheinen und Rechnungen, verliert am Ende die Mütze (Glatze, Schwimmweste) | rechnungen, schulden, welle, ueberfordert, panik, hook | Grüne Dollar-artige Geldscheine; Brokey kurz ohne Mütze |
@@ -72,32 +72,32 @@ Vorschaubild aller Medien: `uebersicht.jpg`
 | 64 | `clips/brokey-relaxing-on-beach-chair-d3d4ab96.mp4` | Clip 6.0s | Brokey mit Sonnenbrille und Drink im Liegestuhl unter Palme, Portemonnaie mit Münzen neben ihm, Meer kommt ins Bild | urlaub, entspannt, ruecklage, ziel, outro |  |
 | 65 | `clips/brokey-sells-items-for-coins-55471e48-720p.mp4` | Clip 6.0s | Brokey verkauft alte Sachen von einer Decke (Flohmarkt), ein Münzturm wächst | flohmarkt, ausmisten, verkaufen, nebeneinkommen |  |
 | 66 | `clips/broky-tanz-tvor-freude-d14b6d67-720p.mp4` | Clip 6.0s | Brokey tanzt vor Freude mit Portemonnaie vor einem Sale-Stand | rabatt, sale, lockpreis, freude, impulskauf | Schrift im Bild (SALE, 50% OFF) |
-| 67 | `clips/car-rides-coin-track-797fb5da-720p.mp4` | Clip 6.0s |  |  |  |
-| 68 | `clips/character-chases-loyalty-card-6bd1a376-720p.mp4` | Clip 6.0s |  |  |  |
+| 67 | `clips/car-rides-coin-track-797fb5da-720p.mp4` | Clip 6.0s | Brokey fährt panisch in einem Auto auf einer Achterbahn aus Münzen, am Ende ist er schwindelig | kosten, auto, achterbahn, schwankungen, panik |  |
+| 68 | `clips/character-chases-loyalty-card-6bd1a376-720p.mp4` | Clip 6.0s | Treuekarte an einem Stock vor Brokeys Nase (Karotte), er läuft hinterher und verliert Münzen | treuepunkte, einkaufen, lockangebot, konsum |  |
 | 69 | `clips/character-collects-coins-from-ma-7754677b.mp4` | Clip 6.0s | Brokey füllt ein Formular aus, aus dem Briefkasten fallen Münzen, er freut sich (Erstattung) | steuererklaerung, rueckerstattung, papierkram, erleuchtung |  |
 | 70 | `clips/character-crosses-gap-using-coins-0a9c5fbe.mp4` | Clip 8.0s | Brücke über eine Schlucht bricht, Brokey baut sich mit Münzen einen Weg zum Strand auf der anderen Seite | notgroschen, ruecklage, sparen, ziel, geschichte |  |
 | 71 | `clips/character-crossing-finish-line-s-1389e02e.mp4` | Clip 6.0s | Brokey läuft durchs Ziel, Spar-Thermometer voll, Konfetti, Münzen mit Beinchen jubeln – dann kippt er erschöpft um | sparziel, erfolg, jubel, punchline |  |
 | 72 | `clips/character-cuts-tentacles-with-sc-ca1c3058.mp4` | Clip 6.0s | Brokey schneidet mit einer Riesenschere die Tentakel der Abo-Krake ab und rettet sein Portemonnaie | abo, kuendigen, krake, lerneffekt, selbstsicher |  |
 | 73 | `clips/character-holding-and-protecting-b0af4af6.mp4` | Clip 6.0s | Brokey hält einen Goldbarren, schaut zu einem Sportwagen, entscheidet sich dann für den Goldbarren | impulskauf, verzicht, entscheidung, auto, lerneffekt |  |
 | 74 | `clips/character-interacts-with-coin-boss-f2ff460c-720p.mp4` | Clip 6.0s | Brokey vor einem Münzsack-Chef auf Drehstuhl, Münzleiter, er übt die Gehaltsverhandlung | gehaltsverhandlung, gehalt, chef, karriere |  |
-| 75 | `clips/character-juggles-objects-and-drops-f3d1391d-720p.mp4` | Clip 6.0s |  |  |  |
-| 76 | `clips/character-recycles-bottles-for-c-a311b88c-720p.mp4` | Clip 6.0s |  |  |  |
-| 77 | `clips/character-scanning-price-tag-mou-9cc253c9-720p.mp4` | Clip 6.0s |  |  |  |
-| 78 | `clips/character-shivering-under-blanket-9cd634c9-720p.mp4` | Clip 6.0s |  |  |  |
+| 75 | `clips/character-juggles-objects-and-drops-f3d1391d-720p.mp4` | Clip 6.0s | Brokey mit vielen Armen jongliert Laptop, Kaffee, Tüte, Kalender, Uhr – am Ende fällt alles runter | nebenjob, stress, ueberforderung, zeit |  |
+| 76 | `clips/character-recycles-bottles-for-c-a311b88c-720p.mp4` | Clip 6.0s | Brokey schleppt einen Sack Pfandflaschen zum Automaten, Münzen fallen ins Sparschwein | pfand, kleinvieh, sparen, nebeneinkommen |  |
+| 77 | `clips/character-scanning-price-tag-mou-9cc253c9-720p.mp4` | Clip 6.0s | Brokey sucht mit Fernglas auf einem Berg aus Preisschildern | preisvergleich, preise, suchen, sparen |  |
+| 78 | `clips/character-shivering-under-blanket-9cd634c9-720p.mp4` | Clip 6.0s | Brokey zittert in einer Decke, Heizkörper glüht, ein Zähler wirft Münzen aus | heizkosten, nebenkosten, energie, unerwartete_kosten |  |
 | 79 | `clips/character-sipping-drink-during-s-cd3c82ef.mp4` | Clip 6.0s | Brokey sitzt entspannt auf einem Sparschwein mit Schild, trinkt, während aus einer dunklen Wolke Geldscheine regnen | notgroschen, ruecklage, schutz, krise, entspannt |  |
 | 80 | `clips/character-snaps-from-hypnotic-state-57b1a298.mp4` | Clip 6.0s | Brokey trägt hypnotisiert einen Berg Einkäufe zu einem Prozent-Rabattschild, wacht auf und steht mit leerem Geld da | rabatt, sale, impulskauf, hypnose, hoffnung_absturz |  |
-| 81 | `clips/character-stirs-pot-for-coins-33ef688e-720p.mp4` | Clip 6.0s |  |  |  |
-| 82 | `clips/character-throws-coin-off-paper-f20edc6a-720p.mp4` | Clip 6.0s |  |  |  |
-| 83 | `clips/character-trapped-by-gift-box-13c41a6b-720p.mp4` | Clip 6.0s |  |  |  |
-| 84 | `clips/character-watching-items-pop-out-0482d24c-720p.mp4` | Clip 6.0s |  |  |  |
+| 81 | `clips/character-stirs-pot-for-coins-33ef688e-720p.mp4` | Clip 6.0s | Brokey kocht selbst mit Kochmütze, daneben wächst ein Münzturm (Lieferdienst-Bild an der Wand) | selbst_kochen, sparen, essen, lieferdienst |  |
+| 82 | `clips/character-throws-coin-off-paper-f20edc6a-720p.mp4` | Clip 6.0s | Brokey wirft eine Münze weg, sie fliegt vom Papier, er schaut traurig hinterher | running_gag, muenze, geld_weg, resigniert |  |
+| 83 | `clips/character-trapped-by-gift-box-13c41a6b-720p.mp4` | Clip 6.0s | Geschenkbox mit Kalender-Mausefalle schnappt nach Brokeys Portemonnaie, Münzen fliegen | gratis, probeabo, abo, falle, kuendigungsfrist |  |
+| 84 | `clips/character-watching-items-pop-out-0482d24c-720p.mp4` | Clip 6.0s | Brokey sitzt am Handy, Wünsche (Auto, Yacht, Insel) poppen auf, Portemonnaie leer mit Motte | online_shopping, handy, wuensche, impulskauf |  |
 | 85 | `clips/character-watering-growing-coin-067ffa1a.mp4` | Clip 8.0s | Brokey gießt ein Münz-Pflänzchen neben einem Kalender, es wird zum großen Münzbaum, Brokey ist plötzlich alt mit Bart | zinseszins, langfristig, zeit, geduld, etf |  |
 | 86 | `clips/coin-rain-and-two-characters-47d5655a.mp4` | Clip 6.0s | Münzregen: ein Brokey mit Regenschirm bleibt trocken, der andere wird nass und verliert alles | vergleich, sparer_vs_spender, vorsorge, notgroschen | Zwei Brokeys im Bild |
 | 87 | `clips/man-checking-bags-boarding-airplane-45189e09-720p.mp4` | Clip 10.0s | Brokey gibt Gepäck am Flughafen auf, dann sitzt er im Flugzeug | reisen, flug, zusatzkosten, gepaeck | 1,4-3,0 s: Figur ohne rote Mütze; Schild DEPARTURES |
 | 88 | `clips/monster-eats-coins-and-burps-f86e1184.mp4` | Clip 6.0s | Ein Haus mit Gesicht frisst Brokeys Münzen und rülpst | miete, fixkosten, wohnen, resigniert |  |
 | 89 | `clips/monster-inhales-coins-from-brokey-7ddbae20.mp4` | Clip 8.0s | Rotes Monster saugt mit der Zunge Münzen aus Brokeys Portemonnaie, Brokey bleibt platt zurück | inflation, schulden, zinsen, panik, hook | Großes rotes Monster dominiert das Bild |
 | 90 | `clips/piggy-bank-coins-and-shopping-443f2687.mp4` | Clip 6.0s | Brokey im Liegestuhl, eine Maschine verteilt sein Geld automatisch: Münze ins Sparschwein, Rest in die Einkaufstüte | dauerauftrag, automatisch_sparen, pay_yourself_first, entspannt, lerneffekt |  |
-| 91 | `clips/scooter-startles-brokey-with-bubble-e9b5261a-720p.mp4` | Clip 6.0s |  |  |  |
-| 92 | `clips/shopping-bags-steal-wallet-7ddc39ce-720p.mp4` | Clip 7.9s |  |  |  |
+| 91 | `clips/scooter-startles-brokey-with-bubble-e9b5261a-720p.mp4` | Clip 6.0s | Lieferdienst-Scooter erschreckt Brokey mit riesiger Rechnungsblase, Pizza fällt vom Teller | lieferdienst, gebuehren, essen, kleine_extras |  |
+| 92 | `clips/shopping-bags-steal-wallet-7ddc39ce-720p.mp4` | Clip 7.9s | Grinsende Einkaufstüten klauen Brokeys Portemonnaie vor einem Rabatt-Schild | rabatt, shopping, impulskauf, sale | Schrift im Bild (BLACK FRIDAY) |
 | 93 | `clips/snowball-rolls-over-character-f2224411-720p.mp4` | Clip 6.0s | Riesiger Papierschneeball aus Briefen rollt über Brokey, am Ende sitzt er platt auf einer Münze | mahngebuehren, rechnungen, schneeball, schulden, panik |  |
 | 94 | `clips/stick-figure-holding-paycheck-gr-4f689b84.mp4` | Clip 8.0s | Brokey hält stolz einen riesigen Gehaltsscheck, Greifarme reißen Stücke ab, übrig bleibt ein Krümel | gehalt, abzuege, netto_brutto, steuern, hoffnung_absturz | Schrift ('BROKEY') und Dollarzeichen auf dem Scheck |
 | 95 | `clips/stick-figure-watering-coin-sapling-88d0a5b5.mp4` | Clip 6.0s | Brokey gießt geduldig ein Münz-Pflänzchen neben einem Kalender, es wächst langsam | zinseszins, sparplan, geduld, langfristig, gelangweilt |  |

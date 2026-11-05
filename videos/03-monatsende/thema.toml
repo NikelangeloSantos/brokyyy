@@ -48,7 +48,7 @@ mimik = "selbstsicher"
 booster = []
 running_gag = true
 aktion = "muenze_flieht"
-sprechertext = '''Dein Geld verschwindet nicht einfach. Du gibst es aus. Brokey bekommt Montag Gehalt und ist Dienstag [pause] Experte darin.'''
+sprechertext = '''Dein Geld verschwindet nicht einfach. Du gibst es aus. Brokey bekommt Montag Gehalt und ist Dienstag [pause] Experte darin, es auszugeben.'''
 einblendtext = "Gehalt da. Geld weg."
 
 [[szene]]
@@ -81,7 +81,7 @@ bild = '''Brokey pays with a card at a terminal, ghost coins float away'''
 bild_de = "Karte am Terminal, Geistermünzen (Ersatz: Standbild brennende Karte)"
 mimik = "gelangweilt"
 booster = []
-sprechertext = '''Bezahlt wird mit Karte. Praktisch, [pause] denn so sieht Brokey nicht, wie das Geld geht.'''
+sprechertext = '''Bezahlt wird mit Karte. Praktisch, [pause] denn so sieht Brokey nicht, wie sein Geld weggeht.'''
 einblendtext = "Unsichtbar bezahlt"
 
 [[szene]]

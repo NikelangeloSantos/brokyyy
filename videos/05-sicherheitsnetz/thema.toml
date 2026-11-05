@@ -1,0 +1,109 @@
+# Video 05 – Das Sicherheitsnetz
+# Quelle: Auftrag im Chat vom 2026-11-05 (Sprechertexte und Einblendtexte wörtlich übernommen).
+# Keine konkreten Zahlen, Zinssätze, Fristen oder Versicherungsprodukte.
+#
+# Vertonen (ganzer Text in einer Anfrage, Schnitt an Atempausen):
+#   python3 tools/vertonung.py videos/05-sicherheitsnetz --am-stueck --medien output/arbeit/05-sicherheitsnetz/audio --tempo 1.0 --stabilitaet 0.5
+# Schneiden:
+#   python3 tools/schnitt.py videos/05-sicherheitsnetz --medien output/arbeit/05-sicherheitsnetz/audio \
+#     --arbeitsordner output/arbeit/05-sicherheitsnetz/schnitt --ausgabe output/sicherheitsnetz.mp4
+# Szene 4 nutzt den Wellen-Clip nur bis 6,3 s (danach fliegt die Mütze weg):
+#   ffmpeg -i bibliothek/clips/animated-character-survives-wave-17c9171a.mp4 -t 6.3 output/arbeit/05-sicherheitsnetz/medien/welle-bis-6-3s.mp4
+
+[video]
+nummer = "05"
+titel = "Das Sicherheitsnetz"
+thema = "Unerwartete Kosten, Mahngebühren, Dispo, Notgroschen und Absicherung"
+lerneffekt = "Unerwartete Kosten kommen irgendwann. Ein kleiner Puffer und eine sinnvolle Absicherung nehmen die Panik raus."
+zielgruppe = "breit: Teenager, Azubis, Berufseinsteiger"
+ton = "trockener, sarkastischer Erzähler im Stil einer ruhigen Naturdoku, Understatement"
+disclaimer = "Keine Finanzberatung"
+referenzbild = "bibliothek/bilder/brokey-abos.jpg"
+caption = "TODO: Caption auswählen"
+hashtags = ["#finanzen", "#geldtipps", "#notgroschen", "#finanzbildung"]
+betonen = ["Kredit", "Notgroschen", "Versicherungen", "Keine Finanzberatung"]
+# Stimme am Stück; Vorlauf 0,3 s und Pause 0,4 s laut Auftrag (Sprechzeit allein nur 36,4 s)
+vorlauf = 0.3
+pause_nach = 0.4
+clip_min_tempo = 0.8
+clip_ton = 0.2
+
+[[fakt]]
+text = "'Dazu kommen oft Mahngebühren' – bewusst allgemein ('oft'), keine Beträge oder Fristen nennen"
+status = "offen"
+
+[[fakt]]
+text = "'Dispo ist ein Kredit und kann teuer sein' – allgemein richtig, keine Zinssätze nennen"
+status = "offen"
+
+[[fakt]]
+text = "Versicherungen: 'Welche passt, hängt von der Situation ab' – keine Produkte nennen, keine Empfehlung"
+status = "offen"
+
+[[szene]]
+name = "1 Heizkosten-Zähler"
+teil = "hook"
+schnellschnitt = false
+medien = ["bibliothek/clips/character-shivering-under-blanket-9cd634c9-720p.mp4"]
+bild = '''Brokey shivers under a blanket, the radiator glows, a meter spits out gold coins'''
+bild_de = "Brokey in Decke, Heizkörper glüht, Zähler wirft Münzen aus"
+mimik = "resigniert"
+booster = []
+running_gag = true
+sprechertext = '''Unerwartete Kosten fragen nicht, ob Brokey bereit ist. Er war es nicht.'''
+einblendtext = "Überraschung!"
+
+[[szene]]
+name = "2 Mahngebühren-Schneeball"
+teil = "geschichte"
+medien = ["bibliothek/bilder/character-buried-under-paper-forms-9218db59.jpg"]
+bild = '''Brokey hides behind a pile of unopened letters, a paper snowball rolls toward him'''
+bild_de = "Briefstapel, Papierschneeball (Ersatz: Standbild Brokey unter Papierberg)"
+mimik = "resigniert"
+booster = []
+sprechertext = '''Briefe ungeöffnet liegen lassen ist ein Plan. Ein schlechter. Dazu kommen oft Mahngebühren.'''
+einblendtext = "Rechnung liegen lassen?"
+
+[[szene]]
+name = "3 Dispo-Monster"
+teil = "geschichte"
+medien = ["bibliothek/clips/monster-inhales-coins-from-brokey-7ddbae20.mp4"]
+bild = '''A red monster mouth devours coins from Brokey's wallet'''
+bild_de = "Rotes Maul, das Münzen frisst"
+mimik = "panik"
+booster = []
+sprechertext = '''Dispo fühlt sich an wie Geld. Ist aber ein Kredit. Und der kann teuer sein. Brokey fühlt sich trotzdem reich.'''
+einblendtext = "Dispo = Kredit"
+
+[[szene]]
+name = "4 Notgroschen-Rettungsboot"
+teil = "lerneffekt"
+medien = ["output/arbeit/05-sicherheitsnetz/medien/welle-bis-6-3s.mp4"]
+bild = '''Brokey in a coin boat rides out waves made of bills'''
+bild_de = "Brokey im Münzboot, Wellen aus Rechnungen (Clip bis 6,3 s, ohne Mützen-Verlust)"
+mimik = "panik"
+booster = []
+sprechertext = '''Ein Notgroschen ist ein kleines Rettungsboot. Es muss nicht groß sein. Nur vorhanden. Brokey beginnt mit einer Münze.'''
+einblendtext = "Notgroschen"
+
+[[szene]]
+name = "5 Versicherungs-Regenschirm"
+teil = "lerneffekt"
+medien = ["bibliothek/clips/coin-rain-and-two-characters-47d5655a.mp4"]
+bild = '''Brokey stays dry under an umbrella while another Brokey gets soaked'''
+bild_de = "Brokey unter Schirm, anderer Brokey nass"
+mimik = "gelangweilt"
+booster = []
+sprechertext = '''Für die großen Stürme gibt es Versicherungen. Welche passt, hängt von der Situation ab.'''
+einblendtext = "Große Risiken absichern"
+
+[[szene]]
+name = "6 Notgroschen gefüllt"
+teil = "outro"
+medien = ["bibliothek/clips/character-sipping-drink-during-s-cd3c82ef.mp4"]
+bild = '''Brokey sits relaxed on a full piggy bank, rain bounces off a shield'''
+bild_de = "Brokey auf vollem Sparschwein, Regen prallt ab"
+mimik = "gelangweilt"
+booster = []
+sprechertext = '''Beim nächsten Sturm bleibt Brokey entspannt. Fast unheimlich. Keine Finanzberatung.'''
+einblendtext = "Ruhig bleiben · Keine Finanzberatung"
